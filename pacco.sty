@@ -13,7 +13,7 @@
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
-\usepackage[colorlinks=true, allcolors=black!80!red]{hyperref}
+\usepackage[colorlinks=true, allcolors=DarkOrchid4]{hyperref}
 \usepackage{lipsum} 
 \usepackage[shortlabels]{enumitem}
 \usepackage{amsthm}   
@@ -300,21 +300,19 @@
 							\newtcbtheorem[number within=section]{exa}{Example}{
 								enhanced, 
 								frame empty, breakable,
-								colframe=white, coltitle=black, colbacktitle=Red!24,
+								colframe=white, coltitle=black,
 								colback=white,
+								sharp corners,
 								borderline={0.5mm}{0mm}{white},
-								borderline west={1mm}{0mm}{Red!45},
+								borderline west={1mm}{0mm}{DarkOrchid4},
 								attach boxed title to top left,  
-								boxed title style={boxrule=0.5mm,drop fuzzy shadow=gray, colframe=red},
+								boxed title style={boxrule=0.5mm,drop fuzzy shadow=gray, colframe=DarkOrchid4, sharp corners, interior style={left color=white, right color=DarkOrchid4!50}},
 								separator sign={:},
 								description formatter=\newline,
 								theorem hanging indent/.try=0pt,
 							}{}
 							
 							\newenvironment{example}[1][]{
-								{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-								{\ignorespacesafterend} 
-								\hfill   
 								\stepcounter{exampl}
 								\ifstrempty{#1}{%   
 									\hfill
@@ -413,13 +411,22 @@
 									\newcommand{\every}{\forall\,}
 		\newcommand{\pr}{\mathbbm{P}}
 		\newcommand{\indi}{\mathbbm{1}}
-		\newcommand{\sa}{$\sigma$-algebra }
-		\newcommand{\rv}{random variable}
+		\newcommand{\sa}{$\sigma$-algebra}	\newcommand{\rv}{random variable}
 		\titleformat{\section}{\color{SkyBlue4}}{\color{red}\thesection}{1em}{}
 		\subsectionfont{\color{SkyBlue4!90!black}\bfseries}
 									\pretitle{\begin{center}\LARGE\color{SkyBlue2}}
 		\sectionfont{\color{Cyan2!50!black}\bfseries}
 										\pretitle{\begin{center}\LARGE\color{SkyBlue2}}
+											\newcommand{\prefacename}{Preface}
+											\newenvironment{preface}{
+												\vspace*{\stretch{2}}
+												{\noindent \bfseries \huge\color{SkyBlue4} \prefacename}
+												\begin{center}
+													% \phantomsection \addcontentsline{toc}{chapter}{\prefacename} % enable this if you want to put the preface in the table of contents
+													\thispagestyle{plain}
+												\end{center}%
+											}
+											{\vspace*{\stretch{5}}}
 						\usepackage[
 						backend=biber,
 						style=authoryear,
