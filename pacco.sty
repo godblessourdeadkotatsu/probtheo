@@ -8,6 +8,8 @@
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
+\usepackage{euscript}
+\usepackage{eufrak}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -21,6 +23,7 @@
 \usepackage{standalone}
 \usepackage{microtype}
 \usepackage{csquotes}
+\usepackage{titlesec}
 \usepackage{forest}
 \usepackage{censor}
 \usepackage{algorithm}
@@ -65,8 +68,6 @@
 }{}
 
 \newenvironment{remark}[1][]{
-	{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-	{\ignorespacesafterend} 
 	\hfill   
 	\stepcounter{dummy}
 	\ifstrempty{#1}{%   
@@ -103,9 +104,7 @@
 	}{}
 	
 	\newenvironment{definition}[1][]{
-		{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-		{\ignorespacesafterend} 
-		\hfill   
+		\hfill
 		\stepcounter{defi}
 		\ifstrempty{#1}{%   
 			\hfill
@@ -411,9 +410,16 @@
 									\newcommand{\cov}{\text{Cov}}
 									\newcommand{\BMF}{\left((B_t)_{t\geq 0},\mathcal{F}_t \right)}
 									\newcommand{\mFt}{\mathcal{F}_t}
+									\newcommand{\every}{\forall\,}
 		\newcommand{\pr}{\mathbbm{P}}
 		\newcommand{\indi}{\mathbbm{1}}
-									\pretitle{\begin{center}\LARGE\color{red!80!black}}
+		\newcommand{\sa}{$\sigma$-algebra }
+		\newcommand{\rv}{random variable}
+		\titleformat{\section}{\color{SkyBlue4}}{\color{red}\thesection}{1em}{}
+		\subsectionfont{\color{SkyBlue4!90!black}\bfseries}
+									\pretitle{\begin{center}\LARGE\color{SkyBlue2}}
+		\sectionfont{\color{Cyan2!50!black}\bfseries}
+										\pretitle{\begin{center}\LARGE\color{SkyBlue2}}
 						\usepackage[
 						backend=biber,
 						style=authoryear,
