@@ -186,7 +186,88 @@ Consider some examples of simple random variables:
 	This random variable is again one-dimensional but this time this random variable is \textit{absolutely continuous}. What does it mean? It actually means that the variable is absolutely continuous with respect to the Lebesgue measure\footnote{'tacci tua.}. This is evident when we write down the distribution.\\
 	Consider a \rv{} taking values in $\R_+$ and further consider $\mathscr{B}_{\R_+}$. We have
 	\[\mu(\dif x)=\underbracket{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+\]
-	WHY ON EARTH did we write $\dif x$ instead of just $x$? That's a good question. $\dif x$ stands for the Lebesgue measure of $\dif x$\footnote{Why? I will kill my own self.}. The second part of the equation ($ce^{-cx}$) is the density part and, being a continuous function, it implies that the distribution is continuous with respect to the Lebesgue measure\footnote{Really??}. So $p(x)=ce^{-cx},\;d\in\R_+$ is the density relative to $\mu$.
+	WHY ON EARTH did we write $\dif x$ instead of just $x$? That's a good question. $\dif x$ stands for the Lebesgue measure of $\dif x$\footnote{Why? I will kill my own self.}. The second part of the equation ($ce^{-cx}$) is the density part and, being a continuous function, it implies that the distribution is continuous with respect to the Lebesgue measure\footnote{Really??}. So $p(x)=ce^{-cx},\;x\in\R_+$ is the density relative to $\mu$. This should serve us as a demonstration that if we define the \rv{} we get the distribution/measure (remember! distributions are measures!) and vice versa.
 \end{example}
 It is interesting\footnote{Debatable claim.} to see that also discrete random variable turns out to be absolutely continuous... But not with respect to the Lebesgue measure. To exact, discrete \rv s are absolutely continuous with respect to the \textit{counting} measure.
+
+\vspace{0.5cm}
+\begin{figure}[H]
+\hspace{1.5cm}
+\begin{tikzpicture}
+	\calloutquote[width=5cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\color{white}So you know what a Lebesgue measure is, right?}
+\end{tikzpicture} 
+\begin{flushright}
+	\begin{tikzpicture}
+		\calloutquote[width=4cm,position={(1,-1)},fill=Turquoise4!30,rounded corners]{Of course not! Is that a bad thing?}
+	\end{tikzpicture}\hspace*{2.5cm}
+\end{flushright}
+\hspace{2cm}
+\begin{tikzpicture}
+	\calloutquote[width=3cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\color{white}You were adopted}
+\end{tikzpicture}
+\caption{Actual conversation happened between me and Professor Lods.}
+\end{figure}
+So we're due for a little refresh on what the hell a Lebesgue measure is. I'm sorry\footnote{Not really. I mean, I'm sorry for the fact that they \textit{are} mathematicians but that's where my compassion starts and ends.} for our mathematician friends but I need this to be written loud and clear. This is from Professor Lods' Lecture notes from the pre-course in Measure Theory, with the hope that one day I'll be skilled like he is with \LaTeX{} typesetting.
+\begin{revise}
+Let's have a quick refresh about the Lebesgue measure over the measurable space $(\R,\mathscr{B}_{\R})$. Let $S=\R$. First of all, what is an algebra?
+\begin{definition}
+	A collection $\Sigma_0$ of subsets of $S$ is called an algebra on $S$ if:
+	\begin{itemize}
+		\item $S\in\Sigma_0$;
+		\item if $A\in\Sigma_0$ then $A^c\in\Sigma_0$ where $A^c=S\setminus A$ is the complementary of $A$;
+		\item if $A,B\in\Sigma_0$ then $A\cup B\in\Sigma_0$.
+	\end{itemize}
+\end{definition}
+We also need the concept of pre-measure, which is basically a measure but defined on an algebra (instead of a \sa{}):
+\begin{definition}
+	Let $\Sigma_0$ be an algebra on $S$ (not necessarily a \sa{}. A mapping $\ell:\Sigma_0\mapsto[0,\infty]$ is said to be a \enf{pre-measure} on $\Sigma_0$ if $\ell(\emptyset)=0$ and for any pairwise disjoints $\{A_n\}_{_n}\subset\Sigma_0$ with $\bigcup_nA_n\in\Sigma_0$ it holds:
+	\[\ell\left(\bigcup_{n=1}^\infty A_n\right)=\sum_{n=1}^{\infty}\ell{A_n}.  \] 
+	Moreover, a pre-measure $\ell$ is said to be $\sigma$-finite on $\Sigma_0$ if there exists a sequence $\{A_n\}_{_n}\subset\Sigma_0$ with $\bigcup_nA_n\in\Sigma_0$ and $\ell(A_n)<\infty$ for any $n\in\N$.
+\end{definition}
+We can immediately see that $\bigcup_nA_n\in\Sigma_0$ is an additional assumption: in \sa s this assumption is always met. So if $\Sigma_0$ is a \sa{} any measure on $\Sigma_0$ is a pre-measure. \\
+We also need one more thing: the \enf{Caratheodory's extension Theorem}.
+\begin{theorem}
+	\enf{Charatheodory's extension Theorem}: Let $S$ be a given set and let $\Sigma_0$ be an algebra on $S$ and $\Sigma=\sigma(\Sigma_0)$. If $\ell:\Sigma_0\mapsto[0,\infty]$ is a pre-measure on $(S,\Sigma_0)$ then there exists a measure $\mu$ on $(S,\Sigma)$ such that
+	\[ \mu(A)=\ell(A)\qquad \every A \in \Sigma_0. \]
+	Moreover, if $\ell$ is a $\sigma$-finite pre-measure on $\Sigma_0$, then such a measure $\mu$ on $(S,\Sigma)$ is unique and $\sigma$-finite.
+\end{theorem}Apparently this is one of the principal results in measure theory since it allows to construct measures well-adapted to practical situations: once such measures are constructed, Caratheodory's theorem can go fuck itself off. But the most important question is: why do we care about these total nerds?
+Because we can now define
+\[\mathcal{C}_0=\{[a,b):-\infty\leq a\leq b\leq\infty\in\R\}\]
+and let
+\[ \Sigma_0=\left\{\bigcup_{j=1}^N I-J:I_j\in\mathcal{C}_0\;\every j,I_i\cap I_j=\emptyset\text{ if }i\neq j,N\in\N \right\} \]
+We can prove without major difficulty that $\Sigma_0$ is an algebra on $\R$. Let's define a pre-measure on $\Sigma_0$ by setting:
+\begin{itemize}
+	\item $\ell([a,b))=b-a$ for any $b\geq a$;
+	\item $\ell((-\infty,b))=\ell((a,\infty))=\ell(\R)=+\infty$;
+	\item $\ell\left(\bigcup_{j=1}^N I_j\right)=\sum_{j=1}^{N}\ell(I_j)$ if $\{I_j\}_{_{j=1,\ldots,N}}\subset\mathcal{C}_0$ are pairwise disjoints.
+\end{itemize}
+It can be checked that this newly defined measure is $\sigma$-finite
+Remember that $\sigma(\Sigma_0)=\sigma(\mathcal{C}_0)=\mathscr{B}_\R$, which is the Borel \sa{}. 
+Consider, additionally, the result of the Charatheodory's extension Theorem. By stitching all of these amenities together we get:
+\begin{theorem}
+	There exists a unique measure  on $(\R,\mathscr{B}(\R))$ that we denote $\lambda$ (or $\mathfrak{m}$) and such that
+	\[\lambda([a,b))=b-1=a\qquad\every a<b.\]
+	We call this measure the \enf{Lebesgue measure} on $(\R,\mathscr{B}(\R))$.
+\end{theorem}
+\begin{flushright}
+	\begin{tikzpicture}
+		\calloutquote[width=6cm,position={(1,-1)},fill=white,rounded corners]{So we just learnt how to FIND A FUCKING INTERVAL ON THE REAL LINE?}
+	\end{tikzpicture}\hspace*{1.5cm}
+\end{flushright}
+\begin{remark}
+	We can define in the same way the Lebesgue measure on $(I, \mathscr{B}_I)$ for all $I\subset\R$.
+\end{remark}
+\begin{remark}
+	The measure space $(\R,\mathscr{B}_\R,\lambda)$ is $\sigma$-finite since $([-n,n))_n\nearrow\R$ but is not finite since
+	\[ \lambda(\R)=\lim_{n}\lambda([-n,n))=\lim_{n}2n=\infty\]
+\end{remark}
+\end{revise}
+Hope this helped!
+Back to our topic: the exponential \rv{} is absolutely continuous with respect to the density. 
+It is interesting to see that also discrete \rv s turn out to be absolutely continuous: the difference is that they are not absolutely continuous to the Lebesgue measure, but the \textit{counting} measure. At the undergrad level we are used to say that a \rv{} is either discrete or absolutely continuous it was a lie\footnote{Measure theory turns truths into lies. Truly a demonic machinery.}
+\begin{example}
+	\enf{Gamma distribution}\footnote{She factorials on my $\gamma$ 'till I $\beta$.}:
+	Consider a \rv{} taking values in $\R_+$ and consider as a \sa{} the Borel \sa{} $\mathscr{B}_{\R_+}$. The distribution of the Gamma \rv{} is the following:
+	\[\mu(\dif x)=\dif x\frac{c^ax^{a-1}e^{-cx}}{\Gamma(a)}\]
+\end{example}
 \end{document}

@@ -8,8 +8,6 @@
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
-\usepackage{euscript}
-\usepackage{eufrak}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -26,6 +24,7 @@
 \usepackage{titlesec}
 \usepackage{forest}
 \usepackage{censor}
+\usepackage{movement-arrows}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage[makeroom]{cancel}
@@ -37,12 +36,12 @@
 \usepackage{caption}
 \usepackage{wrapfig}
 \usepackage{authblk}
-\usepackage[scr=rsfso,cal=zapfc,frak=euler,bb=ams]{mathalfa}
+\usepackage[scr=euler,cal=euler,frak=euler,bb=ams]{mathalfa}
 \usepackage{sectsty,titling}
 \usepackage{float}
 
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning,patterns,arrows.meta, bending, shadings,intersections,decorations,fit,backgrounds,circuits.ee.IEC}
+\usetikzlibrary{shapes,arrows,positioning,patterns,arrows.meta, bending, shadings,intersections,decorations,fit,backgrounds,circuits.ee.IEC,shapes.callouts}
 \usepackage{pgfplots,pgfplotstable}
 \pgfplotsset{compat=1.16}
 \usepgfplotslibrary{fillbetween}
@@ -122,29 +121,25 @@
 		\newtcbtheorem[number within=section]{thrm}{Theorem}{
 			enhanced, 
 			breakable,
-			interior style={left color=Mulberry!87!SkyBlue4!30,right color=Dandelion!29},
-			title style={left color=Mulberry!87!SkyBlue4!90,right color=Dandelion!80},
-			frame style={left color=Mulberry!87!SkyBlue4!90,right color=Dandelion!80},
+			sharp corners,
+			interior style={left color=PaleTurquoise3!60,right color=Turquoise4!50},
+			title style={right color=LemonChiffon1,left color=Aquamarine4!90!black},
+			frame style={right color=SpringGreen4,left color=Turquoise4},
 			colframe=white, coltitle=white, colbacktitle=SkyBlue4,
 			colback=SkyBlue4,
-			drop fuzzy shadow=gray,
+			drop fuzzy shadow=Cyan4!50!black,
 			titlerule=0mm,
 			separator sign={:},
 			description formatter=\newline,
 			theorem hanging indent/.try=0pt,
 		}{}
 		
-		\newenvironment{theorem}[1][]{
-			{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-			{\ignorespacesafterend} 
-			\hfill   
+		\newenvironment{theorem}[1][]{ 
 			\stepcounter{theo}
 			\stepcounter{dummy}
 			\ifstrempty{#1}{%   
-				\hfill
 				\begin{thrm}{}{\thetheo,\thedummy}%                     
 				}{%        
-					\hfill
 					\begin{thrm}{}{\thetheo aa}%                 
 					}%
 				}{%
@@ -327,41 +322,20 @@
 								
 								\newcounter{exer}
 								
-								\newtcbtheorem[number within=section]{exerc}{Exercise}{
-									enhanced, 
-									frame empty, breakable,
-									colframe=white, coltitle=black, colbacktitle=Periwinkle!24,
-									colback=white,
-									borderline={0.5mm}{0mm}{white},
-									borderline west={1mm}{0mm}{Periwinkle!45},
-									attach boxed title to top left,
-									boxed title style={boxrule=0.5mm, sharp corners,drop fuzzy shadow=gray, colframe=Periwinkle!24},
-									separator sign={:},
-									description formatter=\newline,
-									theorem hanging indent/.try=0pt,
-								}{}
-								
-								\newenvironment{exercise}[1][]{
-									{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-									{\ignorespacesafterend} 
-									\hfill   
-									\stepcounter{exer}
-									\ifstrempty{#1}{%   
-										\hfill
-										\begin{exerc}{}{\theexampl\theexer\thesection}%                     
-										}{%        
-											\hfill
-											\begin{exerc}{}{\theexampl}%                 
-											}%
-										}{%
-										\end{exerc}% 
-									}
-									
+\newtcolorbox{revise}{
+	enhanced jigsaw,
+	colback=red!5!white,sharp corners, colframe=LightSteelBlue4!75!black,
+	breakable,
+	drop shadow,
+	fonttitle=\bfseries,
+	interior style={left color=CadetBlue3!30,right color=white!29},
+	frame style={left color=DodgerBlue4,right color=DodgerBlue1},
+	title={Revise with Kotatsu!}}						
 									\let\oldemptyset\emptyset
 									\let\emptyset\varnothing
 									
 									
-									\renewcommand{\labelitemi}{$\textcolor{blue}{\bullet}$}
+									\renewcommand{\labelitemi}{$\textcolor{SteelBlue4}{\bullet}$}
 									\renewcommand{\labelitemii}{$\textcolor{blue}{\cdot}$}
 									\renewcommand{\labelitemiii}{$\textcolor{SkyBlue4}{\diamond}$}
 									\renewcommand{\labelitemiv}{$\textcolor{SkyBlue4}{\ast}$}
@@ -427,6 +401,31 @@
 												\end{center}%
 											}
 											{\vspace*{\stretch{5}}}
+\pgfkeys{%
+	/calloutquote/.cd,
+	width/.code                   =  {\def\calloutquotewidth{#1}},
+	position/.code                =  {\def\calloutquotepos{#1}}, 
+	author/.code                  =  {\def\calloutquoteauthor{#1}},
+	/calloutquote/.unknown/.code   =  {\let\searchname=\pgfkeyscurrentname
+		\pgfkeysalso{\searchname/.try=#1,                                
+			/tikz/\searchname/.retry=#1},\pgfkeysalso{\searchname/.try=#1,
+			/pgf/\searchname/.retry=#1}}
+}  
+
+
+\newcommand\calloutquote[2][]{%
+	\pgfkeys{/calloutquote/.cd,
+		width               = 5cm,
+		position            = {(0,-1)},
+		author              = {}}
+	\pgfqkeys{/calloutquote}{#1}                   
+	\node [rectangle callout,draw,callout relative pointer={\calloutquotepos},text width=\calloutquotewidth,/calloutquote/.cd,
+	#1] (tmpcall) at (0,0) {#2};
+	\node at (tmpcall.pointer){\calloutquoteauthor};    
+}  											
+\renewcommand\leq\leqslant
+\renewcommand\geq\geqslant			
+
 						\usepackage[
 						backend=biber,
 						style=authoryear,
