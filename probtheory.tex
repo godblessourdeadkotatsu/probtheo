@@ -42,6 +42,16 @@ And if we considere the elements $A\in\mathscr{H}$ (which will be subsets of $\O
 \end{itemize}
 In measure theory we encounter the concept of \textbf{negligible sets}: these are sets of measure zero or non measurable sets included in measure zero sets. In probability theory, sets are \textbf{events}: so we have negligible events (events with probability 0 or non measurable events included in events with probability 0). Analogously, in measure theory a property which holds \textbf{almost everywhere} is allowed not to hold on negligible sets. In probability theory a property which holds \textbf{almost surely} is allowed not to hold on negligible events.
 We also have, in measure theory, \textit{measurable functions} that in probability theory are \textbf{random variables}.
+Let's have a look back into what the absolute fuck a measurable function is. Also what is an integral? This course deals with distributions, measures and other hellish machinery that servers the sole purpose to confuse you.
+\begin{revise}
+	\begin{definition}
+		Let $(E,\mathscr{E}$ and $(F,\mathscr{F})$ be measurable spaces. A mapping $f:E\mapsto F$ is said to be \enf{measurable} relative to $\mathscr{E}$ and $\mathscr{F}$ if 
+		\[f^{-1}(B)\in\mathscr{E}\qquad\every B\in\mathscr{F}.\]
+	\end{definition}
+	There is an useful property to measurable functions. Take a function $f:E\mapsto F$. In order for $f$ to be measurable relative to $\mathscr{E}$ and $\mathscr{F}$ it is necessary and sufficient that
+	\[f^{-1}(B)\in\mathscr{E}\qquad\every B\in\mathscr{F}_0\]
+	where $\mathscr{F}_0$ is a collection that generates $\mathscr{F}$, i.e. $\mathscr{F}=\sigma(\F_0)$.
+\end{revise}
 \subsection{Random variables}
 Consider a measurable space $(E,\mathscr{E})$. 
 \begin{definition}
@@ -75,16 +85,98 @@ So if $X^{-1}A$ is measurable by $\pr$ then it is in $\mathscr{H}$: otherwise it
 \begin{remark}
 	A random variable is said to be \enf{discrete} if it takes only countably many values.
 \end{remark}
+We are now ready to define the concept of \textit{distribution of a random variable}. But first...
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+	\lemmethink[width=4.3cm,position={(-1,-1)},fill=white]{Yeah I don't know about you guys but I have the uncomfortable sensation that we are about to talk about distributions and I won't be able to see a goddamn integral like I am used to do. Can we address this fact please?}
+\end{tikzpicture}
+\end{figure}
+Sure. Let's have a look back to Lebesgue integration.
+\begin{tcolorbox}[enhanced jigsaw,sharp corners, drop fuzzy shadow=gray,colback=white,frame style={white},interior style={fill stretch image=lebe},width=\linewidth,height=0.27\linewidth]
+\end{tcolorbox}
+	\begin{revise}
+		Consider a measure space $(E,\mathscr{E},\mu)$. $\E$ can be seen as the collection of all $\E$-measurable functions $f:E\mapsto\overline{\R}$ on $E$ that can be denoted with an abuse of notation\footnote{I am the only one being abused here.} by $f\in\E$ and by $d\in\E_+$ if the functions are positive. Our aim is to define integrals of measurable functions with respect to the measure $\mu$ so that:
+		\[\mu f=\mu(f)=\int_E f(x)\mu(\dx)=\int_Ef\dif\mu\]
+		which is written as the product of $\mu$ and $f$. It is interesting to note, in the last part of the equation, that the integral reads something like: "integrate $f$ over $E$ with respect to the measure $\mu$". What is this measure?? This is the question. Turns out that the good old Riemann integral is just a particular case of the Lebesgue integral when a certain measure is chosen.\\
+		 We consider them as the generalization of vectors and hence the scalar product becomes a sum, which transforms into an integral. We will define the Lebesgue integral in three steps:
+		\begin{enumerate}
+			\item Simple and positive functions:
+			\begin{definition}
+			The function $f$ is called a \enf{simple and positive function} if it can be written as $$\sum_{i=1}^{n}a_i\indi_{A_i}$$ where $A_i\in\E$ and $a_i\geq0\in\R$ for $i=1,2,\ldots,n$.
+			\end{definition}
+			\begin{definition}
+				For simple and positive functions, we define the Lebesgue integral as 
+				\[\mu f:=\sum_{i=1}^{n}a_i\mu(A_i)\]
+			\end{definition}
+			\item Positive and measurable functions:
+			\begin{theorem}
+				Let $f\in\E_+$. Then there exists a sequence of simple and positive functions $f_n$ such that $f_n\nearrow f$.
+			\end{theorem}
+			Thanks to this theorem, we can well pose the following definition"
+			\begin{definition}
+				Let $f\in\E_+$. We define
+				\[\mu f:=\lim_{n}\mu f_n\]
+				where $f_n$ is a sequence of simple and positive functions such that  $f_n\nearrow f$.
+			\end{definition}
+			\item Recall a general fact for real-valued functions.
+			\begin{remark}
+				Let $f$ be a real-valued function. Then we can write
+				\[f=f^+-f^-\]
+				With $f^+:=f\vee0=max\{f,0\}$, called \emph{positive part} and $f^-:=-(f\wedge0)=-min\{f,0\}$, called \emph{negative part}. Both of them are real and positive functions and $f$ is measurable \underline{if and only if} $f^+$ and $f^-$ are real and positive functions.
+			\end{remark}
+		\end{enumerate}
+		We are now ready to define the Lebesgue integral for measurable functions in $\R$. The trick is to separate the positive and the negative part of the function, to treat them as the limit of sequence of simple functions and then lose ourselves in the bliss of measure theory.
+		\begin{definition}
+			Let $f\in\E$. We define
+			\[\mu f:=\mu(f^+)-\mu(f^-)\]
+			Provided that \underline{at least} one of the integrals is finite in order to be defined and not incur into indefinite forms like $+\infty$ or $-\infty$.
+		\end{definition}
+		This definition can be easily converted if $f$ is a complex function: we only have to remember that we can decompose any complex number in its real and imaginary part. Both of them will be measurable real functions.
+		\[f=\mathfrak{Re}^+f-\mathfrak{Re}^-f+i(\mathfrak{Im}^+f-\mathfrak{Im}^-f).\]
+		From now on we will use this notation for the Lebesgue integral on $(E,\E)$:
+		\[\mu f=\int_Ef(x)\mu(\dx)\qquad\text{with }f\in\E\]
+		and if we choose $f=\indi_B$ with $B\in\E$. then
+		\[\mu f=\mu \indi_B=\int_E\indi_B(x)\mu(\dx)=\indi_B\mu(\dx)=\mu(B).\]\par
+		So this last equivalence helps us to understand one thing. \underline{Integrals are a device that needs a measure and a function to work}. In the notation above, $\dx$ has the meaning of an infinitesimal amount of the variable $x$ that is fed into the function $f$. Writing $\mu(\dx)$ means measuring an infinitesimal amount of $x$ using the measure $\mu$.\\
+		In Riemann integration, $\dx$ represents an infinitesimal segment of the $x$-axis multiplied by the height of the function at $x$ (which is, of course, $f(x)$) and summed ($\int_{a}^{b}$) with all the other infinitesimal segments of the $x$-axis over the interval $[a,b]$. Here it's really the same thing with the difference that we do multiply the height of the function $f(x)$ by calculating the "weight", or "\underline{measure}" of the infinitesimal part of the domain of the function $\dx$ according to our method of measure of choice. We do this over the set $E$.\par	
+	\end{revise}
+	\begin{tcolorbox}[enhanced jigsaw,sharp corners, drop fuzzy shadow=gray,colback=white,frame style={white},interior style={fill stretch image=lebe2},width=\linewidth,height=0.27\linewidth]
+	\end{tcolorbox}
+	So... will there ever be a measure and a set for which we will be able to circle back to our definition of Riemann integral? Hmm...\par
+	Anyway was it really SO DIFFICULT to explain?
 \begin{definition}
 	\enf{Distribution of a random variable}. Let $X$ be a random variable taking values in $(E,\mathscr{E})$ and let $\mu$ be the image of $\pr$ under $X$, that is,
-	\[\mu(A)=\pr(X^{-1}A)=\pr(X\in A)=\pr\circ X^{-1}(A)\footnote{you would know this if you knew fucking measure theory I guess},\;A\in\mathscr{E}.\] Then $\mu$ is a probability measyre on $(E,\mathscr{E})$ and it is called \textbf{distribution of X}.
+	\[\mu(A)=\pr(X^{-1}A)=\pr(X\in A)=\pr\circ X^{-1}(A)\footnote{you would know this if you knew fucking measure theory I guess},\;A\in\mathscr{E}.\] Then $\mu$ is a probability measure on $(E,\mathscr{E})$ and it is called \textbf{distribution of X}.
 \end{definition}
-So we map, by means of $X$, sets belonging to $\mathscr{E}$ into $\mathscr{H}$ and then evaluates this sets by means of the measure $\pr$. This is what we mean when we say that distributions are ultimately built with the probability measure and the random variable. Distribution is itself a measure!
+So we map, by means of $X$, sets belonging to $\mathscr{E}$ into $\mathscr{H}$ and then evaluates this sets by means of the measure $\pr$. This is what we mean when we say that distributions are ultimately built with the probability measure and the random variable. \\
+Distribution is itself a measure. To be exact it is a measure that we employ with a function (that in our case is a \rv{}) to form a Lebesgue integral just like we have seen in the revise box above. As we said, integrals are a machine that needs a function and a measure;
+ in the case of probability theory these elements are respectively the \emph{random variable} and the \emph{probability distribution}.\\
+ Right now we can start to see the light at the end of the tunnel\footnote{This is only the first chapter.} and start to have an intuition for all the ingredients to create this soup called "probability theory". Distributions are NOT cumulative density functions and neither they are probability density functions... They are something that transcends these "specialized" concepts and goes to the heart of how we evaluate (how we weigh; how we \textbf{measure}) a probability in a certain scenario. 
+\begin{center}
+	 Distributions are probability measures.
+\end{center}
 \begin{remark}
-	You should remember (LOL) that when we want to specify a measure on a $\sigma$-algebra, it's enough to do it on a \textit{p-system}\footnote{a p-system is a simpler object than a $\sigma$-algebra: it is simply a collection of sets closed under intersection} generating that $\sigma$ algebra: by means of the monotone class theorem we are then able to extend the measure to the $\sigma$-algebra. \\
-	This means that to specity $\mu$ it is enough to specify it on a \textit{p-system} which generates $\mathscr{E}$. For example, consider $E=\overline{\R}, \mathscr{E}=\mathscr{B}_{\overline{\R}}$. Consider the collection of sets $[-\infty,x],\;x\in\R$ which is of course a p-system because it is closed under intersection. Moreover, this shit generates the Borel sigma algebra on $\overline{\R}$. \\If we want to define a distribution, that is a measure, it is enough to define it on this p-system. Imagine that we apply our distribution measure to one set of this p-system
-	\[c(x)\footnote{because it is a function of $x$}=\mu\left([-\infty,x]\right)=\pr(X\leq x),\qquad x\in\R\] by the monotone class theorem. So we have now specified the measure on the p-system. The part $\pr(X\leq x)$ reminds us of the undergraduate times\footnote{I already wanted to kill myself at that time.}: it is a distribution function! This is what our professor did implicitly to avoid using measure theory\footnote{I have noticed that my life has not benefited in ANY form since I have been introduced to measure theory.}.
+	You should remember (LOL) that when we want to specify a measure on a $\sigma$-algebra, it's enough to do it on a \textit{$\pi$-system}\footnote{a $\pi$-system is a simpler object than a $\sigma$-algebra: it is simply a collection of sets closed under intersection} generating that $\sigma$ algebra: by means of the monotone class theorem we are then able to extend the measure to the $\sigma$-algebra. \\
+	This means that to specity $\mu$ it is enough to specify it on a \textit{$\pi$-system} which generates $\mathscr{E}$. For example, consider $E=\overline{\R}, \mathscr{E}=\mathscr{B}_{\overline{\R}}$. Consider the collection of sets $[-\infty,x],\;x\in\R$ which is of course a $\pi$-system because it is closed under intersection. Moreover, this shit generates the Borel sigma algebra on $\overline{\R}$. \\If we want to define a distribution, that is a measure, it is enough to define it on this $\pi$-system. Imagine that we apply our distribution measure to one set of this $\pi$-system
+	\[c(x)\footnote{because it is a function of $x$}=\mu\left([-\infty,x]\right)=\pr(X\leq x),\qquad x\in\R\] by the monotone class theorem. So we have now specified the measure on the $\pi$-system. The part $\pr(X\leq x)$ reminds us of the undergraduate times\footnote{I already wanted to kill myself at that time.}: it is a distribution function! This is what our professor did implicitly to avoid using measure theory\footnote{I have noticed that my life has not benefited in ANY form since I have been introduced to measure theory.}.
 \end{remark}
+\begin{revise}
+	But what is the \textit{monotone class Theorem}? First, we need the definition of \textit{monotone class}:
+	\begin{definition}
+		A collection of functions $\mathcal{M}$ is called \enf{monotone class} provided that:
+		\begin{enumerate}
+			\item it includes the constant function 1;
+			\item taken $f$ and $g\in\mathcal{M}_b$ (with $\mathcal{M}_b$ being the subcollection of bounded functions in $\mathcal{M}$) and $a,b\in\R$, then $af+bg\in\mathcal{M}$;
+			\item if the sequence $(f_n)_{_n}$ is contained in $\mathcal{M}_+$ (with $\mathcal{M}_+$ being the subcollection consisting of positive functions in $\mathcal{M}$) and $f_n\nearrow F$ then $f\in\mathcal{M}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{theorem}
+		\enf{Monotone class Theorem}:\\
+		Let $\mathcal{M}$ be a monotone class of functions on $E$. Suppose, for some $\pi$-system $\mathcal{C}$ generating $\mathscr{E}$, that $\indi_A\in\mathcal{C}$ for every $A\in\mathcal{C}$. Then $\mathcal{M}$ inclueds all positive $\E$-measurable functions and all bounded $\E$-measurable functions.
+	\end{theorem}
+\end{revise}
+So, turning back to the previous remark: in that case $\E$ consists of the Borel \sa{} on the extended real line ($\B_{\overline{\R}}$); our $\pi$-system is capable of generating the Borel \sa{} (because every Borel set can be constructed with the combination $[-\infty,x]$ for all $x\in\R$\footnote{I know, I know: the fuck is a Borel set? A Borel set is every set that can be formed by the countable union or countable intersection or complementation from any open or closed set. You see that every Borel set you can imagine can be constructed by $[-\infty,x]$.}); we defined the measure $\mu$ on the $\pi$-system $[-\infty,x]$ for all $x\in\R$; the monotone class theorem states that if a class of sets (in this case, the class of sets where $\mu$ is well-defined) contains a $\pi$-system (\checkmark) and is closed under monotone limits (i.e. is a \underline{monotone class}), then it contains the $\sigma$-algebra generated by the $\pi$-system: this means that the class of sets where the distribution $\mu$ is well-defined will include the Borel \sa{} $\B_{\overline{\R}}$. This is kinda cool, I'll have to admit. Unfortunately, I don't really care about this.
 \subsection{Functions of random variables}
 Consider $X$, a random variable taking values in $(E,\mathscr{E})$ and consider further a measurable space $(F,\mathscr{F})$. Let $f:E\rightarrow F$ be a measurable function relative to $\mathscr{E}$ and $\mathscr{F}$\footnote{This basically means that this bitch won't do anything evil. The whole point of measure theory, $\sigma$ algebras and all other shit is to ensure everything behaves.}. This function should me measurable by means of $\pr$, otherwise we couldn't do anything useful with it. Consider the composition
 \[Y=f\circ X\qquad\text{such that}\;Y(\omega)=f\circ X(\omega)=f\big(X(\omega)\big),\;\omega\in\Omega.\]
@@ -102,9 +194,9 @@ Note that the product space $E\times F$ is endowed with the \sa $\mathscr{E}\oti
 \end{definition}
 This is interesting, since we know that this variable has the specific structure of a random vector: we identify the distribution of this vector as the joint distribution of its two coordinates\footnote{it eludes me how anyone could find this interesting. We have to think about the whole vector as being distributed like its components separately}. 
 \begin{remark}
-	The product \sa{} $\mathscr{E}\otimes\mathscr{F}$ is generated by the p-system of measurable rectangles.
+	The product \sa{} $\mathscr{E}\otimes\mathscr{F}$ is generated by the $\pi$-system of measurable rectangles.
 \end{remark}
-On the product space, it is enough to only specify it on this p-system.\par
+On the product space, it is enough to only specify it on this $\pi$-system.\par
 Let denote with $\pi$ the joint distribution of $X,y$. It is sufficient to specify
 \[\pi(A\times B)=\pr(X\in A, Y\in B)\qquad\every  A\in\mathscr{E},B\in\mathscr{F}.\]
 We exploited the measurability of $X$ and $Y$
@@ -148,7 +240,7 @@ We also have an alternative notation for this measurable space!
 In the case that $(E_t,\mathscr{E}_t)=(E,\mathscr{E})\;\every t\in T$ the product space is denoted by
 \[(E,\mathscr{E})^T\] or 
 \[(E^T,\mathscr{E}^T)\]
-These are not real powers but it's just notation... Anyway these are all different notations to indicate the infinite product space with the product \sa{} built upon the p-system which is the collection of all possible rectangle defined in the way we saw above\footnote{NO I WON'T USE LABELS AND NUMBERED EQUATIONS.}.
+These are not real powers but it's just notation... Anyway these are all different notations to indicate the infinite product space with the product \sa{} built upon the $\pi$-system which is the collection of all possible rectangle defined in the way we saw above\footnote{NO I WON'T USE LABELS AND NUMBERED EQUATIONS.}.
 \subsection{Stochastic processes}
 \begin{definition}
 	Let $(E,\mathscr{E})$ be a measurable space and consider an index set $T$ (as before, an arbitrary set countable or uncountable).\\
@@ -185,10 +277,33 @@ Consider some examples of simple random variables:
 	\enf{Exponential \rv{}}\\
 	This random variable is again one-dimensional but this time this random variable is \textit{absolutely continuous}. What does it mean? It actually means that the variable is absolutely continuous with respect to the Lebesgue measure\footnote{'tacci tua.}. This is evident when we write down the distribution.\\
 	Consider a \rv{} taking values in $\R_+$ and further consider $\mathscr{B}_{\R_+}$. We have
-	\[\mu(\dif x)=\underbracket{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+\]
-	WHY ON EARTH did we write $\dif x$ instead of just $x$? That's a good question. $\dif x$ stands for the Lebesgue measure of $\dif x$\footnote{Why? I will kill my own self.}. The second part of the equation ($ce^{-cx}$) is the density part and, being a continuous function, it implies that the distribution is continuous with respect to the Lebesgue measure\footnote{Really??}. So $p(x)=ce^{-cx},\;x\in\R_+$ is the density relative to $\mu$. This should serve us as a demonstration that if we define the \rv{} we get the distribution/measure (remember! distributions are measures!) and vice versa.
+	\[\mu(\dif x)=\underbracket{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+.\]
+	Ok no wait hold your fucking horses, cowboy. Why did we write $\dif x$ instead of just $x$? Also weren't densities, like, a fucking measure of some set in the form of $\mu(A)$? I like the fact that these densities resemble more closely the probability density function I was taught to work with during my sad Economics degree but there are many many things that creep me out. \par
+	We have an answer for this, but we need to do a bit of trackbacking.
+	\begin{revise}
+		First of all: what exactly \textit{means} to be absolutely continuous?
+		\begin{definition}
+			let $\mu$ and $\nu$ be measures on a measurable space $(E,\mathscr{E})$. Then, measure $\nu$ is said to be absolutely continuous with respect to measure $\mu$ if, for every set $A\in\E$,
+			\[\mu(A)=0\implies\nu(A)=0.\]
+		\end{definition}
+		Huh. That was pretty simple. Well, turns out we can exploit this fact to "switch" between different measures inside of integrals...
+		\begin{theorem}
+			\emph{Radon-Nikodyn Theorem}.
+			Suppose that measure $\mu$ is $\sigma$-finite and measure $\nu$ is absolutely continuous with respect to $\mu$. Then there exists a positive $\E$-measurable function $p$ such that 
+			\[\int_E\nu(\dx)f(x)=\int_E\mu(\dx)p(x)f(x)\qquad f\in\E_+.\]
+			If we use the alternative notation:
+			\[\int_Ef\dif\nu =\int_Ep f\dif\mu \qquad f\in\E_+.\]
+			Moreover, $p$ is unique up to equivalence: if the equation above holds for another $\hat{p}\in\E_+$ then $\hat{p}(x)=p(x)$ for $\mu$-almost every\footnote{This means that all the setes where this condition doesn't hold are neglegible when weighted with measure $\mu$.} $x\in\E_+$. This is an if and only if statement!\par
+			Also, $p$ is called the \emph{Radon-Nikodyn derivative} of $\nu$ with respect to $\mu$:
+			\[\frac{\nu(\dx)}{\mu(dx)}=\frac{\dif\nu}{\dif\mu}=p.\]
+		\end{theorem}
+		With all this alternative notation this thing honestly feels like trying to understand the Metal Gear Solid plot, where identical characters named Snake keep cloning each other and being triple crossed by everyone until you lose track of your own identity.
+	\end{revise}
+	Now everything should make more sense\footnote{Enviable optimism.}. If we know that a given \rv{} (say, the exponential random variable) has a distribution $\mu(\dx)$ then we will be able to transform this in a distribution of the form $\text{Lebesgue measure}\cdot p(x)$ (we can lose $f$ if $f$ is constant).
+	In this formulation	$\dif x$ stands for the Lebesgue measure and the second part of the equation ($ce^{-cx}$) is the $p(x)$, called \emph{density function}. We can do this because we can see from the formula that this distribution, or measure, is indeed absolutely continuous with respect to the Lebesgue measure since we can express it in the form stated by the Radon-Nikodyn theorem.
+	 So $p(x)=ce^{-cx},\;x\in\R_+$ is the density relative to $\mu$. This should serve us as a demonstration that if we define the \rv{} we get the distribution/measure (remember! distributions are measures!) and vice versa.
 \end{example}
-It is interesting\footnote{Debatable claim.} to see that also discrete random variable turns out to be absolutely continuous... But not with respect to the Lebesgue measure. To exact, discrete \rv s are absolutely continuous with respect to the \textit{counting} measure.
+It is interesting\footnote{Debatable claim.} to see that also discrete random variable turns out to be absolutely continuous... But not with respect to the Lebesgue measure. To exact, discrete \rv s are absolutely continuous with respect to the \textit{counting} measure. And here's why to do all this shit we need the Lebesgue integral: by changing the measure we are using to compute the integral, we can use just one object (the probability distribution) to treat both discrete (using a counting measure, which gives us the cumulative distribution function in the form of a sum) and continuous \rv s (using the Lebesgue measure, which gives us the cumulative distribution function in the form of a Riemann integral.)
 
 \vspace{0.5cm}
 \begin{figure}[H]
@@ -246,7 +361,7 @@ Remember that $\sigma(\Sigma_0)=\sigma(\mathcal{C}_0)=\mathscr{B}_\R$, which is 
 Consider, additionally, the result of the Charatheodory's extension Theorem. By stitching all of these amenities together we get:
 \begin{theorem}
 	There exists a unique measure  on $(\R,\mathscr{B}(\R))$ that we denote $\lambda$ (or $\mathfrak{m}$) and such that
-	\[\lambda([a,b))=b-1=a\qquad\every a<b.\]
+	\[\lambda([a,b))=b-a\qquad\every a<b.\]
 	We call this measure the \enf{Lebesgue measure} on $(\R,\mathscr{B}(\R))$.
 \end{theorem}
 \begin{flushright}
@@ -254,6 +369,21 @@ Consider, additionally, the result of the Charatheodory's extension Theorem. By 
 		\calloutquote[width=6cm,position={(1,-1)},fill=white,rounded corners]{So we just learnt how to FIND A FUCKING INTERVAL ON THE REAL LINE?}
 	\end{tikzpicture}\hspace*{1.5cm}
 \end{flushright}
+\hspace{2cm}
+\begin{tikzpicture}
+	\calloutquote[width=7cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\color{white}Look, I know that can be seen as useless formalism. And indeed it is! We just formalized the notion of \textit{length}. If we take it to 2-dimensional spaces we end up with the notion of area, in 3-dimensional spaces is the notion of volume... and so on.}
+\end{tikzpicture}
+\begin{flushright}
+	\begin{tikzpicture}
+		\calloutquote[width=6cm,position={(1,-1)},fill=white,rounded corners]{Huh. This makes sense. So this is the notion of length when everything, including the real line, is a set. Kinda seems like the solution to a problem we ourselves created...}
+	\end{tikzpicture}\hspace*{1.5cm}
+\end{flushright}
+\hspace{2cm}
+\begin{tikzpicture}
+	\calloutquote[width=4cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\begin{center}
+			\includegraphics[width=0.5\linewidth]{lool}
+	\end{center}}
+\end{tikzpicture}
 \begin{remark}
 	We can define in the same way the Lebesgue measure on $(I, \mathscr{B}_I)$ for all $I\subset\R$.
 \end{remark}
@@ -262,12 +392,65 @@ Consider, additionally, the result of the Charatheodory's extension Theorem. By 
 	\[ \lambda(\R)=\lim_{n}\lambda([-n,n))=\lim_{n}2n=\infty\]
 \end{remark}
 \end{revise}
-Hope this helped!
-Back to our topic: the exponential \rv{} is absolutely continuous with respect to the density. 
-It is interesting to see that also discrete \rv s turn out to be absolutely continuous: the difference is that they are not absolutely continuous to the Lebesgue measure, but the \textit{counting} measure. At the undergrad level we are used to say that a \rv{} is either discrete or absolutely continuous it was a lie\footnote{Measure theory turns truths into lies. Truly a demonic machinery.}
+Yeah, that mysterious measure I was talking about before to connect Riemann and Lebesgue integration was the Lebesgue measure. We often just write $\dx$ to express the Lebesgue measure (which is what we did on example 1.2 about the exponential random variable).\\
+Back to our topic: the exponential \rv{} is absolutely continuous with respect to the Lebesgue measure.  
+It is interesting to see that also discrete \rv s turn out to be absolutely continuous: the difference is that they are not absolutely continuous to the Lebesgue measure, but the \textit{counting} measure. At the undergrad level we are used to say that a \rv{} is either discrete or absolutely continuous, buy this was ultimately a lie\footnote{Measure theory turns truths into lies. Truly a demonic machinery.}.
 \begin{example}
 	\enf{Gamma distribution}\footnote{She factorials on my $\gamma$ 'till I $\beta$.}:
 	Consider a \rv{} taking values in $\R_+$ and consider as a \sa{} the Borel \sa{} $\mathscr{B}_{\R_+}$. The distribution of the Gamma \rv{} is the following:
-	\[\mu(\dif x)=\dif x\frac{c^ax^{a-1}e^{-cx}}{\Gamma(a)}\]
+	\[\mu(\dif x)=\dif x\frac{c^ax^{a-1}e^{-cx}}{\Gamma(a)},\qquad
+	\text{with }
+	\begin{array}{l}
+		a>0,\\
+		c>0,\\
+		x\in\R_+
+	\end{array}.\]
+	Here $\Gamma(a)$ is the \textit{Gamma function:}
+	\[
+	\Gamma(a)=\int_{0}^{+\infty}e^{-x}x^{a-1}\dx.
+	\]
+	The Gamma function is one of the most famous special functions that comes up almost everywhere. This definition of Gamma function is valid just for positive values and can be seen as a \textit{Laplace transform}\footnote{$\mathcal{L}\{f\}(s)=\int_{0}^{+\infty}f(t)e^{st}\dif t$ where s is a complex number $s=a+ib$.} or as a \textit{Mellin transform}\footnote{$\mathcal{M}[f;s]\equiv F(s)=\int_{0}^{+\infty}f(t)t^{s-1}\dt$ where $s=a+ib$.}.
+	The first parameter $a$ is called \textit{shape parameter}; the parameter $c$ is called \textit{scale parameter}. This distribution is also continuous with respect to the Lebesgue measure. \par
+	We have some special cases of the Gamma distribution but Federico Polito doesn't really care about. Just know that the $\chi^2$ distribution is a special case of the Gamma \rv{}.
+\end{example}
+\begin{example}
+	This is a certified hood classic: \emph{Gaussian distribution}.\\
+	Consider a \rv{} takinv values in $\R$. Of course we consider $\B_{\overline{\R}}$ and the distribution is (notice how also this one is absolutely continuous with respect to the Lebesgue measure):
+	\[\mu(\dx)=\dx\cdot\underbracket{\frac{1}{\sqrt{2\pi b}}e^{-\frac{(x-1)}{2b}}}_{\mathclap{p(x)}},\qquad \begin{array}{l}
+	a\in\R,\\
+	b>0\in\R,\\
+	x\in\R_+
+	\end{array}.\]
+	Of course, $a$ is called the \textit{mean} of the distribution and $b$ is called the \textit{variance}.
+\end{example}
+\begin{example}
+	This is a random variable that stems from two independent random variables having Gamma distribution. Consider $\gamma_a$ (distribution of a Gamma \rv{} with parameters $a$ and $c=1$) and $\gamma_b$ (distribution of a Gamma \rv{} with parameters $b$ and $c=1$). So, two gammas with different shape parameter. \\
+	Let $X\sim\gamma_a$ and $Y\sim\gamma_b$. Moreover, let them be independent. This is a random vector $(X,Y)$ with two components... What is its distribution?
+	\[\pi(\dx\dy)=\underbracket{\gamma_a(\dx)\cdot\gamma_b(\dy)}_{\mathclap{\text{because of independency}}}=\dx\dy\frac{e^{-x}x^{a-1}}{\Gamma(a)}\cdot\frac{e^{-y}y^{b-1}}{\Gamma(b)}.\]
+	So it's easy to build joint distributions when the \rv s are independent\footnote{Well no shit. Even I can multiply two numbers}.
+\end{example}
+\begin{example}
+	\emph{Gaussian \rv{} with exponential variance}.\\
+	Here the variance is random and is distributed exponentially\footnote{because humans should never have the hubris to meddle with the horrorific world of random necessities that the Gods have laid before us.}. Consider a \rv{} $X$ taking values in $\R_+$ and a \rv{} $Y$ taking values in $\R$.\\
+	Here we are again in presence of a random vector. The distribution is the following:
+	\[\pi(\dx\dy)=\dx\dy\cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}\qquad \begin{array}{l}
+		x\in\R_+,\\
+		y\in\R
+	\end{array}. \]
+	\begin{remark}
+		$\pi$ in this case has a special form: it has the form 
+		\[\pi(\dx\dy)=\mu(\dx)K(x,\dy).\]
+		In particular, here $\color{Cyan4}\mu(\dx)$ is 
+		\[\color{Cyan4}\dx\color{black}\dy\cdot\color{Cyan4} ce^{-cx}\color{black}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}},\]
+		which is a docile exponential function, and $\color{Magenta4}K(x,\dy)$ is
+		\[\color{black}\dx\color{Magenta4}\dy\cdot\color{black} ce^{-cx}\color{Magenta4}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}.\]
+		In this case $K(x,\dy)$ cannot be the distribution fo $Y$, because it has some $x$ in it. So this distribution is not simply the product of marginal distribution. But let's take a closer look to the form $\mu(\dx)K(x,\dy)$. $\mu(\dx)$ is certaninly a measure, but what about $K(x,\dy)$? \par
+		Turns out that $K(x,\dy)$, depending on $x$, is connected to the other measure $\mu(\dx)$. \\
+		The object $K(x,\dy)$ is called \emph{transition kernel}\footnote{Kernel? Colonel? I thought we were over with the Metal Gear Solid jokes.} and it's very important. Not that here 
+		$K(x,\dy)$ has the form 
+		\[B\mapsto K(x,B):\]
+		It should be seen as a set function (after all we are constructing a \underline{join}t density, which is a set function in itself.)
+	\end{remark}
+	Why?
 \end{example}
 \end{document}

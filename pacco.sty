@@ -8,6 +8,7 @@
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
+\usepackage[scr=euler,cal=euler,frak=euler,bb=ams]{mathalfa}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -18,6 +19,7 @@
 \usepackage{array}
 \usepackage{pdfpages}
 \usepackage{minted}
+\usepackage{fancybox}
 \usepackage{standalone}
 \usepackage{microtype}
 \usepackage{csquotes}
@@ -36,12 +38,11 @@
 \usepackage{caption}
 \usepackage{wrapfig}
 \usepackage{authblk}
-\usepackage[scr=euler,cal=euler,frak=euler,bb=ams]{mathalfa}
 \usepackage{sectsty,titling}
 \usepackage{float}
 
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,positioning,patterns,arrows.meta, bending, shadings,intersections,decorations,fit,backgrounds,circuits.ee.IEC,shapes.callouts}
+\usetikzlibrary{shapes,arrows,positioning,patterns,arrows.meta, bending, shadings,intersections,shadows,decorations,fit,backgrounds,circuits.ee.IEC,shapes.callouts}
 \usepackage{pgfplots,pgfplotstable}
 \pgfplotsset{compat=1.16}
 \usepgfplotslibrary{fillbetween}
@@ -341,7 +342,10 @@
 									\renewcommand{\labelitemiv}{$\textcolor{SkyBlue4}{\ast}$}
 									
 									\newcommand{\enf}[1]{\textcolor{DodgerBlue2}{\textbf{#1}}} %enf sta per enfasi
-									\newcommand{\sott}[1]{\setulcolor{black!20!Goldenrod}\ul{#1}}
+					\let\emph\enf
+									\newcommand{\sott}[1]{\setulcolor{SkyBlue3}\ul{#1}}
+									\let\underline\sott
+
 									\newcommand{\prob}{\mathbb{P}}
 									\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 									\newcommand{\ev}[1]{\mathbb{E}\Bigl[{#1}\Bigr]}
@@ -353,6 +357,14 @@
 										\underset{\substack{\uparrow\\\mathrlap{\text{\vspace{-3cm}\hspace{-1em}#1}}}}{=}}
 									\newcommand{\dif}{\mathop{}\!\mathrm{d}}
 									%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\newcommand{\dx}{\dif x}
+\newcommand{\dy}{\dif y}
+\newcommand{\dt}{\dif t}
+\newcommand{\du}{\dif u}
+\newcommand{\ds}{\dif s}
+\newcommand{\E}{\mathscr{E}}
+\newcommand{\B}{\mathscr{B}}
+\newcommand{\F}{\mathscr{F}}
 									%i comandi di MERDA di stefano
 									\newcommand{\ra}{\rightarrow}
 									\newcommand{\iy}{\infty}
@@ -422,7 +434,20 @@
 	\node [rectangle callout,draw,callout relative pointer={\calloutquotepos},text width=\calloutquotewidth,/calloutquote/.cd,
 	#1] (tmpcall) at (0,0) {#2};
 	\node at (tmpcall.pointer){\calloutquoteauthor};    
+}  		
+
+
+\newcommand\lemmethink[2][]{%
+	\pgfkeys{/calloutquote/.cd,
+		width               = 5cm,
+		position            = {(0,-1)},
+		author              = {}}
+	\pgfqkeys{/calloutquote}{#1}                   
+	\node [cloud callout,draw,callout relative pointer={\calloutquotepos},text width=\calloutquotewidth,/calloutquote/.cd,
+	#1] (tmpcall) at (0,0) {#2};
+	\node at (tmpcall.pointer){\calloutquoteauthor};    
 }  											
+							
 \renewcommand\leq\leqslant
 \renewcommand\geq\geqslant			
 
