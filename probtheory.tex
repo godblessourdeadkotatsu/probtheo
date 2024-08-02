@@ -12,7 +12,8 @@
 		This document stems from the fact that I just seem unable to pass the Probability Theory exam for the life of me. I regret with every ounce of my being the fact that I enrolled to the Stochastics and Data Science master degree a year ago. Since dear Professor Toaldo never really thrilled me with his insightful lectures about this delightful topic, I resorted to watch the old lectures by Professor Polito, who at least seems to know the subject and to be determined to explain it.\\
 		Unlike many among my esteemed colleagues I have NOT a background in mathematics so there will be a lot of repetitions and possibly mistakes. Do what you want with this information. YES I KNOW that there are the whiteboard registrations of his lectures but if I DECIDED TO DO THIS it was because I couldn't comprehend shit with only those notes.\\
 		I'll also try to compile the notes made by Professor Sacerdote, in the vain attempt to overcome the drowsiness that is congenitally entwined with every event that contemplates her uttering any words.\\
-		I take much pride in my custom environment and in my packages. If you don't like them I will be very sad. 
+		I take much pride in my custom environment and in my packages. If you don't like them I will be very sad. \\
+		It is strongly recommended to play Metal Gear Solid, Metal Gear Solid 2 and Metal Gear Solid 3 before reading these notes to fully understand the subject treated.
 		
 		\vskip1.2cm
 		
@@ -266,7 +267,7 @@ Note that there is no mention about time here. Just think about the index set, w
 Now take a $\omega\in\Omega$ and evaluate all these \rv s on the same $\omega$. What we get is
 \[t\mapsto X_t(\omega)\]
 which is a function from $T$ to $(E,\mathscr{E})$. So if we see it as a function of $t$ for each $\omega$ we get a function which is an element of $E^T$. So what is a stochastic process, to sum it up? It's just a random variable taking values in the infinite product space $E^T$. That's why it is a problematic object: it's because mathematicians deserve to experience the sadness and evil they unleashed upon the world. Ever noticed how similar the words "measurable" and "miserable" are? I didn't think so. 
-\begin{figure}[h]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.6\linewidth]{ILMEMINO}
 	\caption{I'm sorry but here you're the soyjack and I'm the chad.}
@@ -295,9 +296,10 @@ Consider some examples of simple random variables:
 	Consider a \rv{} taking values in $\R_+$ and further consider $\mathscr{B}_{\R_+}$. We have
 	\[\mu(\dif x)=\underbracket{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+.\]
 	Ok no wait hold your fucking horses, cowboy. Why did we write $\dif x$ instead of just $x$? Also weren't densities, like, a fucking measure of some set in the form of $\mu(A)$? I like the fact that these densities resemble more closely the probability density function I was taught to work with during my sad Economics degree but there are many many things that creep me out. \par
-	We have an answer for this, but we need to do a bit of trackbacking.
+	We have an answer for this, but we need to do a bit of backtracking.
+\end{example}
 	\begin{revise}
-		First of all: what exactly \textit{means} to be absolutely continuous?
+		First of all: what does "absolutely continuous" \textit{even means}?
 		\begin{definition}
 			let $\mu$ and $\nu$ be measures on a measurable space $(E,\mathscr{E})$. Then, measure $\nu$ is said to be absolutely continuous with respect to measure $\mu$ if, for every set $A\in\E$,
 			\[\mu(A)=0\implies\nu(A)=0.\]
@@ -318,7 +320,7 @@ Consider some examples of simple random variables:
 	Now everything should make more sense\footnote{Enviable optimism.}. If we know that a given \rv{} (say, the exponential random variable) has a distribution $\mu(\dx)$ then we will be able to transform this in a distribution of the form $\text{Lebesgue measure}\cdot p(x)$ (we can lose $f$ if $f$ is constant).
 	In this formulation	$\dif x$ stands for the Lebesgue measure and the second part of the equation ($ce^{-cx}$) is the $p(x)$, called \emph{density function}. We can do this because we can see from the formula that this distribution, or measure, is indeed absolutely continuous with respect to the Lebesgue measure since we can express it in the form stated by the Radon-Nikodyn theorem.
 	 So $p(x)=ce^{-cx},\;x\in\R_+$ is the density relative to $\mu$. This should serve us as a demonstration that if we define the \rv{} we get the distribution/measure (remember! distributions are measures!) and vice versa.
-\end{example}
+
 It is interesting\footnote{Debatable claim.} to see that also discrete random variable turns out to be absolutely continuous... But not with respect to the Lebesgue measure. To exact, discrete \rv s are absolutely continuous with respect to the \textit{counting} measure. And here's why to do all this shit we need the Lebesgue integral: by changing the measure we are using to compute the integral, we can use just one object (the probability distribution) to treat both discrete (using a counting measure, which gives us the cumulative distribution function in the form of a sum) and continuous \rv s (using the Lebesgue measure, which gives us the cumulative distribution function in the form of a Riemann integral.)
 
 \vspace{0.5cm}
@@ -463,7 +465,7 @@ It is interesting to see that also discrete \rv s turn out to be absolutely cont
 		In this case $K(x,\dy)$ cannot be the distribution fo $Y$, because it has some $x$ in it. So this distribution is not simply the product of marginal distribution. But let's take a closer look to the form $\mu(\dx)K(x,\dy)$. $\mu(\dx)$ is certainly a measure, but what about $K(x,\dy)$? \par
 	\end{remark}
 \end{example}
-\subsection{Transition kernels}
+\section{Transition kernels}
 Turns out that $K(x,\dy)$, depending on $x$, is connected to the other measure $\mu(\dx)$. \\
 The object $K(x,\dy)$ is called \emph{transition kernel}\footnote{Kernel? Colonel? I thought we were over with the Metal Gear Solid jokes.} and it's very important. Not that here 
 $K(x,\dy)$ has the form 	
@@ -473,9 +475,10 @@ The Gamma example was about two independent random variables: here it is impossi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.57\linewidth]{codec}
-	\caption{Yeah, no more Metal Gear Solid jokes after this one. I promise.}
+	\caption[Caption for LOF]{Yeah, no more Metal Gear Solid jokes after this one. I promise\protect\footnotemark.}
 	\label{fig:codec}
 \end{figure}
+\footnotetext{This is not, in fact, the last Metal Gear Solid joke.}
 Remember in the undergraduate courses: when there was dependence we usually expressed it with the \textit{conditional probability}. \\
 Transition kernels let us manage random vectors that are not trivial and that have a dependence relationship with other random vectors. \\
 Think about the previous example: the marginal distribution $\nu$ of $Y$ has the form \begin{align*}
@@ -483,7 +486,7 @@ Think about the previous example: the marginal distribution $\nu$ of $Y$ has the
 	&=\int_{\R_+\times B}\pi(\dx,\dy)=\int_{\R_+\times B}\dx\dy\cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}\\
 	&=\int_B \dy\; n(y),\qquad\text{where }n(y)=\int_{0}^{\infty}\dx \cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}.
 \end{align*}
-So we have that the marginal distribution$\nu(B)$ is written as $\int_B \dy\;n(y)$ and is therefore absolutely continuous with respect to the Lebesgue measure. We could actually solve this integral ($n(y)$ is a closed form called \textit{two-sided exponent}). So we now have the marginal of $Y$ and the marginal of $X$ and we immediately realize that if we multiply the two densities we do not obtain the joint density (because they are dependent\footnote{OK I GET IT.}).\par
+So we have that the marginal distribution $\nu(B)$ is written as $\int_B \dy\;n(y)$ and is therefore absolutely continuous with respect to the Lebesgue measure. We could actually solve this integral ($n(y)$ is a closed form called \textit{two-sided exponent}). So we now have the marginal of $Y$ and the marginal of $X$ and we immediately realize that if we multiply the two densities we do not obtain the joint density (because they are dependent\footnote{OK I GET IT.}).\par
 So we are now ready to define the concept of transition kernel.
 \begin{definition}
 	Let $(E,\E)$ and $(F,\F)$ be measurable spaces. Let $K$ be a mapping from $E\times\F$ into $\overline{\R}_+$. Then $K$ is called \emph{transition kernel} from space $(E,\E)$ into space $(F,\F)$ if:
@@ -508,8 +511,13 @@ We can consider the transition kernel a hybrid object: if we look at it with res
 \end{example}
 \begin{theorem}
 	This theorem tells us what we can do with a kernel. Let $K$ be a transition kernel from $(E,\E)$ into $(F,\F)$. Then, 
-	\begin{enumerate}
-		\item we have $$\int_F K(k,\dy)f(y)\qquad \text{ with } x\in E,\;f\in\F_+.$$ This operation defines a function $Kf\in\E_+\;\every f\in\F_+$\footnote{the notation $f\in\F_+$ in Çinlar is either the \sa{} $\F$ or the set of functions measurable with respect to the \sa{} $\F$. Another one of the many ways Çinlar chooses to sadden my day. But my revenge is on the way.}. First of all we integrate the kernel with respect to the second variable (which basically means we use it as a measure on $F$). The integrand is $F$ and since this function is a measure with respect to the second variable I can integrate $\F_+$-measurable functions. Remember that $\mu f=\mu(f)=\int_E f(x)\mu(\dx)=\int_Ef\dif\mu$. \\
+	\begin{enumerate}[\circnum]
+		\item we have $$\int_F K(k,\dy)f(y)\qquad \text{ with } x\in E,\;f\in\F_+.$$ This operation defines a function $Kf\in\E_+\;\every f\in\F_+$.
+		
+			\begin{notation}
+			The notation $f\in\F_+$ in Çinlar is either the \sa{} $\F$ or the set of functions measurable with respect to the \sa{} $\F$. Another one of the many ways Çinlar chooses to sadden my day. But my revenge is on the way.
+		\end{notation}
+		 First of all we integrate the kernel with respect to the second variable (which basically means we use it as a measure on $F$). The integrand is $F$ and since this function is a measure with respect to the second variable I can integrate $\F_+$-measurable functions. Remember that $\mu f=\mu(f)=\int_E f(x)\mu(\dx)=\int_Ef\dif\mu$. \\
 		The integration over $F$ "takes out" one part of the kernel from the equation (the measure part) so that we can write: \[
 	Kf(x)=\int_F K(k,\dy)f(y);
 	\]
@@ -668,5 +676,191 @@ So here we are, we summoned Markov for the first time in this course.
 		\item \emph{$\mathbf{\Sigma}$-bounded} if the $K_{n}$ can be chose to be bounded.
 	\end{itemize}
 \end{definition}
+\begin{definition}
+	If $K(x,F)=1\;\every x \in E$ then the kernel $K$ is said to be a \emph{transition probability kernel}.
+\end{definition}
+We now turn to extending measure to product spaces with respect to kernels\footnote{\includegraphics[width=0.5\linewidth]{everything}}. In order to formally solve this problem we need the following proposition.
+\begin{proposition}
+	Let $K$ be a $\Sigma$-finite kernel (the most general property we can think of) from $(E,\E)$ into $(F,\F)$. We consider measurable functions with respect to the product space: for every positive funtion $f\in\E\otimes\F$ we have that:
+	\[Tf(x)=\int_FK(x,\dy)f(x,y)\qquad x\in E\]
+	And this object defines a function $Tf\in\E_+$. This is a similar operation to the previous theorem. Moreover the transformation $T:(\E\otimes\F)_+\mapsto \E_+$ is linear and continuous under increasing limits, that is:
+	\begin{enumerate}[a)]
+		\item if we take $f,g\in(\E\otimes\F)_+$ and $a,b\in\R_+$ we have
+		\[T(af+bf)=aTf+bTg;\]
+		\item $Tf_n\nearrow Tf$ for $\every$ sequence $(f_n)_{_{n}}\subset(\E\otimes\F)_+$ with $f_n\nearrow f$.
+	\end{enumerate}
+\end{proposition}
+So, similarly to the previous theorem we have constructed this operator $Tf$ which operates on the function set $(\E\otimes\F)_+$ giving us a positive $\E$-measurable function. So we can start from this function to build a method to construct measures on the product space $(\E\otimes\F)_+$ with its related \sa{}.
+\begin{theorem}
+	\emph{Extension of measures on product spaces}.\\
+	Let $\mu$ be a measure on the measurable space $(E,\E)$. Let $K$ be a $\Sigma$-finite\footnote{Erm... what the sigma?} transition kernel from space $(E,\E)$ into $(F,\F)$. Then:
+	\begin{enumerate}[\circnum]
+		\item if we take our function $f(x,y)$, integrate it against our kernel $K(x,\dx)$ over $F$ and then integrate again against measure $\mu$ over $E$, the operation 
+		\[\pi f=\int_E\mu(\dx)\int_FK(x,\dy)f(x,y)\]
+		defines a measure $\pi$ on $(E\times F,\E\otimes\F)$;
+		\item if $\mu$ is $\sigma$-finite and $K$ is $\sigma$-bounded then $\pi$ is $\sigma$-finite and it is the unique measure on $(E\times F,\E\otimes\F)$ satisfying
+		\[\pi(A\times B)=\int_A\mu(\dx)K(x,B)\qquad\every A\in\E,B,\in\F.\]
+	\end{enumerate}
+\end{theorem}
+So by means of kernels we are able to define measures on product spaces in this way\footnote{I crave to be released from this prison of flesh.}.
+\begin{remark}
+	When the kernel that we used to extend the measure has the form 
+	\[K(x,B)=\nu(B)\]
+	for some $\Sigma$-finite measure $\nu$ on $(F,\F)$, which means that it only depends on $B$ and is therefore a measure, then we obtain the \emph{product measure}
+	\[\pi=\mu\nu.\]
+\end{remark}
+But what should we do when we have more than 2 spaces\footnote{I have an idea.}? On finite product spaces we introduce in the same manner the product measure 
+\[\pi=\mu_1\mu_2\cdots\mu_n\]
+where $\mu_i$ is $\Sigma$-finite on $(E_i,\E_i)$ for $\every i=1,\ldots,n$.
+So we can induce the presence of another measure from the product measure using the kernels, without assuming independence in the construction.
+\begin{example}
+	Here we tackle $n=3$. Take $\mu_1$ on $(E_1,\E_1)$, the transition kernel $K_2$ from $(E_1,\E_1)$ into $(E_2,\E_2)$ and the transition kernel $K_3$ from $(E_1\times E_2,\E_1\otimes\E_2)$ into $(E_3,\E_3)$. Not how we only defined the first measure and then only the transition kernels. We will use these fucking kernels to "move" from measure to measure and from space to space. We have
+	\[\pi f=\int_{E_1}\mu(\dx_1)\int_{E_2}K_2(x,\dx_2)\int_{E_3}K\Big((x_1,x_2),\dx_3\Big)f(x_1,x_2,x_3)\]
+	with $f$ positive and $(\E_1\otimes\E_2\otimes\E_3)$-measurable. So we defined a measure $\pi$ which is different from the product measure we recalled earlier (actually that product measure is a special case of this measure) and $\pi$ is a measure on the 3-dimensional product space. Writing $\pi$ in differential form:
+	\begin{align*}
+		\pi(\dx_1,\dx_2,\dx_3)&=\mu(\dx_1)K_2(x,\dx_2)K\Big((x_1,x_2),\dx_3\Big)\\
+		&=\mu_1K_2K_3.
+	\end{align*}
+\end{example}
+This is for finite product spaces but we can also extend this to infinte product spaces\footnote{Why. Stop.}.\\
+What should we expect now?
+\section{Expectation}
+Well that was a cheap joke. We already know the meaning of expectation from our undergraduate courses... but here we will rock our world and learn some new interpretations. Let's start with measure theory\footnote{We have a great time ahead, I see.}. In probability the concept of expectation is strictly tied with the concept of integral: we could say they are almost the same thing.
+\begin{definition}
+	Let $X$ be a real valued $(\overline{\R})$ \rv{} on the probability space $(\Omega,\mathscr{H},\pr)$. The \emph{expectation} or \emph{expected value} of $X$ is
+	\[\ev X=\int_\Omega X(\omega)\pr(\dw).\]
+\end{definition}
+	\begin{notation}
+		\[\ev X=\int_\Omega X(\omega)\pr(\dw)=\int_\Omega x\dif\pr.\]
+		There is always the compact notation we use for integrals
+		\[\pr X.\]
+	\end{notation}
+We are integrating the function over the space where it is defined, but since we are using Lebesgue integration we need to integrate with respect to a measure... which is the probability measure $\pr(\dw)$. This is a little bit different from the classic definition, but this is more correct.
+\begin{remark}
+	The expectation of $X$ exists \underline{if and only of} the related integral exists. So the existence of the expectation is the existence of the integral.\\
+\end{remark}
+\begin{wrapfigure}{R}{0.6\textwidth}
+	\centering
+	\includegraphics[width=\linewidth]{kept3}
+	\caption{And then he turned himself into a pickle, funniest shit I've ever seen.}
+	\label{fig:kept3}
+\end{wrapfigure}
+Consider the \rv{} $X$, with its positive part $X^+$ and its negative part $X^-$. Moreover, remember that 
+\[X=X^+-X^-\]
+where both the positive part \textit{and} the negative part are positive functions (remember?\footnote{No. Happy?}). If we apply the expectation to $X$, by the linearity of the integral operator we have that:
+\[\ev X=\ev X^+-\ev X^-.\]
+The problem arises when both the expectation of the positive part and the expectation of the negative part are simultaneously infinite.\\
+Further, we say that $\ev X$ exists finit e when at the same time both expectations are finite: 
+\[\ev X^+<+\infty,\quad X^-<+\infty.\]
+In this case
+\[\ev X=\ev X^+-\ev X^-<\infty.\]
+
+\vspace*{1cm}
+
+Finally, remember from undergraduate courses:
+\[\ev X^+\ev X^-=\ev |X|\]
+So if we check that the expectation of the absolute value is finite this will imply that the expectation of $X$ is finite in both the negative and the positive part. A \rv{} with finite expectations is said to be \emph{integrable}.
+\begin{remark}\label{eh}
+	This is connected to the definition of expectation of a \rv{} that we already know. Consider the "change of variable" formula for Lebesgue integrals (see \cinlar, formula 5.3 page 30): consider $f\in\E$ and $h:(F,\F)\mapsto(E,\E)$. We integrate
+	\[\int_F\nu(\dx)f\Big(h(x)\Big)=\int_E\mu(\dy)f(y)\]
+	where $\mu$ is a measure on $(E,\E)$ and is the \textit{image measure} of $\nu$ through the function $h$. For us:
+	\begin{itemize}
+		\item $h\equiv X$;
+		\item $(F,\F)\equiv(\Omega,\mathscr{H})$;
+		\item $\nu=\pr$;
+		\item $\mu$ is the distribution of $X$;
+		\item $(E,\E)\equiv(\R,\B_{\R}$.
+	\end{itemize}
+	So the formula becomes
+	\[\int_\Omega\pr(\dw)f\Big(X(\omega)\Big)=\int_{\R}\mu(\dx)f(x)\]
+	with $f$ Borel-measurable. Now the last step is to choose a specific function $f$, for which we choose the \textit{identity function} so that
+	\[\int_\Omega\pr(\dw)X(\omega)=\int_{\R}\mu(\dx)x.\]
+	Here's the formula that we used to calculate the expectation in the undergraduate years! To be honest, that's what you'll ever really use in the sad case of you working in this field. If the distribution is absolutely continuous with respect to the lebesgue measure we get
+	\[\int_{\R}\mu(\dx)x=\int_{\R}f_X(x)\dx\cdot x\]
+	otherwise, if it is absolutely continuous with respect to a counting measure we get
+	\[\int_{\R}\mu(\dx)x=\sum_{i=1}^{\infty}\pr(X=x_i)\cdot x_i.\]
+	\begin{notation}
+		Forget riemann integrals and sums, fucker, from now on you must learn to use 
+		\[\int_{\R}\mu(\dx)x.\]
+	\end{notation}
+\end{remark}
+\subsection{Properties of expectation}
+\begin{itemize}
+	\item \emph{Positivity}:
+	\[X\geq0\implies\ev X\geq0.\]
+	Remember that we are talking about \rv s, so when we say $X\geq 0$ we actually mean ``$X\geq 0$ almost surely with respect to $\pr$''\footnote{Because reality crumbles in front of the chaotic horror of randomness. A similar fate is reserved to my balls.}.
+	\item \emph{Monotonicity}:
+	\[X\geq Y\geq0\implies\ev X\geq\ev Y.\]
+	\item \emph{Linearity}:
+	\[X,Y\geq0\implies\ev(aX+bY)=a\ev X+b\ev Y.\]
+	\item \emph{Insensitivity}:
+	\[X,Y\geq0,\; X=Y\text{ almost surely }\implies\ev X=\ev Y.\]
+	\item \emph{Monotone convergence}: if we have, for $X_n\geq-0$,
+	\[(X_{n})_{_{n}}\nearrow X\implies\ev X_n\nearrow \ev X.\]
+	\item \emph{Fatou's Lemma}: for $X_n\geq0$ we have
+	\[(X_{n})_{_{n}}\implies\ev\liminf X_n\leq\liminf\ev X)n.\]
+	\item \emph{Dominated convergence}: if $(X_{n})_{_{n}}$ is a sequence of \rv s such that $\every n |X_n|\leq Y$ and $Y$ has finite expectation (it is integrable) and $\lim_{n\to\infty}X_n$ exists, then 
+	\[\ev\lim_{n}X_n=\lim_{n}\ev X_n.\]
+	\item \emph{Bounded convergence}: if we have a sequence of \rv s $(X_n)_{_{n}}$ such that $|X_n|\leq b<\infty$ and $\lim_{n\to\infty}X_n$ exists, then
+	\[\ev\lim_{n}X_n=\lim_{n}\ev X_n.\]
+\end{itemize}
+\begin{remark}
+	$X$ is positive (or non negative) and $\ev X=0$ \underline{if and only if} $X=0$ almost surely. 
+\end{remark}
+\begin{remark}
+	If we restrict $\ev X$ and $\ev Y$ on the subset $H$ we get:
+	\[\text{if }\ev X\indi_H\geq\ev Y\indi_H\quad\every H\implies X\geq Y\text{ a.s.}\]
+\end{remark}
+\begin{theorem}
+	Let $X$ be a \rv{} taking values in $(E,\E)$ and be measurable relative to $\mathscr{H}$ and $\E$. If $\mu$ is the distribution of $X$ then
+	\begin{equation}
+		\ev f\circ X=\mu f,\qquad\every f\in\E_+ \tag{$\star$} \label{diocane}
+	\end{equation}
+	Conversely, if \ref{diocane} holds for some measure $\mu$ on $(E,\E)$ and $\every f\in\E_+$, then $\mu$ is the distribution of $X$.
+\end{theorem}
+\begin{fancyproof}
+	The proof should be simple. The first statement is basically the \hyperref[eh]{change of variable} formula, rephrasing the theorem on integration with respect to image measures.
+	The second converse statement requires more thought. If \ref{diocane} holds $\every f\in\E_+$, then it holds also for $f=\indi_A$ for $A\in\E$ and we have that if we want to calculate the measure 
+	\[\mu(A)=\mu\indi_A=\ev\indi_A\circ X=\pr(X\in A).\]
+	So we have identified this measure with the distribution of the random variable and hence $\mu$ is the distribution of $X$.
+\end{fancyproof}
+\begin{example}
+	\begin{enumerate}[\circnum]
+		\item The \emph{variance} of the \rv{} $X$ is
+		\[\var X=\ev(X-\ev X)^2.\]
+		\item Consider the expectation of an exponential transform of $X$:
+		\[\tilde{\mu}_r=\ev e^{-rX}=\int_{\R_+}e^{-rx}\mu(\dx),\qquad r\in\R_+,x>0.\]
+		This is known as the \emph{Lapalce transform} of distribution $\mu$. It is connected to the moment generating function of a distribution.
+		\item We could be interested in the expectation of another exponential transform:
+		\[\hat{\mu}_r=\ev e^{irX}=\int_{\R}\mu(\dx)e^{irx}\]
+		and, exploiting the representation of complex numbers,
+		\[\hat{\mu}_r=\int_{\R}\mu(\dx)\cos(rx)+i\int_{\R}\mu(\dx)\sin(rx)\]
+		and this is called the \emph{characteristic function} of $\mu$.
+		\item Consider $X$, a \rv{} taking values in $\overline{\N}$. Consider
+		\[\ev z^X=\sum_{n=1}^{\infty}z^n\cdot\pr(X=n),\qquad z\in[0,1].\]
+		This is called \emph{probability generating function of $X$}.
+	\end{enumerate}
+	These are all special kinds of expectations.
+\end{example}
+\begin{remark}
+	The expectation $\ev X$ is in some sense ``optimal'': what the fuck? It is ``optimal'' because it is our best estimate of $X$. Imagine we are given the following integral:
+	\[f(a)=\int_\Omega \Big(X(\omega-a)\Big)^2\pr(\dw).\]
+	Let us now derive the minimum value for the number $a$, that is the best value that cancels out the random variable $X$. Just take the derivative with respect to $a$:
+	\begin{align*}
+		\frac{\dif}{\dif a}f(a)&=\int_\Omega\pr(\dw)\Bigg(-2\Big(X(\omega)-a\Big)\Bigg)=0\\
+		&=2a\int_\Omega\pr(\dw)-2\int_\Omega\pr(\dw)X(\omega)=0\\
+		&\implies a= \underbracket{\int_\Omega\pr(\dw)X(\omega).}_{\mathclap{\text{definition of }\ev X}}
+	\end{align*}
+\end{remark}
+We must now recall some famous inequalities.
+\begin{itemize}
+	\item \emph{Markov inequality}: this is for positive, real-valued random variables. Let $X$ be a positive and real-valued \rv. We may be interested in the probability that $X$ exceeds some positive value $b$. We know that
+	\[\pr(X>b)\leq\frac{1}{b}\ev X\qquad\every b>0.\]
+	\item \emph{Chebyshev inequality}: this is too for positive, real-valued random variables. Let $X$ be a positive and real-valued \rv. What we have is that
+	\[\pr\Big(|X-\ev X|>\varepsilon\Big)\leq\frac{\var X}{\varepsilon^2},\qquad\epsilon>0.\]
+	\item \emph{Jensen inequality}: Let $X$ be a real-valued \rv{} with finite expectation (integrable) and let $f$ be a convex function on $\R$. Then
+	\[\ev f(X)\geq f(\ev X).\]
+	If the function is concave the inequality is the opposite.
+\end{itemize}
 \end{document} 
 %THIS IS THE DARK AGE OF LOVE 

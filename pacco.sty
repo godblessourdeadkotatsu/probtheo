@@ -21,6 +21,7 @@
 \usepackage{array}
 \usepackage{pdfpages}
 \usepackage{minted}
+\usepackage{mleftright}
 \usepackage{fancybox}
 \usepackage{standalone}
 \usepackage{microtype}
@@ -70,8 +71,6 @@
 }{}
 
 \newenvironment{remark}[1][]{
-	\hfill   
-	\stepcounter{dummy}
 	\ifstrempty{#1}{%   
 		\hfill
 		\begin{rema*}{}{}%                     
@@ -190,10 +189,11 @@
 				\newtcbtheorem[number within=section]{prp}{Proposition}{
 					enhanced, 
 					breakable,
-					interior style={left color=Dandelion!30,right color=white!29},
-					frame style={left color=Dandelion!80,right color=Dandelion!80!black},
-					colframe=white, coltitle=Dandelion!80!black, colbacktitle=white!60,
-					colback=SkyBlue4,
+					sharp corners,
+					interior style={left color=RosyBrown3!80!Aquamarine1,right color=MediumOrchid2!60},
+					frame style={left color=RosyBrown3!80!Aquamarine1,right color=MediumOrchid2!60},
+					colframe=white, coltitle=MediumOrchid4, title style={left color=white!60, right color=MediumOrchid3!80},
+					colback=Maroon1,
 					drop fuzzy shadow=gray,
 					titlerule=0mm,
 					separator sign={:},
@@ -202,10 +202,8 @@
 				}{}
 				
 				\newenvironment{proposition}[1][]{ 
-					\stepcounter{propos}
-					\stepcounter{dummy}
-					\ifstrempty{#1}{%   
-						\hfill
+					\ifstrempty{#1}
+					{%   
 						\begin{prp}{}{\thepropos\thedummy eeeheheh\thedefi}%                     
 						}{%        
 							\hfill
@@ -312,7 +310,24 @@
 	fonttitle=\bfseries,
 	interior style={left color=CadetBlue3!30,right color=white!29},
 	frame style={left color=DodgerBlue4,right color=DodgerBlue1},
-	title={Revise with Kotatsu!}}	
+	title={Revise with Kotatsu!}}
+		
+	\newtcolorbox{notation}{
+		enhanced jigsaw,
+		opacityback=0,
+		colback=white, colframe=Aquamarine4,
+		attach boxed title to top left ={yshift=-\tcboxedtitleheight/2,yshifttext=-\tcboxedtitleheight/2,xshift=0.3cm},
+		boxed title style={%
+			colback=Aquamarine4,
+			opacityback=1
+		},
+		boxrule=0.5mm,top=0mm,bottom=0mm,
+		rounded corners,
+		coltitle=white,
+		drop shadow,
+		fonttitle=\bfseries,
+		title={Note the notation!}}	
+	
 	
 	\newtcolorbox{proofbox}{
 		enhanced,
@@ -354,7 +369,7 @@
 
 									\newcommand{\prob}{\mathbb{P}}
 									\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
-									\newcommand{\ev}[1]{\mathbb{E}\Bigl[{#1}\Bigr]}
+									\newcommand{\ev}{\mathbb{E}}
 									\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
 									\newcommand{\Z}{\mathbb{Z}}
 									\newcommand{\R}{\mathbb{R}}
@@ -368,10 +383,18 @@
 \newcommand{\dt}{\dif t}
 \newcommand{\du}{\dif u}
 \newcommand{\ds}{\dif s}
+\newcommand{\dw}{\dif\omega}
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\B}{\mathscr{B}}
 \newcommand{\F}{\mathscr{F}}
 \newcommand{\G}{\mathscr{G}}
+		
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,
+		shading=ball, ball color=SkyBlue1!70,
+		,inner sep=1.5pt] (char) {\scriptsize\bfseries #1};}}
+\newcommand{\circnum}{\protect\circled{\arabic*}}
+\newcommand{\circlet}{\protect\circled{\alph*}}					
 									%i comandi di MERDA di stefano
 									\newcommand{\ra}{\rightarrow}
 									\newcommand{\iy}{\infty}
@@ -397,7 +420,7 @@
 									\newcommand{\mmN}{\mathcal{N}}
 									\newcommand{\BM}{(B_t)_{t\geq 0}}
 									\newcommand{\PX}{(X_t)_{t\geq 0}}
-									\newcommand{\var}{\text{Var}}
+									\newcommand{\var}{\mathbb{V}\mathrm{ar}}
 									\newcommand{\cov}{\text{Cov}}
 									\newcommand{\BMF}{\left((B_t)_{t\geq 0},\mathcal{F}_t \right)}
 									\newcommand{\mFt}{\mathcal{F}_t}
