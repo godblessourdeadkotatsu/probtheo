@@ -7,6 +7,7 @@
 	\author{Kotatsu}
 	\date{\small TOALDO COL \textbf{CAZZO} CHE DIVENTI ORDINARIO}
 	\maketitle
+	\pagenumbering{roman}
 	\begin{preface}
 		This document stems from the fact that I just seem unable to pass the Probability Theory exam for the life of me. I regret with every ounce of my being the fact that I enrolled to the Stochastics and Data Science master degree a year ago. Since dear Professor Toaldo never really thrilled me with his insightful lectures about this delightful topic, I resorted to watch the old lectures by Professor Polito, who at least seems to know the subject and to be determined to explain it.\\
 		Unlike many among my esteemed colleagues I have NOT a background in mathematics so there will be a lot of repetitions and possibly mistakes. Do what you want with this information. YES I KNOW that there are the whiteboard registrations of his lectures but if I DECIDED TO DO THIS it was because I couldn't comprehend shit with only those notes.\\
@@ -18,6 +19,7 @@
 		\hfill Kotatsu
 	\end{preface}
 	\clearpage
+	\pagenumbering{arabic}
 	\tableofcontents
 \section{Basics of probability}
 We start with the probability triplet: $(\Omega,\mathscr{H},\mathbbm{P})$ 
@@ -139,12 +141,26 @@ Sure. Let's have a look back to Lebesgue integration.
 		and if we choose $f=\indi_B$ with $B\in\E$. then
 		\[\mu f=\mu \indi_B=\int_E\indi_B(x)\mu(\dx)=\indi_B\mu(\dx)=\mu(B).\]\par
 		So this last equivalence helps us to understand one thing. \underline{Integrals are a device that needs a measure and a function to work}. In the notation above, $\dx$ has the meaning of an infinitesimal amount of the variable $x$ that is fed into the function $f$. Writing $\mu(\dx)$ means measuring an infinitesimal amount of $x$ using the measure $\mu$.\\
-		In Riemann integration, $\dx$ represents an infinitesimal segment of the $x$-axis multiplied by the height of the function at $x$ (which is, of course, $f(x)$) and summed ($\int_{a}^{b}$) with all the other infinitesimal segments of the $x$-axis over the interval $[a,b]$. Here it's really the same thing with the difference that we do multiply the height of the function $f(x)$ by calculating the "weight", or "\underline{measure}" of the infinitesimal part of the domain of the function $\dx$ according to our method of measure of choice. We do this over the set $E$.\par	
+		In Riemann integration, $\dx$ represents an infinitesimal segment of the $x$-axis multiplied by the height of the function at $x$ (which is, of course, $f(x)$) and summed ($\int_{a}^{b}$) with all the other infinitesimal segments of the $x$-axis over the interval $[a,b]$. \\
+		Here it's really the same thing with the difference that we multiply the height of the function $f(x)$ by calculating the "weight", or "\underline{measure}" of a smaller and smaller part of the domain that "causes that function to be of that height", according to our method of measure of choice. We do this over the set $E$.\par	
 	\end{revise}
 	\begin{tcolorbox}[enhanced jigsaw,sharp corners, drop fuzzy shadow=gray,colback=white,frame style={white},interior style={fill stretch image=lebe2},width=\linewidth,height=0.27\linewidth]
 	\end{tcolorbox}
+The main difference between Riemann and Lebesgue integration is, in a certain way, \textit{what} we are slicing. In the Riemann approach be basically do the following:
+\begin{enumerate}
+	\item slice the $x$-axis in smaller and smaller slices;
+	\item compute $f(x)$;
+	\item sum all the cute little rectangles you got.
+\end{enumerate}
+In the Lebesgue approach we basically \textit{start by choosing different slices of the }range\textit{of the function}, that is the co-domain. These little "slabs" of the range of the functions are nothing else but the "stepped" simple function version of our function:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.46\linewidth]{screenshot004}
+	\caption{Imagine the steps getting smaller and smaller...}
+	\label{fig:screenshot004}
+\end{figure}
+Since we are dealing with simple functions, we are effectively approaching the problem from the $y$-axis. This means that since we are choosing slices of height \textit{first} our "slabs" may have different length when it comes to the $x$-axis. Anyway was it really SO DIFFICULT to explain? I don't think so. Fuck you mathematicians.\\
 	So... will there ever be a measure and a set for which we will be able to circle back to our definition of Riemann integral? Hmm...\par
-	Anyway was it really SO DIFFICULT to explain?
 \begin{definition}
 	\enf{Distribution of a random variable}. Let $X$ be a random variable taking values in $(E,\mathscr{E})$ and let $\mu$ be the image of $\pr$ under $X$, that is,
 	\[\mu(A)=\pr(X^{-1}A)=\pr(X\in A)=\pr\circ X^{-1}(A)\footnote{you would know this if you knew fucking measure theory I guess},\;A\in\mathscr{E}.\] Then $\mu$ is a probability measure on $(E,\mathscr{E})$ and it is called \textbf{distribution of X}.
@@ -219,7 +235,7 @@ Here the marginals do not interact with each other. This is true for two random 
 \begin{definition}
 Let $(X_1,X_2,\ldots,X_n)$ be a finite collection of random variables. The collection is said to be an \enf{independency} if the distribution of $(X_1,X_2,\ldots,X_n)$ is the product of $\mu_1,\mu_2,\ldots,\mu_n$ where $\mu_i$ is the distribution of $X_i$, for $i=1,\ldots,n$.
 \end{definition}
-Cynlar is stupid I wish him dead to be frank for this independecy shit. Independecy is not even an english word. What the fuck? Anyway, what about infinite collections?
+Çinlar is stupid I wish him dead to be frank for this independecy shit. Independecy is not even an english word. What the fuck? Anyway, what about infinite collections?
 \begin{definition}
 	Let $(X_n)_{_n}$ be an infinite collection of \rv s. It is said to be an \enf{independency} if every finite sub-collection of it is an independecy.
 \end{definition}
@@ -250,7 +266,7 @@ Note that there is no mention about time here. Just think about the index set, w
 Now take a $\omega\in\Omega$ and evaluate all these \rv s on the same $\omega$. What we get is
 \[t\mapsto X_t(\omega)\]
 which is a function from $T$ to $(E,\mathscr{E})$. So if we see it as a function of $t$ for each $\omega$ we get a function which is an element of $E^T$. So what is a stochastic process, to sum it up? It's just a random variable taking values in the infinite product space $E^T$. That's why it is a problematic object: it's because mathematicians deserve to experience the sadness and evil they unleashed upon the world. Ever noticed how similar the words "measurable" and "miserable" are? I didn't think so. 
-\begin{figure}[H]
+\begin{figure}[h]
 	\centering
 	\includegraphics[width=0.6\linewidth]{ILMEMINO}
 	\caption{I'm sorry but here you're the soyjack and I'm the chad.}
@@ -297,7 +313,7 @@ Consider some examples of simple random variables:
 			Also, $p$ is called the \emph{Radon-Nikodyn derivative} of $\nu$ with respect to $\mu$:
 			\[\frac{\nu(\dx)}{\mu(dx)}=\frac{\dif\nu}{\dif\mu}=p.\]
 		\end{theorem}
-		With all this alternative notation this thing honestly feels like trying to understand the Metal Gear Solid plot, where identical characters named Snake keep cloning each other and being triple crossed by everyone until you lose track of your own identity.
+		With all this alternative notation this thing honestly feels like trying to understand the Metal Gear Solid plot, where identical characters named Snake keep cloning each other and being triple crossed by everyone until you finally understand that the storyline never made sense in the first place and that Hideo Kojima writes his games like a fucking fanfiction.
 	\end{revise}
 	Now everything should make more sense\footnote{Enviable optimism.}. If we know that a given \rv{} (say, the exponential random variable) has a distribution $\mu(\dx)$ then we will be able to transform this in a distribution of the form $\text{Lebesgue measure}\cdot p(x)$ (we can lose $f$ if $f$ is constant).
 	In this formulation	$\dif x$ stands for the Lebesgue measure and the second part of the equation ($ce^{-cx}$) is the $p(x)$, called \emph{density function}. We can do this because we can see from the formula that this distribution, or measure, is indeed absolutely continuous with respect to the Lebesgue measure since we can express it in the form stated by the Radon-Nikodyn theorem.
@@ -392,7 +408,7 @@ Consider, additionally, the result of the Charatheodory's extension Theorem. By 
 	\[ \lambda(\R)=\lim_{n}\lambda([-n,n))=\lim_{n}2n=\infty\]
 \end{remark}
 \end{revise}
-Yeah, that mysterious measure I was talking about before to connect Riemann and Lebesgue integration was the Lebesgue measure. We often just write $\dx$ to express the Lebesgue measure (which is what we did on example 1.2 about the exponential random variable).\\
+Yeah, that mysterious measure I was talking about before to connect Riemann and Lebesgue integration was the Lebesgue measure. We often just write $\dx$ to express the Lebesgue measure (which is what we did on example 1.2 about the exponential random variable), but the meaning is always the same, with a striking similarity to the concept of Riemann integration: take the Lebesgue measure of a smaller and smaller element of our $\B_{\overline{\R}}$ set, use it to "weight" (read: multiply) the value of the function for that element and then  sum it all up together. What we end up with is basically a serie of simple functions that slice "horizontally" the co-domain of the function. Keep reducing the size and you end up with the Lebesgue integral. Of course, when the measure is the Lebesgue measure, the Riemann and the Lebesgue integral have a really similar interpretation.\par
 Back to our topic: the exponential \rv{} is absolutely continuous with respect to the Lebesgue measure.  
 It is interesting to see that also discrete \rv s turn out to be absolutely continuous: the difference is that they are not absolutely continuous to the Lebesgue measure, but the \textit{counting} measure. At the undergrad level we are used to say that a \rv{} is either discrete or absolutely continuous, buy this was ultimately a lie\footnote{Measure theory turns truths into lies. Truly a demonic machinery.}.
 \begin{example}
@@ -426,31 +442,231 @@ It is interesting to see that also discrete \rv s turn out to be absolutely cont
 \begin{example}
 	This is a random variable that stems from two independent random variables having Gamma distribution. Consider $\gamma_a$ (distribution of a Gamma \rv{} with parameters $a$ and $c=1$) and $\gamma_b$ (distribution of a Gamma \rv{} with parameters $b$ and $c=1$). So, two gammas with different shape parameter. \\
 	Let $X\sim\gamma_a$ and $Y\sim\gamma_b$. Moreover, let them be independent. This is a random vector $(X,Y)$ with two components... What is its distribution?
-	\[\pi(\dx\dy)=\underbracket{\gamma_a(\dx)\cdot\gamma_b(\dy)}_{\mathclap{\text{because of independency}}}=\dx\dy\frac{e^{-x}x^{a-1}}{\Gamma(a)}\cdot\frac{e^{-y}y^{b-1}}{\Gamma(b)}.\]
+	\[\pi(\dx,\dy)=\underbracket{\gamma_a(\dx)\cdot\gamma_b(\dy)}_{\mathclap{\text{because of independency}}}=\dx\dy\frac{e^{-x}x^{a-1}}{\Gamma(a)}\cdot\frac{e^{-y}y^{b-1}}{\Gamma(b)}.\]
 	So it's easy to build joint distributions when the \rv s are independent\footnote{Well no shit. Even I can multiply two numbers}.
 \end{example}
 \begin{example}
 	\emph{Gaussian \rv{} with exponential variance}.\\
 	Here the variance is random and is distributed exponentially\footnote{because humans should never have the hubris to meddle with the horrorific world of random necessities that the Gods have laid before us.}. Consider a \rv{} $X$ taking values in $\R_+$ and a \rv{} $Y$ taking values in $\R$.\\
 	Here we are again in presence of a random vector. The distribution is the following:
-	\[\pi(\dx\dy)=\dx\dy\cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}\qquad \begin{array}{l}
+	\[\pi(\dx,\dy)=\dx\dy\cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}\qquad \begin{array}{l}
 		x\in\R_+,\\
 		y\in\R
 	\end{array}. \]
 	\begin{remark}
 		$\pi$ in this case has a special form: it has the form 
-		\[\pi(\dx\dy)=\mu(\dx)K(x,\dy).\]
+		\[\pi(\dx,\dy)=\mu(\dx)K(x,\dy).\]
 		In particular, here $\color{Cyan4}\mu(\dx)$ is 
 		\[\color{Cyan4}\dx\color{black}\dy\cdot\color{Cyan4} ce^{-cx}\color{black}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}},\]
 		which is a docile exponential function, and $\color{Magenta4}K(x,\dy)$ is
 		\[\color{black}\dx\color{Magenta4}\dy\cdot\color{black} ce^{-cx}\color{Magenta4}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}.\]
-		In this case $K(x,\dy)$ cannot be the distribution fo $Y$, because it has some $x$ in it. So this distribution is not simply the product of marginal distribution. But let's take a closer look to the form $\mu(\dx)K(x,\dy)$. $\mu(\dx)$ is certaninly a measure, but what about $K(x,\dy)$? \par
-		Turns out that $K(x,\dy)$, depending on $x$, is connected to the other measure $\mu(\dx)$. \\
-		The object $K(x,\dy)$ is called \emph{transition kernel}\footnote{Kernel? Colonel? I thought we were over with the Metal Gear Solid jokes.} and it's very important. Not that here 
-		$K(x,\dy)$ has the form 
-		\[B\mapsto K(x,B):\]
-		It should be seen as a set function (after all we are constructing a \underline{join}t density, which is a set function in itself.)
+		In this case $K(x,\dy)$ cannot be the distribution fo $Y$, because it has some $x$ in it. So this distribution is not simply the product of marginal distribution. But let's take a closer look to the form $\mu(\dx)K(x,\dy)$. $\mu(\dx)$ is certainly a measure, but what about $K(x,\dy)$? \par
 	\end{remark}
-	Why?
 \end{example}
-\end{document}
+\subsection{Transition kernels}
+Turns out that $K(x,\dy)$, depending on $x$, is connected to the other measure $\mu(\dx)$. \\
+The object $K(x,\dy)$ is called \emph{transition kernel}\footnote{Kernel? Colonel? I thought we were over with the Metal Gear Solid jokes.} and it's very important. Not that here 
+$K(x,\dy)$ has the form 	
+\[B\mapsto K(x,B)\]
+It should be seen as a set function. Why? Just look back to $\pi(\dx,\dy)$. It is in differential form, but if we integrate the joint distribution against one set in the product space we get $\pi$ evaluated on that subset of the product function (it is a measure... measures are always set functions). So also $\mu(\dx)K(x,\dy)$ should be a set function. $\mu(\dx)$ is of course a set function (it is a measure...\footnote{All this passive-aggressiveness for what?}) and so should be $K(x,\dy)$. The presence of $x$ in $K(x,\dy)$ is what "links" the $X$ coordinate with the $Y$ coordinate of the random vector.
+The Gamma example was about two independent random variables: here it is impossible to obtain the product of measures. Transition kernels are incredibly important because they are ultimately connected with the \textit{structure of dependency} between random variables: that's why this course is going to bust our ball into the oblivion about them\footnote{Professor Polito jokes that every year people complain about the abstractness of kernels and laughs about it. I'm happy that his sense of humor has been left untouched by my slightly scathing EDUMETER review of this course.}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.57\linewidth]{codec}
+	\caption{Yeah, no more Metal Gear Solid jokes after this one. I promise.}
+	\label{fig:codec}
+\end{figure}
+Remember in the undergraduate courses: when there was dependence we usually expressed it with the \textit{conditional probability}. \\
+Transition kernels let us manage random vectors that are not trivial and that have a dependence relationship with other random vectors. \\
+Think about the previous example: the marginal distribution $\nu$ of $Y$ has the form \begin{align*}
+	\nu(B)&=\pi(\R_+\times B)=\int_{\R_+}\mu(\dx)K(x,B),\qquad B\in\B_{\overline{\R}}\\
+	&=\int_{\R_+\times B}\pi(\dx,\dy)=\int_{\R_+\times B}\dx\dy\cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}\\
+	&=\int_B \dy\; n(y),\qquad\text{where }n(y)=\int_{0}^{\infty}\dx \cdot ce^{-cx}\frac{1}{\sqrt{2\pi x}}e^{-\frac{y^2}{2x}}.
+\end{align*}
+So we have that the marginal distribution$\nu(B)$ is written as $\int_B \dy\;n(y)$ and is therefore absolutely continuous with respect to the Lebesgue measure. We could actually solve this integral ($n(y)$ is a closed form called \textit{two-sided exponent}). So we now have the marginal of $Y$ and the marginal of $X$ and we immediately realize that if we multiply the two densities we do not obtain the joint density (because they are dependent\footnote{OK I GET IT.}).\par
+So we are now ready to define the concept of transition kernel.
+\begin{definition}
+	Let $(E,\E)$ and $(F,\F)$ be measurable spaces. Let $K$ be a mapping from $E\times\F$ into $\overline{\R}_+$. Then $K$ is called \emph{transition kernel} from space $(E,\E)$ into space $(F,\F)$ if:
+	\begin{itemize}
+		\item the mapping $x\mapsto K(x,B)$ is $\E$-measurable $\every B\in\F$;
+		\item the mapping $B\mapsto K(x,B)$ (the second mapping of the kernel, the one regarding the set) is a measure $\every x\in E$.
+	\end{itemize}
+\end{definition}
+We can consider the transition kernel a hybrid object: if we look at it with respect to the first variable it is a \textit{measurable function}, if we look at it with respect to the second variable it is a \textit{measure}.
+\begin{example}
+	Take $\nu$, a finite measure on $(F,\F)$ and take $k$, a positive function on $(E\times F)$ which is measurable with respect to $\E\otimes\F$, the product \sa{}. Then, we integrate
+	\[\int_B\nu(\dy)k(x,y)\qquad\begin{array}{l}
+		B\in\F\\
+		x\in E
+	\end{array}\]
+	We see how this object depends on $x$ and on the choice of $B$ (a function of $x$ and $B$...). It defines a transition kernel
+	\[K(x,B)=\int_B\nu(\dy)k(x,y)\qquad\begin{array}{l}
+		B\in\F\\
+		x\in E
+	\end{array}\]
+	from $(E,\E)$ into $(F,|F)$.
+\end{example}
+\begin{theorem}
+	This theorem tells us what we can do with a kernel. Let $K$ be a transition kernel from $(E,\E)$ into $(F,\F)$. Then, 
+	\begin{enumerate}
+		\item we have $$\int_F K(k,\dy)f(y)\qquad \text{ with } x\in E,\;f\in\F_+.$$ This operation defines a function $Kf\in\E_+\;\every f\in\F_+$\footnote{the notation $f\in\F_+$ in Çinlar is either the \sa{} $\F$ or the set of functions measurable with respect to the \sa{} $\F$. Another one of the many ways Çinlar chooses to sadden my day. But my revenge is on the way.}. First of all we integrate the kernel with respect to the second variable (which basically means we use it as a measure on $F$). The integrand is $F$ and since this function is a measure with respect to the second variable I can integrate $\F_+$-measurable functions. Remember that $\mu f=\mu(f)=\int_E f(x)\mu(\dx)=\int_Ef\dif\mu$. \\
+		The integration over $F$ "takes out" one part of the kernel from the equation (the measure part) so that we can write: \[
+	Kf(x)=\int_F K(k,\dy)f(y);
+	\]
+	\item we want to use the kernel with respect to the first variable (obtaining a $\E$-measurable function), so we integrate 
+	\[
+	\int_E \mu(\dx)K(x,B)
+	\]
+	Remember that we must integrate the kernel with respect to a measure $\mu$ that is attached to the space $(E,\E)$. This operation (since we remove the "function" part of the kernel) defines a \textit{measure} $\mu K$ on $(F,\F)$ for each measure $\mu$ on $(E,\E)$ and we can write:
+	\[\mu K(B)=	\int_E \mu(\dx)K(x,B);\]
+	\item now we want to integrate everything: we consider the measure $\mu K$, take $f$ and calculate its integral with respect to the measure $\mu K$
+	\[(\mu K)f.\]
+	With $f\in\F_+$. We can now link the function obtained in step 1 and the measure obtained in step 2:
+	\[(\mu K)f=\mu(Kf)=\int_E\mu(\dx)\cdot\int_FK(x,\dy)f(y)\]
+for every choice of measure $\mu$ on $(E,\E)$ and for every choice of $f\in\F_+$
+	
+	
+	\end{enumerate} 
+\end{theorem}
+	Remember that here $(\mu K)f$ is shortened notation: $\mu f$ means $\int_Ef(x)\mu(\dx).$ We are NOT applying the measure to the function!\\
+Right... but if we choose $f\in\E$ ($f$ is $\E$-measurable) as the indicator function $f=\indi_B,\quad B\in \E$ (the most simple example of $\E$-measurable function), this happens:
+\begin{align*}
+	\mu\indi_B&=\int_E\indi_B(x)\mu(\dx)\\
+	&=\int_B\mu(\dx)=\mu(B)
+\end{align*}
+This is the reason behind this kind of notation that switches between measures and integrals. This is interesting and useful, if "interesting and useful" was slang for "boring and useless". So technically yeah, we \textit{are} applying the measure to the function in the sense that we are weighing the function with the measure $\mu$. 
+\begin{fancyproof}
+	\begin{enumerate}
+		\item[1] First of all, remember that $Kf$ resulting from the integral is a well defined function but that is not enough: we need a $\E$-measurable function of $K f$. We need to proceed in a constructive way: we have to think about $\E$-measurable functions, in whose space there are different type of functions: indicators, simple function, positive functions, positive or negative function. We start from simple function and then extend this result to positive functions and then to a broader class.\\
+		First consider $f$ to be a simple function with its canonical representation:
+		\[
+		f=\sum_{i=1}^{n}b_i\indi_{B_i}
+		\]
+		for given weights $b_i$ and given sets $B_i$. For this function we consider
+		\[Kf(x)=\sum_{i=1}^{n}b_i\underbrace{K(x,B_i)}_{\mathclap{\substack{\E\text{-measurable}\\ \text{with respect to }x}}}.\]
+		So it is a linear combination of $\E$-measurable functions and therefore $K f\in\E_+$ when $f$ is simple. \par
+		We now want to extend the proof to the subclass of positive measurable functions. Take $f$ positive. We know that we can approximate positive functions by means of simple functions, but reducing the "step" of the simple functions (discretizing the original function) by means of an auxiliary function called \emph{dyadic function} (see below), thus producing a sequence of simple functions. So we have
+		$f\in\F_+$ and $f_n=\mathcal{d}_n\circ f$. \begin{lemma}
+			Each $\dyadic_n$ is an increasing right-continuous simple function on $\overline{\R}_+$ and $\dyadic_n(r)$ increases to $r\;\every r\in\overline{\R}_+$ as $n\to\infty$.
+		\end{lemma}
+		So as soon as $n$ goes to infinity we get the original function. Moreover, remember the theorem that gives measurability of a function:
+		\begin{revise}
+			\begin{theorem}
+				A positive function on $(E,\E)$ is $\E$-measurable if and only if it is the limit of an increasing sequence of positive simple functions.
+			\end{theorem}
+		\end{revise}
+		We consider, as we said before, the discretization
+		\[f_n=\dyadic_n\circ f.\]
+		What happens to $K f(x)$? In this case, it is defined as:
+		\[Kf(x)=\lim_{n\to\infty}K f_n(x)\qquad\every x\]
+		and this is true for the monotone convergence theorem for the measure $B\mapsto K(x,B)$. Then $Kf$ is $\E$-measurable being the limit of the $\E$-measurable sequence of functions $(Kf_n)_n$.
+		\item[2--3] Fix a measure $\mu$ on $(E,\E)$ and define a functional 
+		\[L:\F_+\mapsto\overline{\R}_+\]
+		by setting 
+		\[L(f)=\mu(Kf)\]
+		that is, we integrate $Kf$ with respect to the measure $\mu$. We note that
+		\begin{enumerate}[i.)]
+			\item\label{ite:frs} if $f=0$ then $L(f)=0$;
+			\item\label{ite:scn} if $f,g\in\F_+$ with $a,b\in\R_+$ then 
+			\begin{align*}
+				L(af+bg)&=\mu\big(K(af+bg)\big)\\
+				&=a\mu(Kf)+n\mu(Kg)\\
+				&=aL(f)+bL(g).
+			\end{align*}
+			So the functional is a linear function.
+			\item\label{ite:thr} if $(f_n)_{_{n}}\subset\F_+$ and $f_{n}\nearrow f$ then  $Kf_n\nearrow Kf$ and this is true by monotone convergence theorem with respect to integrals with respect to the measure $B\mapsto K(x, B)$. 
+			\item\label{ite:frt} note that 
+			\[L(f_n)=\mu(Kf_n)\nearrow\mu(Kf)\]
+			again because of the monotone convergence theorem with respect to the measure $\mu$.
+		\end{enumerate}
+		So given that \ref{ite:frs}, \ref{ite:scn}, \ref{ite:thr} and \ref{ite:frt} hold (and recurring to the theorem 4.21 of the Cinlar book\footnote{yeah not gonna check that.}) we have that there exists a measure $\nu$ on $(F,\F)$ such that
+		\[L(f)=\nu f\qquad \every f\in\F_+,\]
+	
+	\end{enumerate}
+		Note that if we specifically take the function $f=\indi_B,\;B\in\F$ we see that 
+	\begin{align*}
+		\nu(B)=\nu\indi_B=L(\indi_B)&=\mu(K\indi_B)=\mu\left(\int_BK(x,\dy)\right)\\
+		&=\mu K(x,B)=\int_EK(x,B)\mu\dx=\mu K(B).
+	\end{align*}
+	Then $\nu\equiv \mu K$, that is $\mu K$ is a measure on $(F,\F)$ and 
+	\[(\mu K)f=\nu f=L(f)=\mu (K f).\] 
+\end{fancyproof}
+\begin{definition}
+	The \emph{dyadic function} is defined as:
+	\[
+	\dyadic_n(r)=\sum_{k=1}^{n\cdot2^n}\frac{k-1}{2^n}\indi_{\left[\frac{k-1}{2^n},\frac{k}{2^n}\right)}(r)+n\indi_{\left[n,+\infty\right)}(r),\qquad r\in\overline{\R}_+
+	\]
+	So we basically have two different sections in this function: after $n$ the value of this function is equal to $n$, otherwise it is a step function in the sequence of interval from the start to $n$. To see the shape of this function we could see some examples.
+\end{definition}
+\begin{example}
+	Take $n=1$. We can calculate this dyadic function obtaining
+	\begin{align*}
+		\dyadic_1(r)&=0,\qquad r\in\left[0,\frac{1}{2}\right)\\
+		\dyadic_1(r)&=\frac{1}{2},\qquad r\in\left[\frac{1}{2},1\right)\\
+		\dyadic_1(r)&=1,\qquad r\geq1.\\
+	\end{align*}
+	The function is right-continuos and a step function.
+\end{example}
+\begin{example}
+	$n=1$. Try to do it by hand.
+	\begin{align*}
+		\dyadic_2(r)&=0,\qquad r\in\left[0,\frac{1}{4}\right)\\
+		\dyadic_2(r)&=\frac{1}{4},\qquad r\in\left[\frac{1}{4},\frac{1}{2}\right)\\
+		\dyadic_2(r)&=\frac{1}{2},\qquad r\in\left[\frac{1}{2},\frac{3}{4}\right)\\
+		\dyadic_2(r)&=\frac{3}{4},\qquad r\in\left[\frac{3}{4},1\right)\\
+		\dyadic_2(r)&=1,\qquad r\in\left[1,\frac{5}{4}\right)\\
+		\dyadic_2(r)&=\frac{5}{4},\qquad r\in\left[\frac{5}{4},\frac{3}{2}\right)\\
+		\dyadic_2(r)&=\frac{3}{2},\qquad r\in\left[\frac{3}{2},\frac{7}{4}\right)\\
+		\dyadic_2(r)&=\frac{7}{4},\qquad r\in\left[\frac{7}{4},2\right)\\
+		\dyadic_2(r)&=2,\qquad r\geq 2.
+	\end{align*}
+\end{example}
+\subsection{Products of kernels}
+Let $K$ be a kernel from $(E,\E)$ into $(F,\F)$ and let $K$ be a kernel from $(F,\F)$ into $(G,\G)$.
+\begin{definition}
+	The product of $K$ and $L$ is the transition kernel from $(E,\E)$ into $(G,\G)$ such that $(KL)f=K(LF)$ for $f\in\G_+$.
+\end{definition}
+Let's now fill in some information for transition kernels.
+\begin{definition}
+	A transition kernel from $(E,\E)$ into $(E,\E)$ is actually called \emph{transition kernel on $(E,\E)$}.
+\end{definition}
+This is actually the most common transition kernel in probability\footnote{Oh right we are studying probability theory. Thanks for reminding!}, since \rv s take values in the same space.
+\begin{definition}
+	A transition kernel on $(E,\E)$ is called \emph{Markov kernel} if 
+	\[K(x,E)=1\qquad\every x\in E.\]
+	It is called \emph{sub-Markov} if
+	\[K(x,E)\leq1\qquad\every x\in E.\]
+\end{definition}
+So here we are, we summoned Markov for the first time in this course.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{markov}
+	\caption{Andrej Andreevič Markov if he was cool.}
+	\label{fig:markov}
+\end{figure}
+\begin{definition}
+	Given a transition kernel on $(E,\E)$ its \emph{powers} are define recursively as follows:
+	\begin{align*}
+		K^0&=I\\
+		K^1&=K\\
+		&\vdots\\
+		K^n&=K\cdot K^{n-1}
+	\end{align*}
+	$I$ is the identity kernel, i.e. $I(x,A)=\delta_x(A)=\indi_A(x)\quad\every x\in E,\, A\in\E$
+\end{definition}
+\begin{remark}
+	\[If=f;\;\mu I=\mu;\;\mu If=\mu F;\; IK=KI=K\]
+\end{remark}
+\begin{definition}
+	A transition Kernel $K$ from $(E,\E)$ into $(F,\F)$ is said to be:
+	\begin{itemize}
+		\item \emph{finite} if $K(x,F)<\infty$ for $\every x\in E$;
+		\item \emph{bounded} if $x\mapsto K(x,F)$ is bounded;
+		\item \emph{$\mathbf{\sigma}$-finite} if $B\mapsto K(x,B)$ is $\sigma$-finite for $\every x\in E$;
+		\item \emph{$\mathbf{\sigma}$-bounded} if it exists a measurable partition $(F_n)_{_{n}}$ of $F$ such that $x\mapsto K(x,F_n)$ is bounded for $\every n$;
+		\item \emph{$\mathbf{\Sigma}$-finite} if $K=\sum_{n=1}^{\infty}K_n$ for some sequence of finite kernels $(K_n)_{_{n}}$.
+		\item \emph{$\mathbf{\Sigma}$-bounded} if the $K_{n}$ can be chose to be bounded.
+	\end{itemize}
+\end{definition}
+\end{document} 
+%THIS IS THE DARK AGE OF LOVE 

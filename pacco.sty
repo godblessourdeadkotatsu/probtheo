@@ -1,3 +1,5 @@
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 
 % Language setting
 % Replace `english' with e.g. `spanish' to change the document language
@@ -8,7 +10,7 @@
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
-\usepackage[scr=euler,cal=euler,frak=euler,bb=ams]{mathalfa}
+\usepackage[scr=dutchcal,cal=dutchcal,frak=euler,bb=ams]{mathalfa}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -155,9 +157,9 @@
 			\newtcbtheorem[number within=section]{lemm}{Lemma}{
 				enhanced, 
 				breakable,
-				interior style={left color=SkyBlue4!20,right color=Plum!29},
-				title style={left color=SkyBlue4!70,right color=Plum!80},
-				frame style={left color=SkyBlue4!70,right color=Plum!80},
+				interior style={left color=SkyBlue4!20,right color=Cyan4!10},
+				title style={left color=SkyBlue4!70,right color=Cyan4!10},
+				frame style={left color=SkyBlue4!70,right color=Cyan4!10},
 				colframe=white, coltitle=white, colbacktitle=SkyBlue4,
 				colback=SkyBlue4,
 				drop fuzzy shadow=gray,
@@ -167,10 +169,7 @@
 				theorem hanging indent/.try=0pt,
 			}{}
 			
-			\newenvironment{lemma}[1][]{
-				{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-				{\ignorespacesafterend} 
-				\hfill   
+			\newenvironment{lemma}[1][]{ 
 				\stepcounter{lem}
 				\stepcounter{dummy}
 				\ifstrempty{#1}{%   
@@ -202,10 +201,7 @@
 					theorem hanging indent/.try=0pt,
 				}{}
 				
-				\newenvironment{proposition}[1][]{
-					{\par\addvspace{\baselineskip}\noindent\ignorespaces}
-					{\ignorespacesafterend} 
-					\hfill   
+				\newenvironment{proposition}[1][]{ 
 					\stepcounter{propos}
 					\stepcounter{dummy}
 					\ifstrempty{#1}{%   
@@ -219,22 +215,6 @@
 						\end{prp}% 
 					}
 					
-					
-					\newcounter{proofcount}
-					
-					\newtcbtheorem{prova}{\textcolor{Mulberry}{\textit{Proof}}}{
-						enhanced, 
-						breakable,
-						title style={left color=white,right color=Mulberry!80},
-						frame style={left color=Mulberry!30,right color=Dandelion!80},
-						colframe=white, coltitle=white, colbacktitle=SkyBlue4,
-						colback=Mulberry!10,
-						drop fuzzy shadow=gray,
-						titlerule=0mm,
-						separator sign={:},
-						description formatter=\newline,
-						theorem hanging indent/.try=0pt,
-					}{}
 					
 					\newenvironment{diagram}[1][]{
 						\ifstrempty{#1}
@@ -294,16 +274,17 @@
 							\newcounter{exampl}
 							
 							\newtcbtheorem[number within=section]{exa}{Example}{
-								enhanced, 
+								enhanced jigsaw, 
 								frame empty, breakable,
 								colframe=white, coltitle=black,
 								colback=white,
+								opacityback=0,
 								sharp corners,
-								borderline={0.5mm}{0mm}{white},
 								borderline west={1mm}{0mm}{DarkOrchid4},
 								attach boxed title to top left,  
 								boxed title style={boxrule=0.5mm,drop fuzzy shadow=gray, colframe=DarkOrchid4, sharp corners, interior style={left color=white, right color=DarkOrchid4!50}},
 								separator sign={:},
+								opacityframe=.5,
 								description formatter=\newline,
 								theorem hanging indent/.try=0pt,
 							}{}
@@ -331,7 +312,32 @@
 	fonttitle=\bfseries,
 	interior style={left color=CadetBlue3!30,right color=white!29},
 	frame style={left color=DodgerBlue4,right color=DodgerBlue1},
-	title={Revise with Kotatsu!}}						
+	title={Revise with Kotatsu!}}	
+	
+	\newtcolorbox{proofbox}{
+		enhanced,
+		attach boxed title to top left,
+		colback=red!5!white,sharp corners, colframe=white,
+		breakable,
+		drop shadow,
+		boxed title style={interior style={fill overzoom image=scrapped},sharp corners},
+		coltitle=black,
+		fonttitle=\bfseries\itshape,
+		interior style={fill tile image*={width=1.1\linewidth}{squares}},
+		frame style={white},
+		title={Proof}}	
+		
+		\newenvironment{fancyproof}[1][]{
+			\ifstrempty{#1}{%   
+				\hfill
+				\begin{proofbox} \begin{proof}[\unskip\nopunct]                   
+				}{%        
+					\hfill
+					\begin{proofbox} \begin{proof}[\unskip\nopunct]%                 
+					}%
+				}{%
+				\end{proof}\end{proofbox}% 
+			}					
 									\let\oldemptyset\emptyset
 									\let\emptyset\varnothing
 									
@@ -365,6 +371,7 @@
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\B}{\mathscr{B}}
 \newcommand{\F}{\mathscr{F}}
+\newcommand{\G}{\mathscr{G}}
 									%i comandi di MERDA di stefano
 									\newcommand{\ra}{\rightarrow}
 									\newcommand{\iy}{\infty}
@@ -395,6 +402,7 @@
 									\newcommand{\BMF}{\left((B_t)_{t\geq 0},\mathcal{F}_t \right)}
 									\newcommand{\mFt}{\mathcal{F}_t}
 									\newcommand{\every}{\forall\,}
+									\newcommand{\dyadic}{\mathcal{d}}
 		\newcommand{\pr}{\mathbbm{P}}
 		\newcommand{\indi}{\mathbbm{1}}
 		\newcommand{\sa}{$\sigma$-algebra}	\newcommand{\rv}{random variable}
@@ -404,6 +412,7 @@
 		\sectionfont{\color{Cyan2!50!black}\bfseries}
 										\pretitle{\begin{center}\LARGE\color{SkyBlue2}}
 											\newcommand{\prefacename}{Preface}
+	\newcommand{\cinlar}{Çinlar }
 											\newenvironment{preface}{
 												\vspace*{\stretch{2}}
 												{\noindent \bfseries \huge\color{SkyBlue4} \prefacename}
