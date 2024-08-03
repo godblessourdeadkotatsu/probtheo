@@ -749,16 +749,24 @@ Consider the \rv{} $X$, with its positive part $X^+$ and its negative part $X^-$
 \[X=X^+-X^-\]
 where both the positive part \textit{and} the negative part are positive functions (remember?\footnote{No. Happy?}). If we apply the expectation to $X$, by the linearity of the integral operator we have that:
 \[\ev X=\ev X^+-\ev X^-.\]
+Where, in particular:
+\[\ev X^+=\int_\Omega X^+\pr(\dw)=\begin{cases}
+	<+\infty\\
+	+\infty
+\end{cases}\]
+and
+\[\ev X^-=\int_\Omega X^-\pr(\dw)=\begin{cases}
+	<+\infty\\
+	+\infty
+\end{cases}\]
 The problem arises when both the expectation of the positive part and the expectation of the negative part are simultaneously infinite.\\
 Further, we say that $\ev X$ exists finit e when at the same time both expectations are finite: 
 \[\ev X^+<+\infty,\quad X^-<+\infty.\]
 In this case
 \[\ev X=\ev X^+-\ev X^-<\infty.\]
-
-\vspace*{1cm}
-
 Finally, remember from undergraduate courses:
 \[\ev X^+\ev X^-=\ev |X|\]
+
 So if we check that the expectation of the absolute value is finite this will imply that the expectation of $X$ is finite in both the negative and the positive part. A \rv{} with finite expectations is said to be \emph{integrable}.
 \begin{remark}\label{eh}
 	This is connected to the definition of expectation of a \rv{} that we already know. Consider the "change of variable" formula for Lebesgue integrals (see \cinlar, formula 5.3 page 30): consider $f\in\E$ and $h:(F,\F)\mapsto(E,\E)$. We integrate
@@ -769,7 +777,7 @@ So if we check that the expectation of the absolute value is finite this will im
 		\item $(F,\F)\equiv(\Omega,\mathscr{H})$;
 		\item $\nu=\pr$;
 		\item $\mu$ is the distribution of $X$;
-		\item $(E,\E)\equiv(\R,\B_{\R}$.
+		\item $(E,\E)\equiv(\R,\B_{\R})$.
 	\end{itemize}
 	So the formula becomes
 	\[\int_\Omega\pr(\dw)f\Big(X(\omega)\Big)=\int_{\R}\mu(\dx)f(x)\]
@@ -857,10 +865,142 @@ We must now recall some famous inequalities.
 	\item \emph{Markov inequality}: this is for positive, real-valued random variables. Let $X$ be a positive and real-valued \rv. We may be interested in the probability that $X$ exceeds some positive value $b$. We know that
 	\[\pr(X>b)\leq\frac{1}{b}\ev X\qquad\every b>0.\]
 	\item \emph{Chebyshev inequality}: this is too for positive, real-valued random variables. Let $X$ be a positive and real-valued \rv. What we have is that
-	\[\pr\Big(|X-\ev X|>\varepsilon\Big)\leq\frac{\var X}{\varepsilon^2},\qquad\epsilon>0.\]
+	\[\pr\Big(|X-\ev X|>\varepsilon\Big)\leq\frac{\var X}{\varepsilon^2},\qquad\varepsilon>0.\]
 	\item \emph{Jensen inequality}: Let $X$ be a real-valued \rv{} with finite expectation (integrable) and let $f$ be a convex function on $\R$. Then
 	\[\ev f(X)\geq f(\ev X).\]
 	If the function is concave the inequality is the opposite.
 \end{itemize}
+\begin{definition}
+	Let $X,Y$ be two real-valued \rv s with finite variance. The \emph{covariance} between $X$ and $Y$ is
+	\[\cov(X,Y)=\ev (X-\ev X)(Y-\ev Y).\]
+\end{definition}
+If $X$ and $Y$ are independent, then $\cov(X,Y)=0$ (try to prove it but it is easy even for me\footnote{Proceeds \textit{not} to do it.}).
+\begin{remark}
+	If we want to calculate the variance of two real-valued \rv s then
+	\[\var(X+Y)=\var(X)+\var(Y)+2\cov(X,Y).\]
+	This can be proven very easily. Of course, if $X$ and $Y$ are an independency then $\cov(X,Y)=0$ and $\var(X+Y)=\var(X)+\var(Y)$.
+\end{remark}
+Consider $\ev |X|<+\infty.$ We think of \rv s with finite expectation in absolute value as ``well-behaved'', without any crazy jumps or fluctuations. So it could be interesting to look for a way to treat all of these \rv s with finite expectation in the same way.
+\begin{remark}
+	A \rv{} (real-valued) random variable with finite expectations is called \emph{integrable \rv}.
+\end{remark}
+We are going back to functional analysis now. Brace yourselves.
+\subsection{$L^p$ spaces}
+We start, as usual, with the $(\Omega,\mathscr{H},\pr)$ probability space, with the real-valued \rv{} $X$ and the parameter $p\in[1,\infty]$. Why doesn't $p$ start from 0? It's dumbass mathematical reason we won't and shouldn't care about\footnote{$L$ in $L^p$ stands for Lebesgue space. If $p<0$ these spaces do not have the property of Lebesgue spaces so we don't care.}.\\
+Define the so-called $L^p$-norm of $X$ as:
+\[||X||_p=\left(\ev|X|^p\right)^{\frac{1}{p}},\qquad p<+\infty.\]
+Remember that expectations are integrals. We can also define a \textit{sup-norm}:
+\[||X||_{\infty}=\inf(b\in\R_+:|X|\leq b\text{ a.s.}).\]
+So, taking a \rv{} $X$ and fixing $p$ we can calculate a number to attach to this \rv{}.
+\begin{example}
+	Take $p=1$. Our $L^p$-norm would then be
+	\[||X||_1=\ev|X|.\]
+\end{example}
+No shit. But as long as $p$ is finite we can technically write the $L^p$ norm of the \rv. The same goes for $p=\infty$, but with the different definition. We will call the \textit{sup-norm} \emph{essential supremum of $X$}. This name has a meaning: imagine the random variable $X$ ``folded'' by the absolute variable. We are interested in the number $b$ for which the probability mass is more or left all to the left of this number.
+\begin{notation}
+	\[ \mathrm{essup}(X)= ||X||_{\infty}.\]
+\end{notation}
+\begin{remark}
+	If $||X||_p=0\implies X=0$ almost surely. Remember that the $L^p$-norm has an absolute value, so if the norm is 0 then the \rv{} must be 0 everywhere. 
+\end{remark}
+If we fix a number $c\geq0$ we have
+\[||cX||_p=c||X||_p.\]
+If we have $1\leq p\leq q\leq+\infty$ then
+\[0\leq||X||_p\leq||X||_q\leq+\infty.\]
+\begin{definition}
+	The collection of real-valued \rv{}s $X$ with $||X||_p<+\infty,\;p\in[1,\infty]$ is called \emph{$\mathbf{L^p}$}.
+\end{definition}
+So we are creating sub-collections of real-valued \rv s such that they have a finite norm. The space $L^p$ is a subset of the space of all \rv s.
+\begin{remark}
+	X is in $L^{p},\;p \in [1,\infty\color{red}\boldsymbol{)}$ if and only if $|X|^{p}$ is integrable and $X$ is in $L^{\infty}$ if and only if $X$ is almost surely bounded.
+\end{remark}
+\begin{remark}
+	If $1\leq p\leq q\leq+\infty$ then
+	\[L^{q}\subset L^{p}\]
+\end{remark}
+So the $L^p$ spaces are one inside the other, with $L^{\infty}$ being the smallest of them all and $L^{1}$ being the biggest. Think about the meaning: $L^{1}$ is the space of all integrable \rv s; $L^{2}$ is the space for which $|X|^{2}$ is integrable, but if $|X|^{2}$ is integrable so is $|X|$... and so on. We can thus prove certain properties for the whole class and this will extend to smaller classes.\\
+The regularity of these functions is evident when we look at $L^{\infty}$: the functions that belong in this space are very regular because they are almost surely bounded and therefore their support doesn't explode towards infinity\footnote{Professor Polito said: ``Good guys''. :3}.
+\begin{remark}
+		Some useful inequalities...
+\begin{itemize}
+	\item\emph{Minkowsky inequality}: 
+	\[||X+Y||\leq||X||_p-||Y||_{p}.\]
+	\item \emph{Hölder inequality}:
+	\[||XY||\leq||X||_p||Y||_q\]
+	where $\frac{1}{p}+\frac{1}{q}=\frac{1}{r}$ for $p,q,r\in[1,\infty)$.
+	\item \emph{Jensen inequality}:
+	Consider:
+	\begin{itemize}
+		\item a convex domain $D$ in $\R^d$;
+		\item a continuous and concave function $f:D\mapsto\R$;
+		\item a sequence of \rv s $X_1,X_2,\ldots,X_d$ integrable (in $L^{1}$ space) for which $(X_1,X_2,\ldots,X_d)\in D$ almost surely.
+	\end{itemize}	
+	Then
+	\[\ev f(X_1,X_2,\ldots,X_d)\leq f\Big(\ev (X_1,X_2,\ldots,X_d)\Big).\]
+\end{itemize}
+\end{remark}
+When we talk about integrability, we have this useful lemma:
+\begin{lemma}
+	Let $X$ be a real-valued \rv{}. $X$ is integrable if and only if
+	\[\lim_{b\to\infty}\ev|X|\indi_{(|X|>b)}=0.\]
+\end{lemma}
+This lemma states that this is an equivalent condition for integrability. The random variable $|X|\indi_{(|X|>b)}=0$ is equal to 0 until $b$ and equal to the absolute value of $X$ after $b$. So we are effectively truncating the random variable but maintaining the right tail. 
+This means that if we integrate only the tails of the \rv{} we wouldn't get much information (we can say that the tail is \textit{thin}).
+\begin{fancyproof}
+	Let's call $Z_b$ the truncated random variable $|X|\indi_{(|X|>b)}=0$. Note that $Z_b\leq|X|$ and that $Z_b\xrightarrow[b\to\infty]0$. Since $X$ is integrable, we use the dominated convergence theorem:
+	\[\lim_{b\to\infty}\ev|X|\indi_{(|X|>b)}=\ev\Big[\lim_{b\to\infty}\indi_{(|X|>b)}\Big]=0.\]
+	The first statement is proved. Conversely, if $\ev Z_b\to0$, we can choose $b$ large enough such that
+	\[\ev Z_b\leq 1.\]
+	Then 
+	\[|X|\leq b+Z_b.\]
+	This is not immediate but it's true. Due to linearity of expectation, we know that
+	\[\ev|X|\leq b+\ev Z_b\]
+	but we know that $\ev Z_b\leq 1$ so
+	\[\ev|X|\leq b+1\leq\infty.\]
+\end{fancyproof}
+\subsection{Uniform integrability}
+\begin{definition}
+	A collection of random variables K is said to be \emph{uniformly integrable} if
+	\[k(b)=\sup_{X\in K}\left(\ev|X|\indi_{(|X|>b)}\right)\]
+	goes to 0 as $b\to\infty$. 
+\end{definition}
+Note that it is a function of $b$. We consider the supremum of the collection to be "conservative": if the supremum goes to 0 then I know the whole collection will.
+\begin{remark}
+	\begin{enumerate}[\circnum]
+		\item If $K$ is finite and each $X\in K$ is integrable then $K$ is uniformly integrable.
+		\item If $K$ is dominated by an integrable \rv{} $Z$ then it is uniformly integrable.
+		\item Uniform integrability of a collection $K$ implies the so-called $L^{1}$-boundedness, which means
+		\[k\subset L^{1}\quad\text{and}\quad k(0)=\sup_{K}\ev |X|<\infty.\]
+		Note that $k(0)$ considers the whole \rv{} without truncation.
+		\begin{fancyproof}
+			\[\ev|x|\leq b+k(b)\qquad \every X\in K.\]
+			So, since now every \rv{} is in $K$ and $K$ is uniformly integrable, we use this property of $K$ to choose a value for $b$ such that $k(b)\leq 1$ and therefore it is finite.
+		\end{fancyproof}
+		\item We know that uniform integrability implies $L^{1}$... but the converse is not true. We can prove it by a counterexample.
+		\begin{fancyproof}
+			Consider the probability space $$\Big((0,1),\B_{(0,1)},\underbrace{\leb}_{\mathclap{\text{Lebesgue measure}}}\Big)$$. Normally the Lebesgue measure is infinite on the whole support, but if we restrict the measure on the unit interval then the lebesgue measure has maximum value 1 and so it is a probability measure.\\
+			Consider the collection
+			\[K=(X_n)_{_{n\geq1}}\qquad\mathrm{s.t.}\;X_n=\begin{cases}
+				n, &\omega\leq\frac{1}{n}\\
+				0,  &\mathrm{otherwise}
+			\end{cases}\]
+			Note that \[
+			\every n\quad\ev X_n=1
+			\]
+			That is, $K$ is $L^{1}$-bounded.\\
+			But if we calculate $k(b)$ we realize it is equal too 1 for each $b$, so
+			\[\ev X_n\indi_{(X_n>b)}=\ev X_n=1\qquad\every n>b\]
+			Therefore the collection $K$ is \textit{not} uniformly integral.
+		\end{fancyproof}
+		\item If $K$ is $L^{p}$-bounded with $p>1$ then is is uniformly integrable. To prove this we recur to the following proposition:
+		\begin{proposition}
+			Suppose it exists a positive borel function $f$ on $\R_+$ such that
+			\[\lim_{x\to\infty}\frac{f(x)}{x}=\infty\]
+			and write 
+			\[c=\sup_{X\in K}\ev f\circ|X|.\]
+			If $x\leq \infty$ then $K$ is uniformly integrable.
+		\end{proposition}
+	\end{enumerate}
+\end{remark}
 \end{document} 
 %THIS IS THE DARK AGE OF LOVE 

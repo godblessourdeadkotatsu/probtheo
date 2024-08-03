@@ -10,7 +10,8 @@
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 % Useful packages
-\usepackage[scr=dutchcal,cal=dutchcal,frak=euler,bb=ams]{mathalfa}
+
+\usepackage[scr=dutchcal,cal=dutchcal,frak=euler,bb=dsfontserif,bbsymbols]{mathalfa}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -59,9 +60,9 @@
 	enhanced, breakable, sharp corners,
 	colframe=white, coltitle=black, colbacktitle=gray!24,
 	colback=white,
-	interior style={top color=LightCyan3, bottom color=white},
-	boxed title style={interior style={left color=LightCyan3!80,right color=white!35}, sharpish corners,
-		frame style={right color=LightCyan3,left color=white!35},drop fuzzy shadow=gray},
+	interior style={top color=LightSteelBlue2, bottom color=white},
+	boxed title style={interior style={left color=LightSteelBlue2,right color=white!35}, sharpish corners,
+		frame style={right color=LightSteelBlue2,left color=white!35},drop fuzzy shadow=gray},
 	attach boxed title to top left,
 	drop fuzzy shadow=gray,
 	boxed title style={boxrule=0.5mm, sharp corners},
@@ -394,7 +395,12 @@
 		shading=ball, ball color=SkyBlue1!70,
 		,inner sep=1.5pt] (char) {\scriptsize\bfseries #1};}}
 \newcommand{\circnum}{\protect\circled{\arabic*}}
-\newcommand{\circlet}{\protect\circled{\alph*}}					
+\newcommand{\circlet}{\protect\circled{\alph*}}	
+\newcommand{\bbg}[1]{%
+	\ooalign{$#1$\cr\raisebox{-.2pt}{$#1$}\cr\raisebox{.2pt}{$#1$}\cr\textcolor{white}{$\mkern0.2mu#1$}}%
+}
+\newcommand{\leb}{\bbg{\lambda}}
+			
 									%i comandi di MERDA di stefano
 									\newcommand{\ra}{\rightarrow}
 									\newcommand{\iy}{\infty}
@@ -421,13 +427,13 @@
 									\newcommand{\BM}{(B_t)_{t\geq 0}}
 									\newcommand{\PX}{(X_t)_{t\geq 0}}
 									\newcommand{\var}{\mathbb{V}\mathrm{ar}}
-									\newcommand{\cov}{\text{Cov}}
+									\newcommand{\cov}{\mathbb{C}\mathrm{ov}}
 									\newcommand{\BMF}{\left((B_t)_{t\geq 0},\mathcal{F}_t \right)}
 									\newcommand{\mFt}{\mathcal{F}_t}
 									\newcommand{\every}{\forall\,}
 									\newcommand{\dyadic}{\mathcal{d}}
-		\newcommand{\pr}{\mathbbm{P}}
-		\newcommand{\indi}{\mathbbm{1}}
+		\newcommand{\pr}{\mathbb{P}}
+		\newcommand{\indi}{\mathbb{1}}
 		\newcommand{\sa}{$\sigma$-algebra}	\newcommand{\rv}{random variable}
 		\titleformat{\section}{\color{SkyBlue4}}{\color{red}\thesection}{1em}{}
 		\subsectionfont{\color{SkyBlue4!90!black}\bfseries}
