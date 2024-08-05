@@ -46,7 +46,7 @@ And if we considere the elements $A\in\mathscr{H}$ (which will be subsets of $\O
 In measure theory we encounter the concept of \textbf{negligible sets}: these are sets of measure zero or non measurable sets included in measure zero sets. In probability theory, sets are \textbf{events}: so we have negligible events (events with probability 0 or non measurable events included in events with probability 0). Analogously, in measure theory a property which holds \textbf{almost everywhere} is allowed not to hold on negligible sets. In probability theory a property which holds \textbf{almost surely} is allowed not to hold on negligible events.
 We also have, in measure theory, \textit{measurable functions} that in probability theory are \textbf{random variables}.
 Let's have a look back into what the absolute fuck a measurable function is. Also what is an integral? This course deals with distributions, measures and other hellish machinery that servers the sole purpose to confuse you.
-\begin{revise}
+\begin{revise}\label{measur}
 	\begin{definition}
 		Let $(E,\mathscr{E}$ and $(F,\mathscr{F})$ be measurable spaces. A mapping $f:E\mapsto F$ is said to be \enf{measurable} relative to $\mathscr{E}$ and $\mathscr{F}$ if 
 		\[f^{-1}(B)\in\mathscr{E}\qquad\every B\in\mathscr{F}.\]
@@ -741,7 +741,7 @@ We are integrating the function over the space where it is defined, but since we
 \end{remark}
 \begin{wrapfigure}{R}{0.6\textwidth}
 	\centering
-	\includegraphics[width=\linewidth]{kept3}
+	\includegraphics[width=0.6\textwidth]{kept3}
 	\caption{And then he turned himself into a pickle, funniest shit I've ever seen.}
 	\label{fig:kept3}
 \end{wrapfigure}
@@ -947,7 +947,7 @@ When we talk about integrability, we have this useful lemma:
 This lemma states that this is an equivalent condition for integrability. The random variable $|X|\indi_{(|X|>b)}=0$ is equal to 0 until $b$ and equal to the absolute value of $X$ after $b$. So we are effectively truncating the random variable but maintaining the right tail. 
 This means that if we integrate only the tails of the \rv{} we wouldn't get much information (we can say that the tail is \textit{thin}).
 \begin{fancyproof}
-	Let's call $Z_b$ the truncated random variable $|X|\indi_{(|X|>b)}=0$. Note that $Z_b\leq|X|$ and that $Z_b\xrightarrow[b\to\infty]0$. Since $X$ is integrable, we use the dominated convergence theorem:
+	Let's call $Z_b$ the truncated random variable $|X|\indi_{(|X|>b)}=0$. Note that $Z_b\leq|X|$ and that $Z_b\xrightarrow[b\to\infty]{}0$. Since $X$ is integrable, we use the dominated convergence theorem:
 	\[\lim_{b\to\infty}\ev|X|\indi_{(|X|>b)}=\ev\Big[\lim_{b\to\infty}\indi_{(|X|>b)}\Big]=0.\]
 	The first statement is proved. Conversely, if $\ev Z_b\to0$, we can choose $b$ large enough such that
 	\[\ev Z_b\leq 1.\]
@@ -964,7 +964,7 @@ This means that if we integrate only the tails of the \rv{} we wouldn't get much
 	\[k(b)=\sup_{X\in K}\left(\ev|X|\indi_{(|X|>b)}\right)\]
 	goes to 0 as $b\to\infty$. 
 \end{definition}
-Note that it is a function of $b$. We consider the supremum of the collection to be "conservative": if the supremum goes to 0 then I know the whole collection will.
+Note that it is a function of $b$. We consider the supremum of the collection to be ``conservative'': if the supremum goes to 0 then I know the whole collection will.
 \begin{remark}
 	\begin{enumerate}[\circnum]
 		\item If $K$ is finite and each $X\in K$ is integrable then $K$ is uniformly integrable.
@@ -978,7 +978,7 @@ Note that it is a function of $b$. We consider the supremum of the collection to
 		\end{fancyproof}
 		\item We know that uniform integrability implies $L^{1}$... but the converse is not true. We can prove it by a counterexample.
 		\begin{fancyproof}
-			Consider the probability space $$\Big((0,1),\B_{(0,1)},\underbrace{\leb}_{\mathclap{\text{Lebesgue measure}}}\Big)$$. Normally the Lebesgue measure is infinite on the whole support, but if we restrict the measure on the unit interval then the lebesgue measure has maximum value 1 and so it is a probability measure.\\
+			Consider the probability space $$\Big((0,1),\B_{(0,1)},\underbrace{\leb}_{\mathclap{\text{Lebesgue measure}}}\Big).$$ Normally the Lebesgue measure is infinite on the whole support, but if we restrict the measure on the unit interval then the lebesgue measure has maximum value 1 and so it is a probability measure.\\
 			Consider the collection
 			\[K=(X_n)_{_{n\geq1}}\qquad\mathrm{s.t.}\;X_n=\begin{cases}
 				n, &\omega\leq\frac{1}{n}\\
@@ -992,15 +992,380 @@ Note that it is a function of $b$. We consider the supremum of the collection to
 			\[\ev X_n\indi_{(X_n>b)}=\ev X_n=1\qquad\every n>b\]
 			Therefore the collection $K$ is \textit{not} uniformly integral.
 		\end{fancyproof}
-		\item If $K$ is $L^{p}$-bounded with $p>1$ then is is uniformly integrable. To prove this we recur to the following proposition:
+		\item If $K$ is $L^{p}$-bounded with $p>1$ then it is uniformly integrable with $f(x)=x^p$. \\
+		To prove this we recur to the following proposition:
 		\begin{proposition}
 			Suppose it exists a positive borel function $f$ on $\R_+$ such that
 			\[\lim_{x\to\infty}\frac{f(x)}{x}=\infty\]
 			and write 
-			\[c=\sup_{X\in K}\ev f\circ|X|.\]
-			If $x\leq \infty$ then $K$ is uniformly integrable.
+			\begin{equation}
+				c=\sup_{X\in K}\ev f\circ|X|. \tag{$\star$} \label{desiderolamorte}
+			\end{equation}
+			If $c\leq \infty$ then $K$ is uniformly integrable.
 		\end{proposition}
+		\begin{fancyproof}
+			We are talking about the absolute value of $X$, so we don't lose generality if we talk about positive \rv{}s. Let us assume, then, that $X\in\R_+$. Let us replace $f$ with $f\vee1$ if necessary and assume $f\geq1$.\\
+			Let $g(x)=\frac{x}{f)=(x)}$ and note that if we are looking at the tail of the \rv{} we get
+			\[X\indi_{(X_n>b)}=(f\circ X)(g\circ X)\indi_{(X_n>b)}.\]
+			This is true because $(f\circ X)(g\circ X)=\cancel{f(x)}\frac{x}{\cancel{f(x)}}$.\\
+			Let us now bound this quantity:
+			\begin{align*}
+				X\indi_{(X_n>b)}&=(f\circ X)(g\circ X)\indi_{(X_n>b)}\\
+				&\leq (f\circ X) \sup_{x>b}g(x).
+			\end{align*}
+			If now $X\in\R$ (not necessarily positive) we can write this inequality as
+			\begin{equation*}
+				|X|\indi_{(|X|>b)}\leq (f\circ|X|) \sup_{x>b} g(x).
+			\end{equation*}
+			Take the expectation and the $\sup_{K}$, using equation \ref{desiderolamorte} (remember that $k(b)=\sup_{X\in K}(\ev|X|\indi_{(|X|>b)})$):
+			\[k(b)\leq c\cdot \sup_{x>b}g(x).\]
+			To study the behaviour in the limit for $b\to\infty$, we must study separately $c$ (that is a finite number) and $\sup_{x>b}g(x)$ (that for $b\to\infty$, and therefore for $x\to\infty$, goes to 0 as $g(x)=\frac{x}{f(x)}=\frac{1}{\frac{f(x)}{x}\to\infty}$).
+			Hence, $K$ is uniformly integrable.
+		\end{fancyproof}
 	\end{enumerate}
 \end{remark}
+Let's see one more\footnote{There will be consequences.} theorem about uniform integrability.
+\begin{theorem}
+	The following are equivalent:
+	\begin{enumerate}[\circnum]
+		\item $K$ is uniformly integrable;
+		\item $h(b)=\sup_{K}\int_{b}^{+\infty}\dy \pr(|X|>y)\xrightarrow[b\to\infty]{}0$;
+		\item $\sup_{K}\ev f\circ |X|<+\infty$ for some increasing convex function $f$ on $\R_+$ such that
+		\[\lim_{x\to\infty}\frac{f(x)}{x}=+\infty.\]
+	\end{enumerate}
+\end{theorem}
+So we can consider all of these as alternative definition of uniform integrability and this is important because it is the extension of the concept of integrability for \rv s. For example, we will treat only uniformly integrable martingales, which are good boys who's mommy good boy you are.
+\section{\sa s and \rv s}
+There is a way to connect \sa s and \rv s and we will see how linked the two objects are. Consider a \rv{} $X$ taking values in $(E,\E)$. Then consider the collection of all inverse image of the set $A$ through the \rv{} $X$:
+\[\sigma X=X^{-1}\E=\left\{X^{-1}A:A\in\E\right\}\]
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{screenshot005}
+	\caption{Remember that $\mathscr{H}$ is made of the subsets of $\Omega$ and that $\E$ is made of the subsets of $E$. Also, $\sigma X$ is a subset of $\mathscr{H}$.}
+	\label{fig:screenshot005}
+\end{figure}
+\begin{wrapfigure}[12]{L}{0.28\textwidth}
+	\centering
+	\includegraphics[width=0.28\textwidth]{brat}
+	\caption{I'm just a gurl\protect\footnotemark.}
+	\label{fig:brat}
+\end{wrapfigure}
+We call it $\sigma X$ because it is the \emph{\sa{} generated by $X$}. It is basically the set of all inverse images of $X$ that sit in $\E$. 
+This object is simple... 
+Every time we introduce a \rv{} we have a connection to two spaces: there is the probability space (for instance $(\Omega,\mathscr{H},\pr)$), the arrival space $(E,\E)$ and the \sa{} $\sigma X$. 
+By means of the measurability of $X$ (remember the \hyperref[measur]{definition of measurability}?) we are simultaneously constructing all the inverse images of the element of the \sa{} $\E$ in the arrival space. 
+If I consider all of them together we can prove that the resulting set is actually a \sa{} (the one generated by $X$) and it is a subset of $\mathscr{H}$, as we see in figure \ref{fig:screenshot005}. This is very important, for reasons that elude me.\par
+\footnotetext{This image will mean absolutely nothing to you unless you were terminally online in the summer of 2024. Otherwise it is hilarious.}
+\begin{remark}
+	$\sigma X$ is the smallest \sa{} $\G$ on $\Omega$ such that $X$ is measurable relative to $\G$ and $\E$.[]
+\end{remark}
+Take now $T$ as an arbitrary index set (which can be countable or uncountable). Consider $\every t\in T,\;X_t$ being a \rv{} taking values in the measurable space $(E_t,\E_t)$. Then
+\[
+\sigma\left\{X_t:t\in T\right\}=\sigma(X_t)_{_{t\in T}}=\sigma\left(\bigcup_{t\in T}\sigma X_t\right).
+\]
+This is just the union of the \sa s generated by the by the \rv{} $X$: we consider the \sa{} of this union just to make sure that this union is, indeed, a \sa{}.\par
+\begin{notation}
+	Remember that the \sa{} generated by the collection $(X_t)_{_{t\in T}}$ is noted as
+		\[\bigvee_{t\in T}\sigma X_t=\sigma\left(\bigcup_{t\in T}\sigma X_t\right)\]
+\end{notation}
+Furthermore, it is the smallest \sa{} $\G$ on $\Omega$ such that $\every t\in T$ the \rv{} $X_t$ is measurable relative to $\G$ and the corresponding $\E_t$.
+\begin{remark}
+	Consider the collection $X={(X_{t})}_{t\in T}$ to be the \rv{} taking values in the product space 
+	\[\bigotimes_{t\in T}(E_t,\E_t).\]
+	Define now $X(\omega)$ to be the point $\Big(X_t(\omega)\Big)_{t\in T}$. The mapping 
+	\[\omega\mapsto X_t(\omega)\]
+	is a \rv{} and is called \emph{$t$-coordinate of $X$}.
+\end{remark}
+\begin{proposition}
+	If $X=(X_{t})_{_{t\in T}}$ then $$\sigma X=\sigma{\Big(X_{t}\Big)}_{t\in T}$$
+\end{proposition}
+So if we generate the \sa{} from the collection as $\bigvee_{t\in T}\sigma X_t$ and we generate the \sa{} from a collection seen a single random variable (as $\sigma X=X^{-1}\E$) we end up with the same object. Professor Polito think this is a nice thing. I am very keen on that man, to be honest. His enthusiasm is almost contagious.\par
+Remember: when we define a \rv{} we actually do two things:
+\begin{itemize}
+	\item we induce a distribution (that is a probability measure) to the arrival space:
+	\[(\Omega,\mathscr{H},\pr)\xrightarrow[X]{}(E,\E,\mu_x);\]
+	\item we induce the existence of a special \sa{} that links the \sa{} $\mathscr{H}$ and the sa $\E$ (that is the \sa{} $\sigma X$).
+\end{itemize}
+We can define a new \rv{} $V$ which is measurable with respect to the \sa{} $\sigma X$. Since we defined $V$ as a \rv{} then it is automatically measurable with respect to $\HS$ and $\E$, but in particular when $V$ is also measurable with respect to $\sigma X$ then it has a special representation. Before going through the theorem, let's revise once more a couple of measure theory concepts:
+\begin{revise}
+	\begin{definition}
+		The collection of functions $\mathcal{M}$ is called \emph{monotone class} if:
+		\begin{enumerate}[a)]
+			\item $\indi\in\mathcal{M}$;
+			\item let $f,g\in\mathcal{M}_b$ (bounded functions in $\mathcal{M}$) and let $a,b\in\R$. Then $af+bg\in\mathcal{M}$;
+			\item $(f_n)\subset\mathcal{M}_+$ with $f_n\nearrow f$. Then $f\in\mathcal{M}$.
+		\end{enumerate}
+	\end{definition}
+	\begin{theorem}
+		\emph{Monotone class theorem for functions}.
+		Let $\mathcal{M}$ be a monotone class of functions on $E$. Suppose that $\indi_A\in\mathcal{M}$ for each $A\in\mathcal{C}$ where $\mathcal{C}$ is some $\pi$-system generating $\E$.\\
+		Then, $\mathcal{M}$ includes all positive $\E$-measurable functions and all bounded $\E$-measurable functions.
+	\end{theorem}
+\end{revise}
+	We are going to use this theorem in the proof of the following theorem..
+	\begin{theorem}\label{teodelta}
+		\emph{``Theorem $\Delta$''}:\\
+		Let $X$ be \rv{} taking values in the measurable space $(E,\E)$. A mapping
+		\[V:\Omega\mapsto\overline{\R}\]
+		belongs to $\sigma X$ \underline{if and only if}
+		\[V=f\circ X\]
+		for some deterministic function $f\in\E$.
+	\end{theorem}
+The proof will be long as fuck.
+\begin{fancyproof}
+	(Sufficiency)\\
+	Consider a collection $\mathcal{M}$ of all $V$ of the form 
+	\[V=f\circ X,\qquad f\in\E.\]
+	We would like to prove that $\mathcal{M}\subset\sigma X$, that is to say: if we have a function in the form of $V$ the it is $\sigma X$-measurable. Measurable functions of measurable functions are still measurable: $f$ is $\E$-measurable and $X$ is a \rv: therefore $X$ is $\HS$-measurable but $X$ is also measurable with respect to the \sa{} generated by itself.\\
+	Hence
+	
+	\[V\text{ is }\sigma X\text{-measurable.}\vspace{1cm}\]
+	(Necessity)\\
+	We are planning to show that $\mathcal{M}\supset \sigma X$. 
+	\begin{enumerate}
+		\item We show that $\mathcal{M}$ is a monotone class of functions: we must check the three properties of the class;
+		\begin{enumerate}
+			\item $\indi_E\in\mathcal{M}$ because $\indi_E=f\circ X$ with $f(x)=1\;\every x\in E$.
+			\item let $U,V\in\mathcal{M}_b$. Let $a,b\in\R$. Plainly
+			\[U=f\circ X,\qquad V=g\circ X\]
+			for the right choice of $f,g\in\E$. Consider now the combination
+			\[aU+bV=h\circ X\]
+			with $h=af+bg$. Note that $h\in\E$. Hence
+			\[aU+bV\in\mathcal{M}.\] H
+			\item consider $(V_n)\subset\mathcal{M}_+$ and $V_n\nearrow V$. For each $n$, $\exists\,f_n\in\E$ such that $V_n=f_n\circ X$. We now want to check that $V\in\mathcal{M}$.\\
+			Consider 
+			\[f=\sup_{n} f_n\in\E\]
+			and
+			\[V=\sup_{n}V_n=\sup_{n} f_{n}(X)=f(X)\]
+			Hence $V\in\mathcal{M}$.
+		\end{enumerate}
+		\item Consider $H\in\Omega$ such that it is in $\sigma X$. If it is in $\sigma X$ then this means that $H$ comes from the inverse image of a set $A$ in $\E$:
+		\[H=X^{-1}A\]
+		for some $A\in\E$. So
+		\[\indi_H=\indi_A\circ X\in\mathcal{M}.\]
+		So the class $\mathcal{M}$ contains all the indicators of the events that are contained in $\sigma X$. We need to check, for the monotone class theorem, what happens to the indicators of the elements of the $\pi$-system which in this case would be $\sigma X$... that is a \sa{} but being a \sa{} means also being a $\pi$-system.\\
+		We have proven that $\mathcal{M}$ contains all the indicators in $\sigma X$ and applying the monotone class theorem for functions we have that 
+		$\mathcal{M}$ contains all positive \rv s that are $\sigma X$-measurable.
+		\item Let $V\in\sigma X$ be arbitrary. Then of course $V^{+}\in\sigma X$ and it is positive (the same can be said for $v^{-}$). Hence $V^{+}=g\circ X$ for some $g\in\E$ and $V^{-}=h\circ X$ for some $h\in\E$. Then 
+		\[V=V^{+}-V_{-}=f\circ X\]
+		where
+		\[f(x)=\begin{cases}
+			g(x)-h(x), &\text{if }g(x)\wedge h(x)=0\\
+			0, &\text{otherwise}
+		\end{cases}\]
+		and $f\in\E$.
+ 	\end{enumerate}
+ 	This concludes $\sigma X\subset\mathcal{M}$.
+\end{fancyproof}
+\begin{corollary}
+	For each $n\in\N^*$, let $X_n$ be a \rv{} taking values in $(E_n,\E_n)$. A mapping
+	\[V:\Omega\mapsto\overline{\R}\]
+	is $\sigma (X_n)_{n\in\N^*}$-measurable if and only if
+	\[V=f(X_1,X_2,X_3,\ldots)\]
+	For some deterministic functtion $f\in\bigotimes_n\E_n$.
+\end{corollary}
+Remember that $N^*$ are the natural numbers without 0.
+\begin{remark}
+	The above corollary can also be extended to uncountable collections. Should it? I don't know. You tell me.
+\end{remark}
+Why did we destroyed our balls with this section about \sa s?
+\subsection{Filtrations}
+Let $T$ be a subset of $\R$. Let $\F_t$ be a sub-\sa{} of $\HS\;\every t\in T$. The family $\F=(\F_t)_{_{t\in T}}$ is called \emph{filtration} if $\F_s\subset\F_t$ for every $s<t$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=.7\linewidth]{filtration}
+	\caption{The first one is not a filtration, the second is for $T=\N^{*}$.}
+	\label{fig:filtration}
+\end{figure}
+In figure \ref{fig:filtration} we can see how $\HS$ contains all events we are concerned with: it is built upon the \textit{experience} of the event we are facing. Take, for example, $\F_1$: it is much smaller than $\HS$ and if we say that a \rv{} is measurable with respect to $\F_1$ it means that we do not have much knowledge, but if we expand to $\F_2$ we are able to gain more knowledge about the \rv. If we interpret the index set $T$ as time we may actually think about filtrations as our knowledge of the phenomenon as time passes.
+\begin{example}
+	Consider a filtration generated by a stochastic process.
+	Let $X={(X_{t})}_{t\in T}$. Of course each $X_t$ takes value in the same state space. Define
+	\[\F_t=\sigma{(X_s)}_{\substack{s\leq t\\s\leq T}}.\]
+	Here we are generating a \sa{} from all the random variables from the beginning of time until $t$. Consider now the family of \sa{}s 
+	\[\F={(\F_t)}_{t\in T}:\]
+	this is a filtration. This means that for this stochastic process, as time passes, we are gaining more knowledge about $\HS$ through the \sa s.
+\end{example}
+\subsection{Independency for a finite class of sub-\sa s}
+We already know the concept of independence between \rv s and the effect of independence with respect to the induced measure of probability. If we look at \cinlar, it actually introduces independence of \rv{}s through the independence of \sa s. To do so we need to introduce the concept of \emph{independency for a finite class of sub-\sa s}.
+\begin{definition}
+	Consider the class $\HS$ as the collection of sub-\sa s $\F$:
+\[\HS=\left\{\F_1,\F_2,\ldots,\F_n\right\}\qquad\F_i=\text{sub-$\sigma$-algebra }\every i=1,\ldots,n.\]
+$\HS$ is said to be an \emph{independency} if
+\begin{equation}
+	\ev[V_1\cdot V_2\cdot\ldots V_n]=\ev V_1\cdot\ev V_2\cdot\ldots\ev V_n\tag{($\star$)}\label{independency}
+\end{equation}
+for $\every$ \rv{} $V_1,V_2,\ldots,V_n$ belonging respectively to $\F_1,\F_2,\ldots,\F_n$.
+\end{definition}
+But what does this definition mean? The definition is given in the terms of what happens to the \rv s that are measurable with respect to the \sa s. If for each of them we get the factorization of the expectation, then our sub-\sa s are independency... and so, of course, are their algebras (all \sa s are algebras.)\\
+This definition is valid only for a \textit{finite} class of sub-\sa s, but we can extend it to infinite classes (\cinlar's book extends it to countable collections of sub-\sa{s} and even to uncountable collections of sub-\sa s, so we shouldn't.). This definition, though, was just an intuition of the fact that independency of \sa s and independency of \rv s are \textit{not} unrelated, but are simply the same concept seen from two different points of view. 
+\begin{proposition}
+	Let $\F_1,\F_2\ldots,\F_n$ be sub-\sa s of $\HS$, with $n\geq 2$. For each $i\leq n$, let $\mathcal{C}_i$ be a $\pi$-system generating $\F_i$. Then the collection $\left\{\F_1,\F_2,\ldots,\F_n\right\}$ is an independency \underline{if and only if}
+	\[\pr(H_1\cap H_2\cap \ldots\cap H_n)=\prod_{i=1}^{n}\pr(H_i)\qquad\every H_i\in\overline{\mathcal{C}}_i=\mathcal{C}_i\cup\{\Omega\},\;i=1,\ldots,n.\]
+\end{proposition}
+We need to have clear that there is not an unique starting point in defining the concept of independency, so all of them are quite equivalent. We will build upon this fact and see other deep relations between these notions\footnote{Can't wait.}.
+\begin{proposition}
+	Every partition of an independency is an independency.
+\end{proposition}
+Take, for example, the collection 
+${(\F_t)}_{t\in T}$ of sub-\sa s and the partition ${(T_i)}_{i\in\N^*}$
+ of $T$: these two together form the sub-collection of sub-\sa s $\F_{T_i}={(\F_t)}_{t\in T}$
+  with $i\in\N^{*}$.
+\begin{notation}
+	\[\F_{T_i}=\bigvee_{j\in T_i}\F_j.\]
+\end{notation}
+We are interested in checking whether $(\F_{T_1},\F_{T_2},\ldots)$ (remember: they are all \sa s!) are an independency... and they are.
+\begin{proposition}
+The notion of independence between \rv s (taking values in general measurable spaces) is given in terms of independence of the \sa s generated by those \rv s.
+\end{proposition}
+\begin{example}
+	Consider
+	$X_1,X_2$ where $X_1$ takes values in $(E_1,\E_1)$ and $X_2$ takes values in $(E_2,\E_2)$. If we are concerned about independence of the vector $(X_1,X_2)$ we should look at the vector of the collection of generated \sa s $(\sigma X_1,\sigma X_2)$ and check whether it is an independency or not.
+\end{example}
+\begin{proposition}	Let $X_1,X_2,\ldots,X_n$ be random variables taking values respectively in $(E_i,\E_i)$ for $i=1,\ldots,n$. They are independent \ifonly{} 
+	\[\ev\left[f_i\circ X_1,f_2\circ X_n,\ldots,f_1\circ X_n\right]=\ev f_i\circ X_1,\ev f_2\circ X_n,\ldots,\ev f_1\circ X_n\]
+	for every $f_1,\ldots,f_n$ positive and measurable with respect to $\E_1,\ldots,\E_n$ respectively.
+\end{proposition}
+We need to prove this proposition. But before, just because we like it (like the little sluts we are), let's state an equivalent proposition. 
+\begin{proposition}
+Let $X_1,X_2,\ldots,X_n$ be \rv s taking values in $(E_i,\E_i)$ for $i=1,\ldots,n$ respectively. Then they form an independency \ifonly{} their joint distribution equals the product of their marginal distribution.
+\end{proposition}
+Well we already knew that... but thanks. Now we see more clearly how these two properties are basically the same thing.
+\begin{fancyproof}
+	We will prove the first proposition. We go back to formula of independence \ref{independency} and show that it holds $\every V_1,V_2,\ldots,V_n$ positive and measurable with respect to
+	\[\sigma X_1,\sigma X_2,\ldots,\sigma X_n\]
+	respectively. We know that \ref{independency} holds because of \bigskip\hyperref[teodelta]{Theorem $\Delta$}.\\ 
+	We will now prove the second proposition. From the first proposition we know that:
+	\begin{align*}
+		&\int_{E_1\times\ldots\times E_n}\underbrace{\pi(\dx_1,\ldots,\dx_n)}_{\mathclap{\tiny\text{joint distribution of }(X_1,\ldots,X_n)}}f_1(x_1)\cdot\ldots\cdot f_n(x_n)\\
+		=&\int_{E_1}\mu_1(\dx_1)f_1(x)\cdot\int_{E_2}\mu_2(\dx_2)f_2(x)\cdot\ldots\int_{E_n}\mu_n(\dx_n)f_n(x)\
+	\end{align*}
+	Plainly, considering positivity of $f_1,f_2,\ldots,f_n$, to have the above equality we obtain that
+	\[\pi=\mu_1\times\mu_n.\]
+\end{fancyproof}
+You should convince yourself that the second proposition is just the first proposition rewritten. So, the independence of \rv s is very important and right now we will see an application.
+\subsection{Sums of independent \rv s}
+The simplest structure that we can construct with \rv is just adding them up. Let $X,Y$ be independent real-valued \rv s with distribution $\mu,\nu$ respectively. Then the distribution $\mu\star\nu$ of $X+Y$ (i.e. the effect of $\mu\star\nu$ over $f$) is given by
+\[(\mu\star\nu)f=\ev f(X+Y)=\int_{\R}\mu(\dx)\int_{\R}\mu(\dy)f(x+y).\]
+This is called the \emph{convolution} of the measures $\mu$ and $\nu$.\\
+ So if we are asked to calculate the distribution it is interesting to choose a specific $f$ to see why the distribution is defined in this way: let us choose $f=\indi_{(-\infty,z]}(x+y)$ so that when we calculate the expectation we get
+\begin{align*}
+	\ev f(X+Y)&=\ev \indi_{(-\infty,z]}(X+Y)=\pr(X+Y\leq z)\\
+	&=\int_{\R}\mu(\dx)\int_{\R}\nu(\dy)\indi_{(-\infty,z]}(x+y)\\
+	&=\int_{\R}\nu(\dy)\int_{\R}\indi_{(-\infty,z-y]}(x)\mu(\dx)\\
+	&=\int_{\R}\underbracket{F_X(z-y)}_{\mathclap{\text{distribution function of }X}}\nu(\dy)
+\end{align*}
+Which is what, supposedly, we saw in our undergraduate course\footnote{I didn't see anything remotely similar to this in my economics degree but what do I know. Economics is not real anyway and economists should kill themselves NOW.}.
+From this last series of equations we can also have a look to a special case where $X$ is absolutely continuous with respect to the Lebesgue measure with density $h(x)$:
+\begin{align*}
+	\pr(X+Y\leq z)&=\int_{\R}F_X(z-y)\nu(\dy)=\int_{\R}\nu(\dy)\int_{-\infty}^{z-y}h(t)\dt\\
+	&\stackrel{w=t+y}{=}\int_{\R}\nu(\dy)\int_{-\infty}^{z}h(w-y)\dif w\\
+	&=\int_{\infty}^{z}\underbrace{\int_{\R}h(w-y)\nu(\dy)}_{\text{density of} X+Y}\dif w.
+\end{align*}
+Further, if $Y$ is also absolutely continuous wuth density $g$ we get that the density of $X+Y$ becomes
+\[\int_{\R}h(w-y)g(y)\dy\]
+Which is the convolution formula for calculating the density of $X+Y$. 
+For a further example see ex. 2.1.3 of \cinlar page 43 (convolution of Gamma densities).\par
+We can further consider a sequence of \rv s ${(X_n)}_{n\in\N^{*}}$ and start adding them up:
+\[S_n=X_1+X_2+X_3+\ldots+X_n\]
+so we stop at a finite time. But the we have a new sequence, which is the sequence ${(S_n)}_{n\in\N^*}$ where $S_n$ is called \textit{partial sum}. The partial sum is in itself a \rv{}, made by little \rv s added up and this is why $S_n$ is also called \emph{random walk}. The question is, as always,
+\begin{center}
+	``Should we care?''
+\end{center}
+and while the answer is often
+\begin{center}
+	``No''
+\end{center}
+this time it actually is 
+\begin{center}
+	``Kinda''
+\end{center}
+which is probably the most astounding result of this whole course. This is one of the first kinds of real problems (albeit very simplistic) modeled through the use of \rv s. To do this we need the notion of \textit{tail \sa}.
+\subsection{Tail \sa}
+Did you think that we were about to dive into some interesting and useful practical applications of the The name alone suggests a concept of something away from us. Think of an experiment involving $n\geq 1$ trials, like the repeated roll of a die or toss of a coin. What matters is that we have a trial repeated infinite times and the result of all these trials (which are \rv s) makes up our experiment, which is a \rv{} in itself. \\
+The experiment is defined on $(\Omega,\HS,\pr)$. Consider a sequence ${(\G_n)}_{n\in\N^{*}}$ of sub-\sa s of $\HS$ such that $\G_n$ is the information on $\HS$ revealed by the $n$-th trial. 
+\begin{example}
+	Imagine that the trials are given by the sequence of trials is given by
+	\[{(X_n)}_{n\in\Nstar}\]
+	and the sub-\sa s are defined by
+	\[{(\sigma X_n)}_{n\in\Nstar}\]
+\end{example}
+So the \sa s generated by each $X_n$ are actually the \textit{trajectories} of the \rv s.\\
+Imagine we are sitting a time $n$. Consider now $\G_m$ for $m>n$: I want to take the union of all these \sa s, but since I am not sure that we would end up with a \sa, I take the \sa{} of that union.
+\[\tau_n=\sigma\left(\bigcup_{m>n}\G_m\right)=\bigvee_{m>n}\G_m.\]
+This \sa{} depends on $n$ and it represents the \textit{information about the future}, since we are now sitting at the time point $n$. Remember that when we talk about \textit{revealed information} we are always talking about \sa s!
+This object is a bit strange... it is about the information that models the future. What the fuck? We now want to take the intersection of the various $\tau_n$ (which is surely a \sa{} since we are intersecting):
+\[\tau=\bigcap_n\tau_n.\]
+This is now the \textit{information about the remote future}: we are doing the \textit{intersection}, not the \textit{union}! This is not exactly what happens in the future, but the information revealed by all the infinite trials in the future. The \sa{} $\tau$ is called \emph{tail \sa{}}. Remember that we always remain inside $\HS$.
+\begin{example}
+	Consider ${(X_n)_{n\in\Nstar}}$ and ${(\G_n)}_{n\in\Nstar}={(\sigma X_n)}_{n\in\Nstar}$. We have 
+	\[S_n=\sum_{i=1}^{n}X_i.\]
+	\begin{enumerate}[\circnum]
+		\item consider the event
+		\[\left\{\omega:\lim_{n}S_n(\omega)\text{ exists.}\right\}\]
+		If we think about the tail \sa, it is the intersection of the \sa s after $n$: it is composed by events whose occurence is not influenced by the happenings in finite time! If we look at this event it consists of all the realization of the random walk until infinity: so if I were to remove the first $n$ \rv s in this sequence then the limit of this sequence wouldn't be affected: so this event \textit{belongs} to $\tau$.
+		\item consider the set $B\in\B_{\R}$ and consider the event
+		\[\left\{\omega :X_n(\omega)\in B\text{ i.o.}\right\}.\]
+		``\textit{i.o.}'' means \textit{infinitely often}: this means that
+		\[\left\{\omega :X_n(\omega)\in B\text{ i.o.}\right\}=\left\{\omega:\sum_n\indi_B\circ X_n(\omega)=+\infty\right\}.\]
+		So we infinitely many $\indi$'s in $B$. Again, it is clear that this event belongs in the tail \sa{} because to test the divergence of the series $\sum_n\indi_B\circ X_n(\omega)$ we need to consider the behavior in the limit. We don't care what happens in finite time, so if we remove the contribution of the first $n$ \rv s:
+		\[\left\{\omega :X_n(\omega)\in B\text{ i.o.}\right\}\in\tau.\]
+		\item consider again $B\in\B_\R$ and consider 
+		\[\left\{\omega: S_n(\omega)\in B\io\right\}.\]
+		This event does not belong in $\tau$! Why? Let's consider a special case of $B=\{0\}$ and therefore we consider the event
+		\[\left\{\omega:S_n(\omega)=0\io\right\}\]
+		and we also specialize the ``jumps'':
+		\[{(X_n)}_{n\in\Nstar}\text{ is i.i.d. with }\begin{array}{l}
+			\pr(X_1=1)=p\\
+			\pr(X_1=-1)=1-p
+		\end{array}\]
+		with $p\in[0,1]$. In this case $\left\{\omega:S_n(\omega)=0\io\right\}$ is not a tail event. Let's realize the sequence of the ``jumps'' choosing an $\omega$ such that
+		\[X(\omega)=(+1,-1,+1,-1,+1,\ldots)\]
+		Clearly $\omega\in\left\{\omega:S_n(\omega)=0\io\right\}$:
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.5\linewidth]{screenshot006}
+			\caption{The random walk randomly walking}
+			\label{fig:screenshot006}
+		\end{figure}
+		Now we choose a different $\tilde{\omega}$ such that:
+		\[X(\tilde{\omega})=(\color{SkyBlue4}+1,+1,+1,\color{black}+1,-1,+1,-1,\ldots)\]
+		So in this case we have a ``ramp'' before the oscillation: $\tilde{\omega}\notin\left\{\omega:S_n(\omega)=0\io\right\}$! Try to make the same drawing: the walk will go up and the 0 will never be visited!\\
+		Observe that $\omega$ and $\tilde{\omega}$ agree from the fourth coordinate on: but this means that the first events are decisive when it comes to determine whether a certain $\omega$ belongs to $\left\{\omega:S_n(\omega)=0\io\right\}$. This means that
+		\[\left\{\omega:S_n(\omega)=0\io\right\}\notin\underbrace{\sigma(X_4,X_5,X_6,\ldots)}_{\mathclap{\text{\scriptsize We need more information to decide!}}}\implies\notin\tau_3\]
+		So of course $\left\{\omega:S_n(\omega)=0\io\right\}\notin\tau$. The nature of the event is changed by a finite number of occurences...
+		\item let $(X_1,X_2,\ldots)$ be independent and $S_n=\sum_{i=1}^{n}X_i$. Then
+		\[\left\{\omega:\frac{S_n(\omega)}{n}\text{ converges (exists finite)}\right\}\in\tau.\]
+		Consider 
+		\[Z_1=\liminf_{n\to+\infty}\frac{S_n}{n},\;Z_2=\limsup_{n\to+\infty}\frac{S_n}{n}\]
+		so that our event becomes
+		\[\left\{\omega:Z_1(\omega)=Z_2(\omega)\right\}.\]
+		Rewrite 
+		\[ \frac{S_n}{n}=\underbracket{\frac{1}{n}\sum_{i=1}^{m}X_i}_{{S_n}_1}+\underbracket{\frac{1}{n}\sum_{i=m+1}^{n}X_i}_{{S_n}_2}\qquad m\leq n\]
+		So that we ``split'' the partial sums in two sums before and after time $m$. We call these two partial sums ${S_n}_1$ and ${S_n}_2$. Note that when $n\to\infty$ then ${S_n}_1\to0$ and therefore $Z_1$ and $Z_2$ do not depend upon the first $n$ values of $(X_1,X_2,\ldots,X_m)$. Therefore 
+		\[\left\{Z_1=Z_2\right\}\in\tau.\]
+ 	\end{enumerate}
+\end{example}
+\begin{theorem}
+	\emph{Kolmogorov's 0-1 law}\\
+	This is a theorem about independence. Let $\G_1,\G_2,\ldots$ be independent. Then
+	\[\pr(H)=\begin{cases}
+		0\\
+		1
+	\end{cases}\qquad\every H\in\tau.\]
+\end{theorem}
+So when the outcomes of a \rv{} are independent then the tail is made of almost sure or almost impossible events! The proof is short.
+\begin{fancyproof}
+	Remember that partition of independencies are independencies. Our independency is formed by the sub-\sa s $\G_1,\G_2,\ldots$ and our partition is
+	\[(\G_1,\G_2,\ldots,\G_n,\tau_n).\]
+	This is an independency $\every n\in\Nstar$. Since $\tau\subset\tau_n\;\every n$, then $(\G_1,\G_2,\ldots,\G_n,\tau)$ is an independency for each $n$. But since we now have an independency made of finite elements for each $n$ we have an independency of infinite components
+	\[(\tau,\G_1,\G_2,\ldots)\]
+	by definition of independency for countably infinite sequences. But again, if we partition that last independency we still get an independency:
+	\[(\tau,\tau_0)\]
+	is still an independency. Now consider two \sa s $H\in\tau,G\in\tau_0$. Since they are independent, we have that $\pr(H\cap G)=\pr(H)\pr(G)$. But since $\tau\subset\tau_0$ then we can choose $G=H$ and we get
+	\[\pr(H)=\pr(H\cap H)=\pr(H)\pr(H)\]
+	and the solution to this equation can only be 1 or 0.
+\end{fancyproof}
+We must remember that this is a special case where we have independence: this, in an experimental scenario, is modeled by independent trials. This result can be applied of concept of convergence.
 \end{document} 
 %THIS IS THE DARK AGE OF LOVE 

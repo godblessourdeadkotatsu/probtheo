@@ -149,7 +149,21 @@
 				\end{thrm}% 
 			}
 			
-			
+			\newtcolorbox{corollary}{
+			enhanced, 
+			breakable,
+			sharp corners,
+			interior style={left color=Thistle1,right color=LightSteelBlue4!50},
+			title style={right color=LightSteelBlue4,left color=Thistle1},
+			frame style={right color=LightSteelBlue4,left color=Thistle1},
+			colframe=white, coltitle=LightSteelBlue4, colbacktitle=SkyBlue4,
+			colback=SkyBlue4,
+			drop fuzzy shadow=Cyan4!50!black,
+			titlerule=0mm,
+			separator sign={:},
+			description formatter=\newline,
+			title={Corollary}
+			}{}
 			
 			%lemma lemma lemmaaa
 			\newcounter{lem}
@@ -191,9 +205,9 @@
 					enhanced, 
 					breakable,
 					sharp corners,
-					interior style={left color=RosyBrown3!80!Aquamarine1,right color=MediumOrchid2!60},
-					frame style={left color=RosyBrown3!80!Aquamarine1,right color=MediumOrchid2!60},
-					colframe=white, coltitle=MediumOrchid4, title style={left color=white!60, right color=MediumOrchid3!80},
+					interior style={left color=RoyalBlue4!40!Aquamarine1,right color=RoyalBlue4!60},
+					frame style={left color=RoyalBlue4!80!Aquamarine1,right color=RoyalBlue4!60},
+					colframe=white, coltitle=RoyalBlue4, title style={left color=white!60, right color=RoyalBlue4!80},
 					colback=Maroon1,
 					drop fuzzy shadow=gray,
 					titlerule=0mm,
@@ -279,9 +293,9 @@
 								colback=white,
 								opacityback=0,
 								sharp corners,
-								borderline west={1mm}{0mm}{DarkOrchid4},
+								borderline west={1mm}{0mm}{CadetBlue4},
 								attach boxed title to top left,  
-								boxed title style={boxrule=0.5mm,drop fuzzy shadow=gray, colframe=DarkOrchid4, sharp corners, interior style={left color=white, right color=DarkOrchid4!50}},
+								boxed title style={boxrule=0.5mm,drop fuzzy shadow=gray, colframe=CadetBlue4, sharp corners, interior style={left color=white, right color=CadetBlue4!50}},
 								separator sign={:},
 								opacityframe=.5,
 								description formatter=\newline,
@@ -316,10 +330,10 @@
 	\newtcolorbox{notation}{
 		enhanced jigsaw,
 		opacityback=0,
-		colback=white, colframe=Aquamarine4,
+		colback=white, colframe=Aquamarine4!80!SteelBlue2,
 		attach boxed title to top left ={yshift=-\tcboxedtitleheight/2,yshifttext=-\tcboxedtitleheight/2,xshift=0.3cm},
 		boxed title style={%
-			colback=Aquamarine4,
+			colback=Aquamarine4!80!SteelBlue2,
 			opacityback=1
 		},
 		boxrule=0.5mm,top=0mm,bottom=0mm,
@@ -363,7 +377,7 @@
 									\renewcommand{\labelitemiii}{$\textcolor{SkyBlue4}{\diamond}$}
 									\renewcommand{\labelitemiv}{$\textcolor{SkyBlue4}{\ast}$}
 									
-									\newcommand{\enf}[1]{\textcolor{DodgerBlue2}{\textbf{#1}}} %enf sta per enfasi
+									\newcommand{\enf}[1]{\textcolor{DodgerBlue3}{\textbf{#1}}} %enf sta per enfasi
 					\let\emph\enf
 									\newcommand{\sott}[1]{\setulcolor{SkyBlue3}\ul{#1}}
 									\let\underline\sott
@@ -375,6 +389,9 @@
 									\newcommand{\Z}{\mathbb{Z}}
 									\newcommand{\R}{\mathbb{R}}
 									\newcommand{\N}{\mathbb{N}}
+									\newcommand{\Nstar}{\N^{*}}
+									\newcommand{\Rext}{\overline{\R}}
+									\newcommand{\io}{\text{ i.o.}}
 									\newcommand{\equalexpl}[1]{%
 										\underset{\substack{\uparrow\\\mathrlap{\text{\vspace{-3cm}\hspace{-1em}#1}}}}{=}}
 									\newcommand{\dif}{\mathop{}\!\mathrm{d}}
@@ -389,6 +406,9 @@
 \newcommand{\B}{\mathscr{B}}
 \newcommand{\F}{\mathscr{F}}
 \newcommand{\G}{\mathscr{G}}
+\newcommand{\HS}{\mathscr{H}}
+\newcommand{\ifonly}{\underline{if and only if}}
+
 		
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,
