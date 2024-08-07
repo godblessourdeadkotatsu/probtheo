@@ -819,7 +819,7 @@ So if we check that the expectation of the absolute value is finite this will im
 	If we restrict $\ev X$ and $\ev Y$ on the subset $H$ we get:
 	\[\text{if }\ev X\indi_H\geq\ev Y\indi_H\quad\every H\implies X\geq Y\text{ a.s.}\]
 \end{remark}
-\begin{theorem}
+\begin{theorem}\label{expprob}
 	Let $X$ be a \rv{} taking values in $(E,\E)$ and be measurable relative to $\mathscr{H}$ and $\E$. If $\mu$ is the distribution of $X$ then
 	\begin{equation}
 		\ev f\circ X=\mu f,\qquad\every f\in\E_+ \tag{$\star$} \label{diocane}
@@ -1366,6 +1366,348 @@ So when the outcomes of a \rv{} are independent then the tail is made of almost 
 	\[\pr(H)=\pr(H\cap H)=\pr(H)\pr(H)\]
 	and the solution to this equation can only be 1 or 0.
 \end{fancyproof}
-We must remember that this is a special case where we have independence: this, in an experimental scenario, is modeled by independent trials. This result can be applied of concept of convergence.
+We must remember that this is a special case where we have independence: this, in an experimental scenario, is modeled by independent trials. This result can be applied of concept of convergence. The idea is to build up instruments useful to the analysis of real \rv{} in their limits
+\section{Convergence of \rv s}
+\subsection{Convergence of real sequences}
+Let ${(x_n)}_n$ be a sequence in $\R,n\in\Nstar$. Then 
+\[\liminf_nx_n=\sup_m\inf_{n\geq m}x_n\]
+and the 
+\[\limsup_n x_n=\inf_m\sup_{n\geq m}x_n.\]
+Both are well defined numbers (and can possibly be infinity). We know that if
+\[\liminf_nx_n=\limsup_n x_n\]
+then the limit
+\[\lim_{n}x_n\]
+exists and the sequence is \emph{convergent}.
+\begin{notation}
+	Let $\varepsilon\in\R_+$. We let $\mathcal{i}_\varepsilon$  be the indicator function of $(\varepsilon,\infty)$:
+	\[\mathcal{i}_\varepsilon(x)=\indi_{(\varepsilon,\infty)}(x)=\begin{cases}
+		1, &x>\varepsilon\\
+		0, &x\leq \varepsilon.
+	\end{cases}\]
+\end{notation}
+We need two remarks about the convergence of $x_n$:
+\begin{remark}
+	\begin{itemize}
+		\item Let ${(x_n)}_{n}$ be a sequence in $\R$. Then it converges to $x\in\R$ \ifonly{} 
+		\[|x_n-x|\xrightarrow[n]{}0.\]
+		\item Let ${(x_n)}_{n}$ be a sequence in $\R$. Then it converges to 0 \ifonly{}
+		\[\every\varepsilon>0\exists k\text{ s.t. }x_{n}\leqslant\varepsilon\;\every n\geq k.\]
+		This is the usual definition of the limit and it means that 
+		\[x_n\xrightarrow[n]{}0\iff\sum_n\mathcal{i}_\varepsilon<+\infty\quad\every\varepsilon>0.\]
+	\end{itemize}
+\end{remark}
+This means that we have a finite number of $x_{n}$ that are smaller than $\varepsilon$, so summing up the indicator function when we are in an interval larger than $\varepsilon$ we will get less than infinity. This concept connects the convergence of real-valued positive sequences with the convergence to 0 of real-valued positive sequences.\\
+Further, the fact that
+\[\sum_n\mathcal{i}_\varepsilon(x_n)<+\infty\iff\limsup_n\mathcal{i}_\varepsilon(x_n)=0\iff\lim_n\mathcal{i}_\varepsilon(x_n)=0\]
+\begin{proposition}
+	\emph{Cauchy's criterion}:\\
+	Let ${(x_n)}_{n}$ be a sequence in $\R$. Then ${(x_n)}_{n}$ converges \ifonly{}
+	\[\lim_{m,n\to\infty}|x_n-x_m|=0.\]
+\end{proposition}
+This criterion is interesting because it gives us a criterion to check whether the sequence converges without looking at the actual limit of the sequence...
+\begin{proposition}
+	If there exists a positive sequence ${(\varepsilon_n)}_n$ such that
+	\[\sum_n\varepsilon_n<+\infty,\qquad\sum_n\mathcal{i}_{\varepsilon_n}(|x_{n+1}-x_n|)<+\infty\]
+	Then ${(x_n)}_{n}$ is convergent.
+\end{proposition}
+This is another way to prove convergence: we just need to prove that the two series described above are finite.
+\begin{definition}
+	Given a sequence ${(x_n)}_{n}$, the sequence ${(y_n)}_{n}$ is said to be a \emph{subsequence of ${(x_n)}_{n}$} if there exists an increasing sequence ${(k_n)}_{n}\in\Nstar$ with $\lim_n k_n=\infty$ such that
+	\[y_n=x_{k_n}\qquad\every n.\]
+\end{definition}
+So the subsequence is like a tool to extract elements from a sequence that are still a sequence!
+\begin{notation}
+	We will usually denote ${(y_n)}_n$ as ${(x_n)}_{n\in N}$ where $N={(k_n)}_n$.
+\end{notation}
+\begin{remark}
+We say that ${(x_n)}_{n}$ converges \emph{along $N$} to $x$ if ${(x_n)}_{n\in N}$ converges to $x$. This basically means that we are extracting a subsequence from $x$ and check if it converges.
+\end{remark}
+\begin{remark}
+	${(x_n)}_{n}$ converges to $x$ \ifonly{} every subsequence has the same limit $x$. The converse is also true!
+\end{remark}
+\begin{remark}
+	Let ${(x_n)}_{n}$ be a bounded real sequence. Then it is always possible to extract from it a convergent subsequence. 
+\end{remark}
+So if we prove that ${(x_n)}_{n}$ is bounded we can always get a convergent subsequence...
+\begin{proposition}
+	\emph{Selection principle}:\\
+	If every subsequence that has a limit has the same limit value $x$, then the sequence that we are considering tends to the same limit $x$
+(that can be finite or infinite).
+If the sequence is bounded and every convergent subsequence has the same limit $x$, then the sequence converges to $x$.
+\end{proposition}
+We now consider a lemma about the behavior of $\limsup$ and $\liminf$.
+\begin{lemma}
+	Let ${(x_n)}_{n}$ be a sequence of positive real numbers and let $\bar{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N={(n_k)}_{k}$ be a subsequence of $\N$ with 
+	\[\lim_k\frac{n_{k+1}}{n_k}=r>0.\]
+	If ${(\bar{x}_n)}_{n}$ converges along $N$ to $x$ then
+	\[\frac{x}{r}\leq\liminf_n\bar{x}_n\leq r\cdot x.\]
+\end{lemma}
+This is interesting because it gives us an idea of the fluctuation of the sequence of averages in terms of the behaviour of the subsequence $N$ and the limit $x$. We will make use of this lemma soon...
+\begin{theorem}
+	\emph{Helly's theorem}:\\
+	For every sequence ${(c_n)}_{n}$ of distribution functions (this is not a real-valued sequence anymore) there exists a subsequence of distribution function ${(b_n)}_{n}$ and a limiting distribution function $x$ such that
+	\[\lim_{n\to\infty}b_n(t)=c(t)\qquad\every t\text{ at which $c$ is continuous.}\]
+\end{theorem}
+\begin{lemma}
+	\emph{Kronecker's lemma}:\\
+	Let ${(x_n)}_{n}$ a real-valued sequence. let ${(a_n)}_{n}$ be a strictly positive sequence increasing to $\infty$. Finally, write 
+	\[y_n=\frac{\sum_{k=1}^{n}x_k}{a_k}.\]
+	Then if $(y_n)$ is convergent,
+	\[\lim_{n\to\infty}\frac{1}{a_n}\sum_{k=1}^{n}x_k=0.\]
+\end{lemma}
+We are now ready to talk about what we actually care about in probability theory.
+\subsection{Almost sure convergence}
+\begin{definition}
+	A real-valued sequence of \rv s ${(X_n)}_{n}$ on $(\Omega,\HS,\pr)$ is said to be \emph{almost sure convergent} (a.s. convergent) is the numerical sequence
+	\[{\Big(X_n(\omega)\Big)}_{n}\]
+	converges for almost all $\omega\in\Omega$. \\
+	It is said to converge to $X$ if $X$ is an almost sure real-valued \rv{} and 
+	\[\lim_{n\to\infty}X_n(\omega)=X(\omega)\]
+	for almost all $\omega\in\Omega$.
+\end{definition}
+Let us define
+\[\Omega_0=\left\{\omega\in\Omega:\liminf_n X_n(\omega)=\limsup_n X_n(\omega)\right\}.\]
+Of course this is an event and we note that ${(X_n)}_{n}$ is almost sure convergent \ifonly{} $\Omega_0$ is an almost sure event (i.e. $\pr(\Omega_0)=1$).
+\begin{theorem}
+	\emph{Characterization of almost sure convergence}:\\
+	A sequence of real valued \rv s ${(X_n)}_{n}$ converges to $X$ almost surely \ifonly{}, for every $\varepsilon>0$,
+	\begin{equation}
+		\sum_n\mathcal{i}_\varepsilon\circ|X_n-X|<\infty\tag{$\star\star$}\label{charconvsurealmost}
+	\end{equation}
+	almost surely.
+\end{theorem}
+\begin{fancyproof}
+	Implication ($\implies$).\\
+	Start from the fact that 
+	\[X_n\to X\;\text{a.s.}\]
+	Write $Y_n=|X_n-X|$: for every $\omega\in\Omega$, by the analogous result for real sequences, we have that 
+	\[\sum_n\mathcal{i}_\varepsilon\circ Y_n(\omega)<\infty\qquad\every\varepsilon>0\]
+	and therefore (\ref{charconvsurealmost}) holds.\\
+	Then there is the converse implication ($\impliedby$).\\
+	Let (\ref{charconvsurealmost}) hold and let us consider ${(\varepsilon_k)}_{k}$ be a strictly decreasing sequence converging to 0. Also, let
+	\[N_k=\sum_n\mathcal{i}_{\varepsilon_k}\circ|X_n-X|.\]
+	Then
+	\[\pr(N_k<\infty)=1\qquad\every k\]
+	and this is true because (\ref{charconvsurealmost}) holds! Now note that 
+	\[\varepsilon_{k+1}<\varepsilon_k\implies\mathcal{i}_{\varepsilon_{k+1}}\geq\mathcal{i}_{\varepsilon_k}\implies N_{k+1}\geq N_{k}.\]
+	But now we have to pay attention to the nature of the events involved: consider the event
+	\[\left\{N_k<+\infty\right\}\qquad\every k.\]
+	The sequence $\left(\left\{N_k<+\infty\right\}\right)_{k}$ decreases with $k$ towards the intersection
+	\begin{align*}
+		\bigcap_k\left\{N_k<+\infty\right\}&=\left\{\omega\in\Omega:\sum_n\mathcal{i}_\varepsilon\circ Y_n(\omega)\quad \every\varepsilon>0\right\}\\
+		&=\Omega_0.
+	\end{align*}
+	Hence we want to evaluate
+	\[\pr(\Omega_0)=\pr(\lim_k\left\{N_k<+\infty\right\})=\underbracket{\lim_k\pr(N_k<+\infty)}_{\text{sequence of 1}}\]
+	Where the last equality is true because of sequential continuity. So $\every \omega \in \Omega_0$ we have $X_n(\omega)\to X(\omega)$ which is the definition of almost surely convergence.
+\end{fancyproof}
+Let's study more what happens in the limits of these random walks. Remember that Kolmogorov's 0-1 law tells us something nice: if all the \rv s are independent then events in the asymptotic future will either be certain or impossible. But we know nothing about situations in which \rv s are dependent...
+\subsection{Borel-Cantelli Lemmas}
+Let ${(H_n)}_{n}$ be a sequence of events. Imagine evaluating the probability of all these events: we would end up with a sequence of real numbers. We may ask ourselves how the sum of the probability behaves.
+\begin{theorem}
+	\emph{First Borel-Cantelli Lemma}
+	Let ${(H_n)}_{n}$ be a sequence of events. Then
+	\[\sum_n\pr(H_n)<+\infty\implies\sum_n\indi_{H_n}<+\infty\quad\text{a.s.}\]
+\end{theorem}
+Remember that the second sum is equivalent to
+\[\pr(H_n\io)=0\qquad\text{or}\qquad\pr(\limsup_n H_n)=0.\]
+If you want to know more see \cinlar page 101.
+Why do we need it to be almost surely? Well, the sum $\sum_n\indi_{H_n}$ contains an indicator of events (which is nothing else but a Bernoulli \rv) so it is in itself a \rv. So we are asking yourself whether the sum converges \textit{almost surely}. This theorem is important because if we can sum the probabilities then we can directly infer information about the presence of events! Let's see the proof\footnote{Professor Polito says that we should as interested in the result as in the proof. I do not agree and wish to die.}.
+\begin{fancyproof}
+	Denote
+	\[N=\sum_n\indi_{H_n}\]
+	So that
+	\[\sum_n\pr(H_n)=\ev N.\]
+	Our claim now becomes:
+	\begin{center}
+		``If $\ev N<+\infty$ then $N<\infty$ almost surely.''
+	\end{center}
+	But this is obvious: if the expectation is finite then the \rv{} is finite almost surely (mening that the support is finite).
+\end{fancyproof}
+That's it? That was cool and all. But let's see the first Borel-Cantelli lemma in action in the next proposition.
+\begin{proposition}
+	Let
+	\[\sum_n\pr(|X_n-X|>\varepsilon)<+\infty\qquad\every\varepsilon>0.\]
+	Then 
+	\[X_n\xrightarrow[]{\text{a.s.}}X.\]
+\end{proposition}
+Here we are checking the convergence of the sum of a sequence of real numbers and we are given a result on \rv s. This is pretty neat!
+\begin{fancyproof}
+	Consider
+	\[H_n=\left\{|X_n-X|>\varepsilon\right\}.\]
+	Then, we apply Borel-Cantelli Lemma and we calculate
+	\[\sum_n\indi_{\left\{|X_n-X|>\varepsilon\right\}}<+\infty.\]
+	But now we are in the situation described by (\ref{charconvsurealmost}), so we know that
+	\[X_n\convas X\]
+\end{fancyproof}
+So we can proof almost sure convergence by means of the application. So when we need to prove convergence always think about Borel-Cantelli lemmas!
+\begin{proposition}
+	Suppose that there exists a sequence ${(\varepsilon_n)}_{n}$ decreasing to 0 such that
+	\[\sum_n\pr(|X_n-X|>\varepsilon_n)<+\infty.\]
+	Then
+	\[X_n\convas X.\]
+\end{proposition}
+So we don't need $\varepsilon$ to be constant, but just to be decreasing to 0.
+\begin{proposition}
+	Suppose that there exists a sequence of positive numbers ${(\varepsilon_n)}_{n}$ such that
+	\[\sum_n\varepsilon_n<+\infty,\quad\sum_n\pr(|X_{n+1}-X_n|>\varepsilon_n)<+\infty\]
+	Then $X_n$ converges almost surely.
+\end{proposition}
+Let's state again the two Borel-Cantelli lemmas side by side (and with a slightly different formulation).
+\begin{theorem}
+	\emph{Borel-Cantelli lemmas}\\
+	\begin{enumerate}[a)]
+		\item Let ${(B_n)}_{n}$ be a sequence of Bernoulli \rv s.
+	\[\sum_n \ev B_n<+\infty\implies\sum_n\implies\sum_n B_n<+\infty\as\]
+	\item If 
+	\[\sum_n\ev B_n=\infty\text{ and }{(B_n)}_{n}\text{ are pairwise independent}\]
+	then
+	\[\sum_n B_n=+\infty\as\]
+	\end{enumerate}
+\end{theorem}
+We will prove $b)$.
+\begin{fancyproof}
+	\begin{notation}
+		\[p_n=\ev B_n,\quad a_n=\sum_{i=1}^n\ev B_i=\sum_{i=1}^{n}p_i\]
+		and we get the partial sum and the limits
+		\[S_n=\sum_{i=1}^{n}B_i,\quad S=\lim_n S_n\]
+	\end{notation}
+	First, we know that, due to pairwise independency in the hypothesis
+	\[\var S_n=\sum_{i=1}^{n}\var B_i\]
+	but we know that they are Bernoulli \rv s, so we can write the variance explicitly:
+	\[\var S_n=\sum_{i=1}^{n}p_i(1-p_i)\leq\sum_{i=1}^{n}p_i=a_n\]
+	where the inequality is just arithmetical calculations.\\
+	 Second, fix $b\in(0,+\infty)$. We know that ${(a_n)}_{n}$ increases to $\infty$ by hypothesis:
+	 \[\left(a_n-\sqrt{ba_n}\right)_n.\]
+	 We are basically subtracting to $a_n$ something that goes to $\infty$ as well, but slower than $a_n$. So the sequence $\left(a_n-\sqrt{ba_n}\right)_n$ stays also increasing towards infinity. But if that is the case the event $\left\{S<+\infty\right\}$ is the limit of the increasing sequence of events
+	 \[\left\{S<a_n-\sqrt{ba_n}\right\}.\]
+	 Since $S_n\leq S\;\every n$ consider further the following modified sequence of events:
+	 \[\left\{S_n<a_n-\sqrt{ba_n}\right\}\supset\left\{S<a_n-\sqrt{ba_n}\right\}.\]
+	 Next, we also have
+	 \[\left\{S_n<a_n-\sqrt{ba_n}\right\}\subset\left\{|S_n-a_n|>\sqrt{ba_n}\right\}.\]
+	 Now, let's switch to the probability point of view. Remember that the events are included one in the other so we can think about weak inequalities of probabilities.
+	 \[\pr(S<a_n-\sqrt{ba_n})\leq\pr(S_n<a_n-\sqrt{ba_n})\leq\pr(|S_n-a_n|>\sqrt{ba_n})\]
+	 and we take the $\limsup_n$:
+	 \[\limsup_n\pr(S<a_n-\sqrt{ba_n})\leq\limsup_n\pr(|S_n-a_n|>\sqrt{ba_n})\]
+	 But the left hand side of the inequality is
+	\begin{align*}
+		 \limsup_n\pr(S<a_n-\sqrt{ba_n})&=\pr\left(\lim_{n}\left\{\pr(S<a_n-\sqrt{ba_n})\right\}\right)\\
+		 &=\pr(S<\infty).
+	\end{align*}
+	We get, thus,
+	\[\pr(S<+\infty)\leq\limsup_n\pr(|S_n-a_n|>\sqrt{ba_n}).\]
+	But now we can apply Chebyshev's inequality:
+	\[\pr(S<+\infty)\leq\limsup_n\frac{\var S_n}{b a_n}\]
+	and we can now exploit the result we had reached before:
+	\[\pr(S<+\infty)\leq\limsup_n\frac{\var S_n}{b a_n}\leq\limsup_n\frac{\cancel{a_n}}{b\cancel{a_n}}=\frac{1}{b}.\]
+	If we let $b\to\infty$ we should get the same result and immediately obtain
+	\[\pr(S<+\infty)\leq\frac{1}{b}\xrightarrow[b\to\infty]{}0\]
+	and hence
+	\[\pr(S=+\infty)=1.\]
+\end{fancyproof}
+Damn. I hate this. Let's see an example about coin toss!
+\begin{example}
+	Imagine considering the probability of getting a head\footnote{...so no head? Imma head out.}:
+	\[\pr(H)\in(0,1),\qquad\Omega=\left\{H,T\right\}^\infty.\]
+	We are infinitely tossing coin and the probability of having head is always the same. Our probability space is thus the space of infinity sequences of $H$ and $T$. Consider a chunk of tosses and define $B_1$ as the first subsequence of length $k$, $B_2$ as the second subsequence of length $k$ and so on. So we get infinitely many chunks of length $k$.\\
+	Fix
+	\[s=(s_1,s_2,\ldots,s_k)\in\left\{H,T\right\}^k.\]
+	Now consider the events
+	\begin{align*}
+		D_1=&\left\{B_1=s\right\}\\
+		D_2=&\left\{B_2=s\right\}\\
+		D_3=&\left\{B_3=s\right\}\\
+		&\vdots
+	\end{align*}
+	and suppose further that the sequence $s$ has actually $m$ heads and $k-m$ tails. Then 
+	\[\pr(D_i)=[\pr(H)]^m\cdot[\pr(T)]^{k-m}.\]
+	Imagine we want to calculate the sum:
+	\[\sum_i\pr(D_i)=+\infty.\]
+	But now we can use the Borel-Cantelli lemma (point $b)$)! So we get that 
+	\[\sum_i\indi_{D_i}=\infty\]
+	which means that 
+	\[\pr(D_1\io)=1\]
+	or, in other words, for any given sequence of $k$ outcomes we observe it infinitely often.
+\end{example}
+\subsection{Convergence in probability}
+This definition is strictly related to almost sure convergence. In measure theory this is called \textit{convergence in measure} (makes sense...).
+\begin{definition}
+	Let ${(X_n)}_{n}$ be a sequence of real-valued random variables. Then ${(X_n)}_{n}$ converges to a further real-valued \rv{} \emph{in probability} if 
+	\[\lim_n\pr(|X_n-X|>\varepsilon)=0\qquad\every\varepsilon>0.\]
+\end{definition}
+So this means that the probability of $X_n$ being at most $\varepsilon$ away from $X$ gets smaller and smaller as $n$ gets bigger. It is quite different than the notion of almost sure convergence... and it depends heavily on the probability measure $\pr$!
+What we get now is a sequence of probabilities that we need to evaluate. 
+\begin{example}
+	Consider
+	\[\Omega=[0,1],\;\HS=\B_{[0,1]},\;\pr=\underbracket{\leb}_{\mathclap{\text{Lebesgue measure}}}.\]
+	Consider the sequence of \rv s
+	\[X_1,X_2,X_3,\ldots\]
+	to be indicators of $(0,1],(0,\frac{1}{2}],(\frac{1}{2},1],(0,\frac{1}{3}],(\frac{1}{3},\frac{2}{3}],(\frac{2}{3},1],\ldots$ respectively.\\
+	Then $\every\varepsilon>0,\varepsilon\in(0,1)$, $\pr(X_n>\varepsilon)$ forms the sequence
+	\[(1,\frac{1}{2},\frac{1}{2},\frac{1}{3},\frac{1}{3},\frac{1}{3},\ldots)\xrightarrow[n\to\infty]{}0.\]
+	Hence 
+	\[X_n\convpr0.\]
+	However,
+	\[X_n(\omega)=\begin{cases}
+		0\\		1
+	\end{cases}\qquad\every\omega\in\Omega\]
+	and therefore we have that 
+	\[\liminf_n X_n=0,\;\limsup_n X_n=1\]
+	and we do not have almost sure convergence... So \[\Omega_0=\left\{\omega\in\Omega:\liminf_n X_n(\omega)=\limsup_n X_n(\omega)\right\}\] is empty!
+\end{example}
+But how are these two different types of convergence related?
+\begin{theorem}
+	\emph{Characterization theorem for convergence in probability}. 
+	\begin{enumerate}[label=\textit{\roman*})]
+		\item \label{ehehe} if ${(X_n)}_{n}$ converges to $X$ almost surely, then it converges to $X$ in probability;
+		\item \label{ehehe2} if ${(X_n)}_{n}$ converges in probability to $X$, then it has a subsequence converging to the same \rv{} $X$ almost surely;
+		\item \label{ehehe3} if every subsequence of the main sequence has a further subsequence converging to $X$ almost surely, then the main sequence converges to $X$ in probability.
+	\end{enumerate}
+\end{theorem}
+We will only prove point \ref{ehehe} because it is the most useful.
+\begin{fancyproof}
+	Let $X_n>0\;\every n$ and $X=0$: this means replacing $|X_n-X|$ with $X_n$ (as long as $X_n$ is positive and converges to 0). Recall the definition of indicator $\mathcal{i}_\varepsilon+\indi_{(\varepsilon,\infty)}$ and define
+	\[p_n=p_n(\varepsilon)=\ev[\underbracket{\mathcal{i}_\varepsilon\circ X_n}_{\mathclap{\text{Bernoulli r.v.}}}]=\pr(X_n>\varepsilon).\]
+	Here we switch between expectation and probability because of \hyperref[expprob]{the property of expectations with indicator functions in this theorem}. We know that $X_n\convas 0$. Fix $\varepsilon>0$: now we have
+	\[\indi_\varepsilon\circ X_n\convas0.\] Now take the expectation
+	\[p_n=\ev\mathcal{i}_{\varepsilon}\convas0\]
+	Hence
+	\[\pr(X_n>\varepsilon)\xrightarrow[n\to\infty]{}0\]
+	that is to say
+	\[X_n\convpr0\]
+\end{fancyproof}
+\begin{proposition}
+	Let $f:\R\mapsto\R$ be continuous. Then if $X_n\convpr X$ in probability then
+	\[f(X_n)\convpr f(x)\]
+	That is to say $f\circ N_n\convpr f\circ X$.
+\end{proposition}
+\begin{fancyproof}
+	We know that $X_n\convpr X$. Let $N$ be a subsequence of $\Nstar$. Then $X_n\convpr X$ along $N$. For the point \refeq{ehehe2} of the previous theorem there exists a subsequence $N'$ along which the convergence takes place almost surely:
+	\[X_n\convas X.\]
+	Then along $N'$
+	\[f\circ X_n\convas f\circ X\]
+	for the continuity of $f$: looking at the limit of $f$ we exploit the continuity of $f$:
+	\[\lim f\Big(X_n(\omega)\Big)=f\Big(\lim X_n(\omega)\Big).\] So saying that $f$ is continuous is enough to prove the convergence of its composition with $X$.\\
+	Now by point \ref{ehehe3} of the previous theorem we conclude that 
+	\[f\circ X_n\convpr F\circ N.\]
+\end{fancyproof}
+\begin{remark}
+Convergence in probability is preserved under arithmetic operations. 
+\end{remark}
+So, for example if we have $X\convpr X$ and $Y_n\convpr Y$ then ${(X_n+Y_n)}_{n}\convpr X+Y$.\\
+We will now introduce a metric for convergence in probability: since we are talking about \textit{distance}, we may think\footnote{A remark that reeks of overestimation.} that this has something to do with \textit{metric spaces}, where we measure the distance between different objects. Indeed there is a connection between measure spaces and metric spaces...\par
+Let us introduce now a metric for convergence in probability. If we want to calculate a metric between \rv s $X$ and $Y$ we can define the following metric:
+\[d(X,Y)=\ev(|X-Y|\wedge1).\]
+\begin{remark}
+	\begin{enumerate}[\circnum]
+		\item $d(X,Y)=0 \iff X=Y\as$
+		\item $d(X,Y)+d(Y,Z)\geq d(X,Z).$
+	\end{enumerate}
+	$d$ is a metric on the space of real-valued \rv s if $X$ and $Y$ are indentified as the same \rv{} if $X=Y$ almost surely.
+\end{remark}
+\begin{proposition}
+	\[ X_n\convpr X\iff d(X_n,X)\xrightarrow[n\to\infty]{}0. \]
+\end{proposition}
+Instead of proving this versione, we will prove a slightly different version of the proposition.
 \end{document} 
 %THIS IS THE DARK AGE OF LOVE 
