@@ -2277,9 +2277,111 @@ Consider the following facts:
 			&=\ev\left[\sum_n a_{n}\ev_{H_{n}}X\indi_{H_n}\right]\\
 			&=\sum_n a_{n}\ev\left[\indi_{H_n}\ev_{H_{n}}X\right]\\
 			&=\sum_n a_{n}\ev\left[\indi_{H_{n}}X\right]\qquad\text{for the previous result}\\
+			&=\ev\left[\sum_n a_n\indi_{H_n}X\right]\\
+			&=\ev VX.
 		\end{align*}
 	\end{fancyproof}
 \end{enumerate}
+These two properties are the basis for the extended definition of conditional expectation.
+\begin{definition}
+	Let $\F$ be a sub-\sa{} of $\HS$. The conditional expectation $\ev_\F X$ of $X$ given $\F$ is defined in two steps:
+	\begin{enumerate}[\circlet]
+		\item for $X\in\HS_{+}$ (positive \rv s) it is \underline{any} \rv{} $\xbar$ satisfying:
+		\begin{enumerate}
+			\item measurability ($\xbar\in\F_+$);
+			\item projection property ($\ev VX=\ev V\xbar\qquad\every V\in\F_+$).
+		\end{enumerate}
+		\item for arbitrary $X\in\HS$, if $\ev X$ exists, we define
+		\[\ev_{\F}X=\ev_{\F}X^{+}-\ev_{\F}X^{-}.\]
+		Otherwise, if $\ev X^{+}=\ev X^{-}=\infty$, then $\ev_{\F}$ is left undefined.
+	\end{enumerate}
+\end{definition}
+Any random variable satisfying the first property is eligible as conditional expectation: that's why we call it a \emph{version} of the conditional expectation of the \rv.
+\begin{revise}
+	If $Y$ and $Z$ are positive and $\F$-measurable and if $\ev VY\leq\ev VZ$ for each $V\in\F_+$ then $Y\leq Z$ almost surely. Moreover, if $\ev VY=\ev VZ,\quad\every V\in\F_+$ (or $\every \indi_H\in\F_+$), then $Y=Z\as$ 
+\end{revise}
+\subsection{Uniqueness of conditional expectation}
+This is a simple matter. Let $\xbar$ and $\overline{\xbar}$ be versions of $\ev_{\F}X,\;X\geq 0$.
+\begin{enumerate}
+	\item Both $\xbar$ and $\overline{\xbar}$ are $\F^{+}$-measurable;
+	\item $\ev VX=\ev V\xbar=\ev V\overline{\xbar}$ for every $V\in\F_{+}$. Hence 
+	\[\xbar=\overline{\xbar}\as\]
+	Conversely, if $\ev_{\F}X-\xbar$ and $\overline{\xbar}\in\F_+$ and $\xbar=\xxbar\as$ then $\xxbar$ satisfies the projection property $\ev XV=\ev\xxbar V$ (i.e. $\xxbar$ is a version of $\ev_\F X$).
+\end{enumerate}
+\begin{remark}
+	\emph{Tower rule}: this is the projection property for $V=1, X\in\HS_{+}$. We have
+	\[\ev X=\ev\xbar=\ev\ev_\F X.\]
+	Moreover, if $X$ is integrable then $\ev_{\F} X$ is integrable.
+\end{remark}
+\begin{remark}
+	If $X$ is integrable we can rewrite the projection property as follows:
+	\begin{equation*}
+		\ev V(X-\xbar)=0\qquad\every V\in\F_b.
+	\end{equation*}
+\end{remark}
+There is an interesting fact linked to this last representation. Let $X$ be integrable: then $(X-\xbar)$ is integrable. Define
+\[\xtilde=X-\xbar\]
+and write the following decomposition:
+\[X=\xbar+\xtilde.\]
+Here $\xbar$ is determined by the information given by $\F$ while $\xtilde$ is orthogonal to $\F$, that is to say that $\ev\indi_H\xtilde=0,\;\every H\in\F$. We call $\xbar$ the \emph{orthogonnal projection of $X$ on $\F$}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.65\linewidth]{sadmath}
+	\caption[Mathematicians when]{Absolutely honey you \textit{need} all of this stuff to be a data scientist.}
+	\label{fig:sadmath}
+\end{figure}
+We are still to prove the existence of conditional expectation, but to do so we need some measure theory notions... Are you happy?
+\begin{revise}
+	Let $(E,\E,\mu)$ be a measurable space and let $g$ ve $\E_+$-measurable function. Define
+	\begin{equation*}
+		\nu(A)=\mu(g\indi_A)=\indi_Ag(x)\mu(\dx)\qquad\every A\in\E.
+	\end{equation*}
+	It can be proved that $\nu$ is a measure on $(E,\E)$. So putting togheter $(E,\E)$ with out new measure $\nu$ we can get a new measurable space.
+	\begin{proposition}
+		For every $f\in\E_+$ we have that (for such measures $\mu$ and $\nu$)
+		\begin{equation*}
+			\nu f=\mu(gf)=\int_Ef(x)\nu(\dx)=\int_E g(x)f(x)\mu(\dx).
+		\end{equation*}
+	\end{proposition}
+	\begin{definition}
+		Consider a measurable space $(E,\E)$ and two measures on it, say $\mu$ and $\nu$ (two general measures). Then $\nu$ is said to be\emph{ absolutely continuous }with respect to the other measure $\mu$ if
+		\begin{equation*}
+			\mu(A)=0\implies\nu(A)=0\qquad \every A\in\E.
+		\end{equation*}
+	\end{definition}
+	Note that if $\nu(A)=\int_A g(x)\mu(\dx)$ then $\nu$ is absolutely continuous with respect to $\mu$, of course. This is a good way to construct an absolutely continuous measure!
+	\begin{theorem}
+		\emph{Radon-Nikodyn theorem}.\\
+		Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous with respect $\mu$ then there exists a positive $\E$-measurable function $g$ such that
+		\begin{equation}
+			\int_E f(x)\nu(\dx)=\int_E f(x)g(x)\mu(\dx)\tag{$\Delta$} \label{nikoradon}
+		\end{equation}
+		Moreover, $g$ is unique up to equivalence (that is, if (\ref{nikoradon}) holds for another $\hat{g}\in\E_+$ then $g=\hat{g}$ $\mu$-almost everywhere).
+	\end{theorem}
+	The function $g$ is called \emph{density} or \emph{Radon-Nikodyn derivative of measure $\nu$ with respect to measure $\mu$}.
+\end{revise}
+\begin{theorem}
+	Let $X\in\HS$. Let $\F$ be a sub-\sa{} of $\HS$. Then the conditional expectation $\ev_{\F} X$ exists and it is unique up to equivalence.
+\end{theorem}
+Let's prove this theorem for $\HS$-positive \rv s.
+\begin{fancyproof}
+	$\every H\in\F$ on the (reduced) measurable space $(\Omega,\F)$. Now on the (reduced) measurable space we consider the restriction of $\pr$ on $\F$. Further consider
+	\begin{equation*}
+		\mathbb{Q}(H)=\int_H\pr(\dw)X(\omega)
+	\end{equation*}
+	Where $\pr$ is a probability measure and $\mathbb{Q}$ is a measure which is absolutely continuous with respect to $\pr$. Remember that in this measurable space \rv s are functions, so we can apply Radon-Nikodyn theorem: this tells us that there exists a \rv{} $\xbar\in\F_+$ such that
+	\begin{equation*}
+		\int_\Omega \mathbb{Q}(\dw)V(\omega)=\int_\Omega\pr(\dw)\xbar(\omega)V(\omega)\qquad\every V\in\F_{+}
+	\end{equation*}
+	So the \rv{} $\xbar$ is a \textit{version} of $\ev_\F X$.
+\end{fancyproof}
+To better understand this proof, set $V=\indi_H,H\in\F$. We have
+\begin{align*}
+	\int_{\Omega}\mathbb{Q}(\dw)\indi_H(\omega)=&\mathbb{Q}=\int_HX(\omega)\pr(\dw)\\
+	&=\int_H\xbar(\omega)\pr(\dw).
+\end{align*}
+\subsection{Properties of conditional expectation}.
+We assume positivity and/or integrability of the \rv s involved.
 \listoffigures
 \end{document} 
 
