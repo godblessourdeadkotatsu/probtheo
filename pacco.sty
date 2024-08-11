@@ -1,4 +1,5 @@
-\usepackage[T1]{fontenc}
+\usepackage[T1]{fontenc}%
+%\usepackage{fontspec} %I want to be a XeLaTeX bitch but my heard is in pdftex...
 \usepackage{lmodern}
 
 % Language setting
@@ -11,7 +12,7 @@
 
 % Useful packages
 
-\usepackage[scr=dutchcal,cal=dutchcal,frak=euler,bb=dsfontserif,bbsymbols]{mathalfa}
+\usepackage[scr=euler,cal=dutchcal,frak=euler,bb=dsfontserif,bbsymbols]{mathalfa}
 \usepackage{amsmath,amssymb,bbm}
 \usepackage{graphicx}
 \usepackage[x11names,table]{xcolor}
@@ -73,10 +74,8 @@
 
 \newenvironment{remark}[1][]{
 	\ifstrempty{#1}{%   
-		\hfill
 		\begin{rema*}{}{}%                     
 		}{%        
-			\hfill
 			\begin{rema*}{}{}%                 
 			}%
 		}{%
@@ -205,8 +204,8 @@
 					enhanced, 
 					breakable,
 					sharp corners,
-					interior style={left color=RoyalBlue4!40!Aquamarine1,right color=RoyalBlue4!60},
-					frame style={left color=RoyalBlue4!80!Aquamarine1,right color=RoyalBlue4!60},
+					interior style={left color=RoyalBlue4!40!Aquamarine1,right color=RoyalBlue4!40},
+					frame style={left color=RoyalBlue4!80!Aquamarine1,right color=RoyalBlue4},
 					colframe=white, coltitle=RoyalBlue4, title style={left color=white!60, right color=RoyalBlue4!80},
 					colback=Maroon1,
 					drop fuzzy shadow=gray,
@@ -398,7 +397,10 @@
 									\newcommand{\convas}{\xrightarrow[]{\text{a.s.}}}
 									\newcommand{\convpr}{\xrightarrow[]{\pr}}
 									\newcommand{\convd}{\xrightarrow[]{\text{d}}}
+									\newcommand{\convlp}{\xrightarrow[]{\lp}}
+									\newcommand{\convw}{\xrightarrow[]{\mathrm{weak}}}
 									\newcommand{\as}{\text{ a.s.}}
+									\newcommand{\asstnr}{\sim N(0,1)}
 									%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 \newcommand{\dx}{\dif x}
 \newcommand{\dy}{\dif y}
@@ -406,11 +408,16 @@
 \newcommand{\du}{\dif u}
 \newcommand{\ds}{\dif s}
 \newcommand{\dw}{\dif\omega}
+\newcommand{\dmu}{\dif\mu}
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\B}{\mathscr{B}}
 \newcommand{\F}{\mathscr{F}}
 \newcommand{\G}{\mathscr{G}}
 \newcommand{\HS}{\mathscr{H}}
+\newcommand{\Zn}{\mathscr{Z}}
+\newcommand{\xbar}{\overline{X}}
+\newcommand{\rbar}{\overline{\R}}
+\newcommand{\ybar}{\overline{Y}}
 \newcommand{\ifonly}{\underline{if and only if}}
 
 		
@@ -450,12 +457,14 @@
 									\newcommand{\mmN}{\mathcal{N}}
 									\newcommand{\BM}{(B_t)_{t\geq 0}}
 									\newcommand{\PX}{(X_t)_{t\geq 0}}
-									\newcommand{\var}{\mathbb{V}\mathrm{ar}}
-									\newcommand{\cov}{\mathbb{C}\mathrm{ov}}
+									\newcommand{\var}{\mathbb{V}\mathrm{ar}\,}
+									\newcommand{\cov}{\mathbb{C}\mathrm{ov}\,}
+									\newcommand{\lp}{L^{p}}
 									\newcommand{\BMF}{\left((B_t)_{t\geq 0},\mathcal{F}_t \right)}
 									\newcommand{\mFt}{\mathcal{F}_t}
 									\newcommand{\every}{\forall\,}
 									\newcommand{\dyadic}{\mathcal{d}}
+									\newcommand{\norm}[1]{\left|\negthinspace\left|#1\right|\negthinspace\right|}
 		\newcommand{\pr}{\mathbb{P}}
 		\newcommand{\indi}{\mathbb{1}}
 		\newcommand{\sa}{$\sigma$-algebra}	\newcommand{\rv}{random variable}

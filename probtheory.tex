@@ -65,7 +65,7 @@ What does it mean\footnote{who asked}? The inverse image of the set $A$ through 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{screenshot001}
-	\caption{this is an early reminder of the fact that I will take my own life very soon.}
+	\caption[References to suicide are to be taken seriously]{this is an early reminder of the fact that I will take my own life very soon.}
 	\label{fig:screenshot001}
 \end{figure}
 So if $X^{-1}A$ is measurable by $\pr$ then it is in $\mathscr{H}$: otherwise it is not in $\mathscr{H}$. So \[\pr(X^{-1}A)=\pr\left(\left\{\omega\in\Omega:X(\omega)\in A\right\}\right).\] The message is that I am interested/able to evaluate $\pr$ over the set only if what I am evaluating is indeed an event (which means: it belongs to $\mathscr{H}$\footnote{il lettore più arguto avrà notato che, a questo punto, il dio è ormai irrimediabilmente cane.}). If something is not in $\mathscr{H}$ get it off my fucking face man and kill yourself NOW\footnote{
@@ -269,7 +269,7 @@ Now take a $\omega\in\Omega$ and evaluate all these \rv s on the same $\omega$. 
 which is a function from $T$ to $(E,\mathscr{E})$. So if we see it as a function of $t$ for each $\omega$ we get a function which is an element of $E^T$. So what is a stochastic process, to sum it up? It's just a random variable taking values in the infinite product space $E^T$. That's why it is a problematic object: it's because mathematicians deserve to experience the sadness and evil they unleashed upon the world. Ever noticed how similar the words "measurable" and "miserable" are? I didn't think so. 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{ILMEMINO}
+	\includegraphics[width=0.7\linewidth]{ILMEMINO}
 	\caption{I'm sorry but here you're the soyjack and I'm the chad.}
 	\label{fig:ilmemino}
 \end{figure}
@@ -294,7 +294,7 @@ Consider some examples of simple random variables:
 	\enf{Exponential \rv{}}\\
 	This random variable is again one-dimensional but this time this random variable is \textit{absolutely continuous}. What does it mean? It actually means that the variable is absolutely continuous with respect to the Lebesgue measure\footnote{'tacci tua.}. This is evident when we write down the distribution.\\
 	Consider a \rv{} taking values in $\R_+$ and further consider $\mathscr{B}_{\R_+}$. We have
-	\[\mu(\dif x)=\underbracket{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+.\]
+	\[\mu(\dif x)=\underbracket[0.6pt]{\dif x}_{\mathclap{Leb(\dif x)}}ce^{-cx},\qquad c>0,\;x\in\R_+.\]
 	Ok no wait hold your fucking horses, cowboy. Why did we write $\dif x$ instead of just $x$? Also weren't densities, like, a fucking measure of some set in the form of $\mu(A)$? I like the fact that these densities resemble more closely the probability density function I was taught to work with during my sad Economics degree but there are many many things that creep me out. \par
 	We have an answer for this, but we need to do a bit of backtracking.
 \end{example}
@@ -434,7 +434,7 @@ It is interesting to see that also discrete \rv s turn out to be absolutely cont
 \begin{example}
 	This is a certified hood classic: \emph{Gaussian distribution}.\\
 	Consider a \rv{} takinv values in $\R$. Of course we consider $\B_{\overline{\R}}$ and the distribution is (notice how also this one is absolutely continuous with respect to the Lebesgue measure):
-	\[\mu(\dx)=\dx\cdot\underbracket{\frac{1}{\sqrt{2\pi b}}e^{-\frac{(x-1)}{2b}}}_{\mathclap{p(x)}},\qquad \begin{array}{l}
+	\[\mu(\dx)=\dx\cdot\underbracket[0.6pt]{\frac{1}{\sqrt{2\pi b}}e^{-\frac{(x-1)}{2b}}}_{\mathclap{p(x)}},\qquad \begin{array}{l}
 	a\in\R,\\
 	b>0\in\R,\\
 	x\in\R_+
@@ -444,7 +444,7 @@ It is interesting to see that also discrete \rv s turn out to be absolutely cont
 \begin{example}
 	This is a random variable that stems from two independent random variables having Gamma distribution. Consider $\gamma_a$ (distribution of a Gamma \rv{} with parameters $a$ and $c=1$) and $\gamma_b$ (distribution of a Gamma \rv{} with parameters $b$ and $c=1$). So, two gammas with different shape parameter. \\
 	Let $X\sim\gamma_a$ and $Y\sim\gamma_b$. Moreover, let them be independent. This is a random vector $(X,Y)$ with two components... What is its distribution?
-	\[\pi(\dx,\dy)=\underbracket{\gamma_a(\dx)\cdot\gamma_b(\dy)}_{\mathclap{\text{because of independency}}}=\dx\dy\frac{e^{-x}x^{a-1}}{\Gamma(a)}\cdot\frac{e^{-y}y^{b-1}}{\Gamma(b)}.\]
+	\[\pi(\dx,\dy)=\underbracket[0.6pt]{\gamma_a(\dx)\cdot\gamma_b(\dy)}_{\mathclap{\text{because of independency}}}=\dx\dy\frac{e^{-x}x^{a-1}}{\Gamma(a)}\cdot\frac{e^{-y}y^{b-1}}{\Gamma(b)}.\]
 	So it's easy to build joint distributions when the \rv s are independent\footnote{Well no shit. Even I can multiply two numbers}.
 \end{example}
 \begin{example}
@@ -475,7 +475,7 @@ The Gamma example was about two independent random variables: here it is impossi
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.57\linewidth]{codec}
-	\caption[Caption for LOF]{Yeah, no more Metal Gear Solid jokes after this one. I promise\protect\footnotemark.}
+	\caption[Colonel Campbell embraces her true self]{Yeah, no more Metal Gear Solid jokes after this one. I promise\protect\footnotemark.}
 	\label{fig:codec}
 \end{figure}
 \footnotetext{This is not, in fact, the last Metal Gear Solid joke.}
@@ -561,6 +561,11 @@ This is the reason behind this kind of notation that switches between measures a
 		\begin{revise}
 			\begin{theorem}
 				A positive function on $(E,\E)$ is $\E$-measurable if and only if it is the limit of an increasing sequence of positive simple functions.
+			\end{theorem}
+			\begin{theorem}
+				Let ${(f_n)}_{n}$ be a sequence of positive measurable functions in $(S,\Sigma)$ with respect to a measure $\Sigma$ such that $f_n\nearrow f$ almost everywhere on the set $S$, Then 
+				\[\lim_{n}\int_S f_n\dmu=\int_{S}^{}f\dmu\]
+				where the sequence ${(\int_S f_n \dmu)}_{n}$ is a nondecreasing sequence.
 			\end{theorem}
 		\end{revise}
 		We consider, as we said before, the discretization
@@ -857,7 +862,7 @@ So if we check that the expectation of the absolute value is finite this will im
 	\begin{align*}
 		\frac{\dif}{\dif a}f(a)&=\int_\Omega\pr(\dw)\Bigg(-2\Big(X(\omega)-a\Big)\Bigg)=0\\
 		&=2a\int_\Omega\pr(\dw)-2\int_\Omega\pr(\dw)X(\omega)=0\\
-		&\implies a= \underbracket{\int_\Omega\pr(\dw)X(\omega).}_{\mathclap{\text{definition of }\ev X}}
+		&\implies a= \underbracket[0.6pt]{\int_\Omega\pr(\dw)X(\omega).}_{\mathclap{\text{definition of }\ev X}}
 	\end{align*}
 \end{remark}
 We must now recall some famous inequalities.
@@ -888,27 +893,27 @@ We are going back to functional analysis now. Brace yourselves.
 \subsection{$L^p$ spaces}
 We start, as usual, with the $(\Omega,\mathscr{H},\pr)$ probability space, with the real-valued \rv{} $X$ and the parameter $p\in[1,\infty]$. Why doesn't $p$ start from 0? It's dumbass mathematical reason we won't and shouldn't care about\footnote{$L$ in $L^p$ stands for Lebesgue space. If $p<0$ these spaces do not have the property of Lebesgue spaces so we don't care.}.\\
 Define the so-called $L^p$-norm of $X$ as:
-\[||X||_p=\left(\ev|X|^p\right)^{\frac{1}{p}},\qquad p<+\infty.\]
+\[\norm{X}_p=\left(\ev|X|^p\right)^{\frac{1}{p}},\qquad p<+\infty.\]
 Remember that expectations are integrals. We can also define a \textit{sup-norm}:
-\[||X||_{\infty}=\inf(b\in\R_+:|X|\leq b\text{ a.s.}).\]
+\[\norm{X}_{\infty}=\inf(b\in\R_+:|X|\leq b\text{ a.s.}).\]
 So, taking a \rv{} $X$ and fixing $p$ we can calculate a number to attach to this \rv{}.
 \begin{example}
 	Take $p=1$. Our $L^p$-norm would then be
-	\[||X||_1=\ev|X|.\]
+	\[\norm{X}_1=\ev|X|.\]
 \end{example}
 No shit. But as long as $p$ is finite we can technically write the $L^p$ norm of the \rv. The same goes for $p=\infty$, but with the different definition. We will call the \textit{sup-norm} \emph{essential supremum of $X$}. This name has a meaning: imagine the random variable $X$ ``folded'' by the absolute variable. We are interested in the number $b$ for which the probability mass is more or left all to the left of this number.
 \begin{notation}
-	\[ \mathrm{essup}(X)= ||X||_{\infty}.\]
+	\[ \mathrm{essup}(X)= \norm{X}_{\infty}.\]
 \end{notation}
 \begin{remark}
-	If $||X||_p=0\implies X=0$ almost surely. Remember that the $L^p$-norm has an absolute value, so if the norm is 0 then the \rv{} must be 0 everywhere. 
+	If $\norm{X}_p=0\implies X=0$ almost surely. Remember that the $L^p$-norm has an absolute value, so if the norm is 0 then the \rv{} must be 0 everywhere. 
 \end{remark}
 If we fix a number $c\geq0$ we have
-\[||cX||_p=c||X||_p.\]
+\[\norm{cX}_p=c\norm{X}_p.\]
 If we have $1\leq p\leq q\leq+\infty$ then
-\[0\leq||X||_p\leq||X||_q\leq+\infty.\]
+\[0\leq\norm{X}_p\leq\norm{X}_q\leq+\infty.\]
 \begin{definition}
-	The collection of real-valued \rv{}s $X$ with $||X||_p<+\infty,\;p\in[1,\infty]$ is called \emph{$\mathbf{L^p}$}.
+	The collection of real-valued \rv{}s $X$ with $\norm{X}_p<+\infty,\;p\in[1,\infty]$ is called \emph{$\mathbf{L^p}$}.
 \end{definition}
 So we are creating sub-collections of real-valued \rv s such that they have a finite norm. The space $L^p$ is a subset of the space of all \rv s.
 \begin{remark}
@@ -924,9 +929,9 @@ The regularity of these functions is evident when we look at $L^{\infty}$: the f
 		Some useful inequalities...
 \begin{itemize}
 	\item\emph{Minkowsky inequality}: 
-	\[||X+Y||\leq||X||_p-||Y||_{p}.\]
+	\[\norm{X+Y}_{r}\leq\norm{X}_p-\norm{Y}_{p}.\]
 	\item \emph{Hölder inequality}:
-	\[||XY||\leq||X||_p||Y||_q\]
+	\[\norm{XY}_{r}\leq\norm{X}_p\norm{Y}_q\]
 	where $\frac{1}{p}+\frac{1}{q}=\frac{1}{r}$ for $p,q,r\in[1,\infty)$.
 	\item \emph{Jensen inequality}:
 	Consider:
@@ -1041,13 +1046,13 @@ There is a way to connect \sa s and \rv s and we will see how linked the two obj
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{screenshot005}
-	\caption{Remember that $\mathscr{H}$ is made of the subsets of $\Omega$ and that $\E$ is made of the subsets of $E$. Also, $\sigma X$ is a subset of $\mathscr{H}$.}
+	\caption[Professor Polito draws circles and arrows]{Remember that $\mathscr{H}$ is made of the subsets of $\Omega$ and that $\E$ is made of the subsets of $E$. Also, $\sigma X$ is a subset of $\mathscr{H}$.}
 	\label{fig:screenshot005}
 \end{figure}
 \begin{wrapfigure}[12]{L}{0.28\textwidth}
 	\centering
 	\includegraphics[width=0.28\textwidth]{brat}
-	\caption{I'm just a gurl\protect\footnotemark.}
+	\caption[I'm so Julia]{I'm just a gurl\protect\footnotemark.}
 	\label{fig:brat}
 \end{wrapfigure}
 We call it $\sigma X$ because it is the \emph{\sa{} generated by $X$}. It is basically the set of all inverse images of $X$ that sit in $\E$. 
@@ -1057,7 +1062,7 @@ By means of the measurability of $X$ (remember the \hyperref[measur]{definition 
 If I consider all of them together we can prove that the resulting set is actually a \sa{} (the one generated by $X$) and it is a subset of $\mathscr{H}$, as we see in figure \ref{fig:screenshot005}. This is very important, for reasons that elude me.\par
 \footnotetext{This image will mean absolutely nothing to you unless you were terminally online in the summer of 2024. Otherwise it is hilarious.}
 \begin{remark}
-	$\sigma X$ is the smallest \sa{} $\G$ on $\Omega$ such that $X$ is measurable relative to $\G$ and $\E$.[]
+	$\sigma X$ is the smallest \sa{} $\G$ on $\Omega$ such that $X$ is measurable relative to $\G$ and $\E$.
 \end{remark}
 Take now $T$ as an arbitrary index set (which can be countable or uncountable). Consider $\every t\in T,\;X_t$ being a \rv{} taking values in the measurable space $(E_t,\E_t)$. Then
 \[
@@ -1253,7 +1258,7 @@ This is called the \emph{convolution} of the measures $\mu$ and $\nu$.\\
 	\ev f(X+Y)&=\ev \indi_{(-\infty,z]}(X+Y)=\pr(X+Y\leq z)\\
 	&=\int_{\R}\mu(\dx)\int_{\R}\nu(\dy)\indi_{(-\infty,z]}(x+y)\\
 	&=\int_{\R}\nu(\dy)\int_{\R}\indi_{(-\infty,z-y]}(x)\mu(\dx)\\
-	&=\int_{\R}\underbracket{F_X(z-y)}_{\mathclap{\text{distribution function of }X}}\nu(\dy)
+	&=\int_{\R}\underbracket[0.6pt]{F_X(z-y)}_{\mathclap{\text{distribution function of }X}}\nu(\dy)
 \end{align*}
 Which is what, supposedly, we saw in our undergraduate course\footnote{I didn't see anything remotely similar to this in my economics degree but what do I know. Economics is not real anyway and economists should kill themselves NOW.}.
 From this last series of equations we can also have a look to a special case where $X$ is absolutely continuous with respect to the Lebesgue measure with density $h(x)$:
@@ -1341,7 +1346,7 @@ This is now the \textit{information about the remote future}: we are doing the \
 		so that our event becomes
 		\[\left\{\omega:Z_1(\omega)=Z_2(\omega)\right\}.\]
 		Rewrite 
-		\[ \frac{S_n}{n}=\underbracket{\frac{1}{n}\sum_{i=1}^{m}X_i}_{{S_n}_1}+\underbracket{\frac{1}{n}\sum_{i=m+1}^{n}X_i}_{{S_n}_2}\qquad m\leq n\]
+		\[ \frac{S_n}{n}=\underbracket[0.6pt]{\frac{1}{n}\sum_{i=1}^{m}X_i}_{{S_n}_1}+\underbracket[0.6pt]{\frac{1}{n}\sum_{i=m+1}^{n}X_i}_{{S_n}_2}\qquad m\leq n\]
 		So that we ``split'' the partial sums in two sums before and after time $m$. We call these two partial sums ${S_n}_1$ and ${S_n}_2$. Note that when $n\to\infty$ then ${S_n}_1\to0$ and therefore $Z_1$ and $Z_2$ do not depend upon the first $n$ values of $(X_1,X_2,\ldots,X_m)$. Therefore 
 		\[\left\{Z_1=Z_2\right\}\in\tau.\]
  	\end{enumerate}
@@ -1367,7 +1372,7 @@ So when the outcomes of a \rv{} are independent then the tail is made of almost 
 	and the solution to this equation can only be 1 or 0.
 \end{fancyproof}
 We must remember that this is a special case where we have independence: this, in an experimental scenario, is modeled by independent trials. This result can be applied of concept of convergence. The idea is to build up instruments useful to the analysis of real \rv{} in their limits
-\section{Convergence of \rv s}
+\section{Convergence of \rv s and asymptotic behavior}
 \subsection{Convergence of real sequences}
 Let ${(x_n)}_n$ be a sequence in $\R,n\in\Nstar$. Then 
 \[\liminf_nx_n=\sup_m\inf_{n\geq m}x_n\]
@@ -1437,10 +1442,10 @@ If the sequence is bounded and every convergent subsequence has the same limit $
 \end{proposition}
 We now consider a lemma about the behavior of $\limsup$ and $\liminf$.
 \begin{lemma}
-	Let ${(x_n)}_{n}$ be a sequence of positive real numbers and let $\bar{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N={(n_k)}_{k}$ be a subsequence of $\N$ with 
+	Let ${(x_n)}_{n}$ be a sequence of positive real numbers and let $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N={(n_k)}_{k}$ be a subsequence of $\N$ with 
 	\[\lim_k\frac{n_{k+1}}{n_k}=r>0.\]
-	If ${(\bar{x}_n)}_{n}$ converges along $N$ to $x$ then
-	\[\frac{x}{r}\leq\liminf_n\bar{x}_n\leq r\cdot x.\]
+	If ${(\overline{x}_n)}_{n}$ converges along $N$ to $x$ then
+	\[\frac{x}{r}\leq\liminf_n\overline{x}_n\leq r\cdot x.\]
 \end{lemma}
 This is interesting because it gives us an idea of the fluctuation of the sequence of averages in terms of the behaviour of the subsequence $N$ and the limit $x$. We will make use of this lemma soon...
 \begin{theorem}
@@ -1498,7 +1503,7 @@ Of course this is an event and we note that ${(X_n)}_{n}$ is almost sure converg
 		&=\Omega_0.
 	\end{align*}
 	Hence we want to evaluate
-	\[\pr(\Omega_0)=\pr(\lim_k\left\{N_k<+\infty\right\})=\underbracket{\lim_k\pr(N_k<+\infty)}_{\text{sequence of 1}}\]
+	\[\pr(\Omega_0)=\pr(\lim_k\left\{N_k<+\infty\right\})=\underbracket[0.6pt]{\lim_k\pr(N_k<+\infty)}_{\text{sequence of 1}}\]
 	Where the last equality is true because of sequential continuity. So $\every \omega \in \Omega_0$ we have $X_n(\omega)\to X(\omega)$ which is the definition of almost surely convergence.
 \end{fancyproof}
 Let's study more what happens in the limits of these random walks. Remember that Kolmogorov's 0-1 law tells us something nice: if all the \rv s are independent then events in the asymptotic future will either be certain or impossible. But we know nothing about situations in which \rv s are dependent...
@@ -1639,7 +1644,7 @@ So this means that the probability of $X_n$ being at most $\varepsilon$ away fro
 What we get now is a sequence of probabilities that we need to evaluate. 
 \begin{example}
 	Consider
-	\[\Omega=[0,1],\;\HS=\B_{[0,1]},\;\pr=\underbracket{\leb}_{\mathclap{\text{Lebesgue measure}}}.\]
+	\[\Omega=[0,1],\;\HS=\B_{[0,1]},\;\pr=\underbracket[0.6pt]{\leb}_{\mathclap{\text{Lebesgue measure}}}.\]
 	Consider the sequence of \rv s
 	\[X_1,X_2,X_3,\ldots\]
 	to be indicators of $(0,1],(0,\frac{1}{2}],(\frac{1}{2},1],(0,\frac{1}{3}],(\frac{1}{3},\frac{2}{3}],(\frac{2}{3},1],\ldots$ respectively.\\
@@ -1667,7 +1672,7 @@ But how are these two different types of convergence related?
 We will only prove point \ref{ehehe} because it is the most useful.
 \begin{fancyproof}
 	Let $X_n>0\;\every n$ and $X=0$: this means replacing $|X_n-X|$ with $X_n$ (as long as $X_n$ is positive and converges to 0). Recall the definition of indicator $\mathcal{i}_\varepsilon+\indi_{(\varepsilon,\infty)}$ and define
-	\[p_n=p_n(\varepsilon)=\ev[\underbracket{\mathcal{i}_\varepsilon\circ X_n}_{\mathclap{\text{Bernoulli r.v.}}}]=\pr(X_n>\varepsilon).\]
+	\[p_n=p_n(\varepsilon)=\ev[\underbracket[0.6pt]{\mathcal{i}_\varepsilon\circ X_n}_{\mathclap{\text{Bernoulli r.v.}}}]=\pr(X_n>\varepsilon).\]
 	Here we switch between expectation and probability because of \hyperref[expprob]{the property of expectations with indicator functions in this theorem}. We know that $X_n\convas 0$. Fix $\varepsilon>0$: now we have
 	\[\indi_\varepsilon\circ X_n\convas0.\] Now take the expectation
 	\[p_n=\ev\mathcal{i}_{\varepsilon}\convas0\]
@@ -1708,6 +1713,575 @@ Let us introduce now a metric for convergence in probability. If we want to calc
 \begin{proposition}
 	\[ X_n\convpr X\iff d(X_n,X)\xrightarrow[n\to\infty]{}0. \]
 \end{proposition}
-Instead of proving this versione, we will prove a slightly different version of the proposition.
+Instead of proving this version, we will prove a slightly different version of the proposition, that is:
+\begin{theorem}
+	$$X_n\convpr X\iff\lim_{n\to\infty}\ev\left[\frac{|X_n-X|}{1+|X_n-X|}\right]=0$$
+\end{theorem}
+\begin{fancyproof}
+	Without losing generality we fix $X=0\as$ We are concerned about the following claim:
+	\[X_n\convpr 0\iff\lim_{n\to\infty}\ev\left[\frac{|X_n|}{1+|X_n|}\right].\]
+	$(\implies)$ Suppose that $X_n\convpr 0$. This means that 
+	\[\lim_{n\to\infty}\pr(|X_n|>\varepsilon)=0,\qquad\every \varepsilon>0.\]
+	Note that
+	\[\frac{|X_n|}{1+|X_n|}\leq\frac{|X_n|}{1+|X_n|}\indi_{\left(|X_n|>\varepsilon\right)}+\varepsilon\indi_{\left(|X_n|<\varepsilon\right)}\]
+	Because if $|X_n|$ is smaller than $\varepsilon$ then also the fraction above is smaller than $\varepsilon$ (duh). But we see that
+	\begin{align*}
+		\frac{|X_n|}{1+|X_n|}&\leq\underbracket[0.6pt]{\frac{|X_n|}{1+|X_n|}}_{<1}\indi_{\left(|X_n|>\varepsilon\right)}+\varepsilon\underbracket[0.6pt]{\indi_{\left(|X_n|<\varepsilon\right)}}_{\leq1}\\
+		&\leq\indi_{(|X_n>\varepsilon|)}+\varepsilon
+	\end{align*}
+	Then take the expectation:
+	\[\ev\left[\frac{|X_n|}{1+|X_n|}\right]\leq\underbracket[0.6pt]{\ev\indi_{(|X_n>\varepsilon|)}}_{\pr(|X_n|>\varepsilon)}+\varepsilon=\]
+	and the limit
+	\[\lim_{n\to\infty}\ev\left[\frac{|X_n|}{1+|X_n|}\right]\leq\varepsilon\]
+	Because we know that $\pr(|X_n|>\varepsilon)$ goes to 0 as $n$ gets larger. But since $\varepsilon$ is chosen arbitrarily, then
+	\[\lim_{n\to\infty}\ev\left[\frac{|X_n|}{1+|X_n|}\right]=0.\]
+	$(\impliedby)$ Let 
+	\[\lim_{n\to\infty}\ev\left[\frac{|X_n|}{1+|X_n|}\right]=0.\]
+	We want to prove convergence in probability. Note that $f(x)=\frac{x}{1+x}$ is strictly increasing and therefore I can write the following inequality:
+	\[\frac{\varepsilon}{1+\varepsilon}\indi_{(|X_n>\varepsilon|)}\leq\frac{|X_n|}{1+|X_n|}\leq\indi_{(|X_n>\varepsilon|)}\leq\frac{|X_n|}{1+|X_n|}.\]
+	Now take the expectation and the limit for $n\to\infty$:
+	\[[\frac{\varepsilon}{1+\varepsilon}\lim_{n\to\infty}\pr(|X_n|>\varepsilon)\leq\lim_{n\to\infty}\ev\left[\frac{|X_n|}{1+|X_n|}\right]=0\]
+	where the last ``=0'' is by hypothesis. Since $\varepsilon$ is chosen arbitrariliy then
+	\[\lim_{n\to\infty}\pr(|X_n|>\varepsilon)=0\]
+	so we have proven the converse implication.
+\end{fancyproof}
+We said before that $X_n$ converges in probability to $X$ if the metric $d(X_n,X)\xrightarrow[n\to\infty]{}0$. The last proof refers to the function $f(x)=\frac{|x|}{1+|x|}$ but the same holds for every bounded, non decreasing, continuous function $g$ on $\R_+$ with $g(0)=0,g(x)>0\;\every x>0$. For example, $g(x)=|x|\wedge 1$ (which is similar to the metric we estabilished before).
+\subsection{Convergence in $L^{p}$ spaces}
+Let's start with the proper definition.
+\begin{definition}
+	A sequence ${(X_n)}_{n}$ of real-valued \rv s is said to be convergent to the real-valued \rv{} $X$ in $L^{p}$ if, for each $n$, $X_n\in\lp,X\in\lp$ and
+	\[\lim_{n\to\infty}\ev|X_n-X|^{p}=0.\]
+	\begin{revise}
+		Recall the $p$-norm of $X$:
+		\[\norm{X}_{p}=\left(\ev|X|^{p}\right)^{\frac{1}{p}}.\]
+	\end{revise}
+\end{definition}
+Then $\lp$ is a normed vector space if we identify all the \rv s that are almost surely equal as one single \rv: this means that the norm works up to an equivalence class (if $A$ and $B$ are equal a.s. then for \textit{us} they are the same \rv{} as long as we work in $\lp$). In this case, the $\lp$-convergence is to be written as
+\[
+\lim_{n\to\infty}\norm{X_n-X}_{p}=0.
+\]
+\begin{remark}
+	What happens if we have two different sequences converging to the same limit in $\lp$? If ${(X_n)}_{n}$ converges to $X$ in $\lp$ then $X$ is unique (up to equivalence).
+\end{remark}
+\begin{fancyproof}
+	Consider
+	\begin{align*}
+		X_n&\convlp X\\
+		X_n&\convlp Y
+	\end{align*}
+	\begin{revise}
+		Recall the Minkowsky's inequality
+		\[\norm{X-Y}_{p}\leq\norm{X-X_n}_{p}+\norm{X_n-Y}_{p}\xrightarrow[n\to0]{}0\]
+	\end{revise}
+	But both $\norm{X-X_n}_{p}$ and $\norm{X_n-Y}_{p}$ tend to 0 as $n\to\infty$, we have that
+	\[X=Y\as\]
+\end{fancyproof}
+So, since they are the same \rv{} in $\lp$ then they differ only for elements of measure 0. 
+\begin{remark}
+	\[ X_n\convlp X\implies X_n\convpr X.\]
+\end{remark}
+This is quite strong! Convergence in $\lp$ is stronger! I wish the same could be said of my will to live.
+\begin{fancyproof}
+	We use Markov's inequality:
+	\[\pr(|X_n-X|>\varepsilon)\leq\left(\dfrac{1}{\varepsilon}\right)^{p}\ev|X_n-X|^{p}\xrightarrow[n\to0]{}0\]
+\end{fancyproof}
+But is the converse true? NO IT IS NOT IT IS NOT TRUE IT IS A LIE. Consider this counterexample:
+\begin{example}
+	We show that the converse of what it is stated in the previous remark does NOT hold in general. Consider $\Omega=[0,1],\HS=\B_{[0,1]},\pr=\leb$. Consider ${(X_n}_{n}$ a sequence of indicators of the intervals
+	\[(0,1],\left(0,\dfrac{1}{2}\right],\left(\dfrac{1}{2},1\right],\left(0,\dfrac{1}{3}\right],\left(\dfrac{1}{3},\dfrac{2}{3}\right],\left(\dfrac{2}{3},1\right],\ldots\]
+	Note that we already proved that this sequences converges to 0 in probability. Note, moreover, that $X_n\convlp0$ because $\ev|X_n|$ forms the sequence $$\left(1+0\cdot p,1\cdot p+0\cdot q,\ldots\right)=\left(1,\frac{1}{2},\frac{1}{2},\frac{1}{2},\frac{1}{3},\frac{1}{3},\frac{1}{3},\ldots\right)$$ (remember that our $\pr$ is the Lebesgue measure, which is the length of the interval(). This sequence goes to zero, clearly.\\
+	Now let's modify the sequence of \rv s:
+	\[{(\hat{X}_{n})}_{n}=(X_1,2X_2,2X_3,3X_4,3X_5,3X_6,\ldots)\]
+	and evaluate
+	\[\pr(\hat{X}_n>\varepsilon)=\ev |X_n|\]
+	because for indicators our probability coincides with the expectation. Now take the limit and see whether $(\hat{X}_{n})\convpr0$. However, if we do the calculations we get
+	\[\ev|\hat{X}_{n}|=1\qquad\every n.\]
+	Hence
+	\[\hat{X}_{n}\not\xrightarrow[]{L^{1}}0\]
+	so there exists a $p$ for which $\hat{X}_{n}$ does not converge to 0.
+\end{example}
+\begin{theorem}
+	\emph{Characterization theorem for convergence in $L^1$}.\\
+	Let ${(X_n)}_{n}$ be a sequence of real-valued \rv s then the following are equivalent:
+	\begin{enumerate}[\circnum]
+		\item ${(X_n)}_{n}$ converges in $L^{1}$;
+		\item ${(X_n)}_{n}$ converges in probability and is uniformly continuous;
+		\item ${(X_n)}_{n}$ is Cauchy for the $L^{1}$-convergence:
+		\[\lim_{m,n\to\infty}\ev|X_m-X_n|=0.\]
+	\end{enumerate}
+\end{theorem}
+\begin{proposition}
+	\[X_n\xrightarrow[]{L^{1}}X\implies\lim_{n\to\infty}\ev X_n Y-\ev XY\]
+	And this is true for every bounded \rv{} $Y$.
+\end{proposition}
+So it is not true in generale, but requires boundedness. Quite a strict need. See what I did there?
+\begin{remark}
+	Setting $Y=1\as$ we get that
+	\[X_n\xrightarrow[]{L^{1}}X\implies\lim_{n\to\infty}\ev X_n=\ev X.\]
+\end{remark}
+\subsection{Weak convergence and convergence in distribution}
+\begin{definition}
+	The sequence of probability measures $\mu_1,\mu_2,\mu_3,\ldots$ on $\R$ is said to \emph{converge weakly} to $\mu$ if
+	\[ \lim_{n\to\infty}\underbracket[0.6pt][4pt]{\mu_n f=\mu f}_{\mathclap{\text{integrals!!}}}\qquad\every f\in\mathbb{C}_{b}\]
+	where $\mathbb{C}_b$ is the set of continuous and bounded functions from $\R$ to $\R$.
+\end{definition}
+So we are talking about convergence of probability measures and this is done through integrals. If the sequence of integrals converge towards a limiting integral then we say that the convergence happens for the \textit{sequence of measures}: this shouldn't come as a surprise, since YOU should remember that measures are what defines integrals. But remember that \rv s are ultimately characterized by their distributions (which are nothing else but probability measures!) so there must be some kind of connection between the distributions converging and their \rv s doing the same thing...\\
+Consider a sequence ${(X_n)}_{n}$ of \rv s characterized by their sequence of distributions ${(\mu_{n})}_{n}$.
+\begin{definition}
+	The sequence ${(X_n)}_{n}$ is said to \emph{converge in distribution} to a limiting \rv{} $X$ with distribution $\mu$ if
+	\[{(\mu_n)}_{n}\convw\mu\]
+	that is to say if
+	\[\lim_{n\to\infty}\ev f\circ X_n=\ev f\circ X \qquad\every f\in\mathbb{C}_{b}.\]
+\end{definition}
+\begin{notation}
+	We usually denote convergence in distribution as
+	\[X_n\convd X.\]
+\end{notation}
+\begin{remark}
+	\begin{align*}
+	X_n\convpr X&\implies X_n\convd X\\
+	X_n\convlp X&\implies X_n\convd X\\
+	X_n\convas X&\implies X_n\convd X\\
+\end{align*}
+\end{remark}
+So we see: convergence in distribution is the weakest of them all. It is related to the behavior in the limit of the probability distribution... and just having the same probability distribution is not saying much about a \rv. Imagine that we have $Y\sim N(0,1)$ and $Z=-Y$. $Z$ is still a normal random variable, but clearly $Y(\omega)=a\implies Z(\omega)=-a$ so they are very different! But there is a special case...
+\begin{remark}
+	If $X_n\convd X$ and $X=a\as$ (degenerate \rv\footnote{Yeah I know some degenerates "random variables" around here.}). Then
+	\[X_n\convpr X.\]
+\end{remark}
+What the actual fuck? Now convergence in distribution implies convergence in probability? I will end my own life RIGHT NOW!
+\begin{fancyproof}
+	Let us choose
+	\[f(x)=\frac{|x-a|}{1-|x-a|}.\]
+	Note that $f\in\mathbb{C}_{b}$. So we have
+	\[\lim_{n\to\infty}\ev\frac{|X_n-a|}{1-|X_n-a|}=\ev f\circ X=\ev\frac{|a-a|}{1-|a-a|}=0.\]
+	Lol! Now
+	\[X_n\convpr a.\]
+\end{fancyproof}
+\begin{proposition}
+	If $\mu$ and $\nu$ are probability measures on $\R$ and 
+	\[\mu f=\nu f\qquad\every f\in\mathbb{C}_{n}\implies\mu=\nu.\]
+\end{proposition}
+\begin{definition}
+	Take a distribution function $C(x)=\pr(X\leq x)$ and construct:
+	\[q(u)=\inf\left\{x\in\R:C(x)>u\right\}.\]
+	This is known as \emph{quantile function.}
+\end{definition}
+So the quantile functions finds the first point at which the distribution function exceeds the level $u$. This is just the compositional inverse of $C$, if we think about it.
+\begin{proposition}
+	\emph{Convergence of distribution functions and quantile functions.}\\
+	The following points are equivalent:
+	\begin{enumerate}[\circnum]
+		\item ${(\mu_n)}_{n}\convw\mu$;
+		\item take $C_n(x)=\pr(X_n\leq x)$ (distribution function: since it depends on $n$ we get a sequence of functions with respect to the index $n$). We have 
+		\[C_n(x)\xrightarrow[]{}C(x)=\pr(X\leq x)\]
+		for each point of continuity $x$ of the distribution function $C$;
+		\item $q_n(u)\xrightarrow[]{}q(u)$ for every point of continuity $u$ of the quantile function $q$.
+	\end{enumerate}
+\end{proposition}
+\begin{theorem}
+	Consider a sequence ${(\mu_{n})}_{n}$ of probability measures such that 
+	\[\mu_n\convw\mu,\]
+	where $\mu$ is a further probability measure. The above convergence is equivalent to the existance of a probability space
+	\[(\Omega',\HS',\pr')\]
+	and some \rv s
+	\[Y_1,Y_2,\ldots,Y\]
+	on it such that the distribution of $Y_i$ is $\mu_i,i\in\N$ and of $Y$ is $\mu$ and we have that
+	\[Y_n\convas Y\]
+	on $(\Omega',\HS',\pr').$
+\end{theorem}
+This theorem is really important. We start with a sequence of weakly convergent probability measures, so we already know that on our initial space $(\Omega,\HS,\pr)$ there are some \rv s $X_1,X_2,\ldots,X$ with those (convergent) measures. These \rv s are still defined on $(\Omega,\HS,\pr)$, but this theorem tells us that there exists \textit{another space} $(\Omega',\HS',\pr')$ with other \rv s $Y_1,Y_2,\ldots,Y$ that are actually convergent almost surely! So if we have convergence in distribution and we want convergence almost surely we can have it, but at the cost of working in a different probability space.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{screenshot007}
+	\caption[Anon studies probability theory]{Anon realizes he was deceived by probability theory\protect\footnotemark.}
+	\label{fig:screenshot007}
+\end{figure}
+\footnotetext{\url{https://boards.4chan.org/sci/thread/16313511}}
+\begin{corollary}
+	\emph{Skorokhod representation}.\\
+	$(X_n)\convd X$ \ifonly{} there exist \rv s $Y_1,Y_2,\ldots,Y$ on some probability space such that 
+	\[Y_n\stackrel{d}{=}X_n\quad\every n, Y\stackrel{d}{=}x\;\text{and}\;Y_n\convas Y.\]
+\end{corollary}
+I could have stuffed another Metal Gear Solid joke here with the similarity between Skorokhod and Shagohod but I won't. Maybe. Anyway, the greentext in figure \ref*{fig:screenshot007} is enough for now. 
+\begin{proposition}
+	If $X_n\convd X$, the following are equivalent:
+	\begin{enumerate}[\circnum]
+		\item ${(X_n)}_{n}$ is uniformly integrable;
+		\item $X_n$ and $X$ are integrable and
+		\[\ev|X_n|\to\ev|X|.\]
+	\end{enumerate}
+\end{proposition}
+But first let's introduce Fourier transform because... because fuck you. Let ${f_n}_{n}$ be the sequence of Fourier transforms of ${(\mu_{n})}_{n},\;\every n$:
+\[f_n(r)=\int_{\R}e^{irx}\mu_n(\dx),\qquad r\in\R.\]
+Remember that this is a function of $r$!
+\begin{theorem}
+	Let ${(\mu_n)}_{n}$, our sequence of probability measures, be weakly convergent \ifonly{}
+	\[\lim_n f_n(r)=f(r)\qquad\every r\in\R\]
+	and $f$ is continuous at 0. Moreover, $f$ is the transform of a probability measure $\mu$ on $\R$ and $\mu$ is the weak limit of ${(\mu_n)}_{n}$.
+\end{theorem}
+With this notion we study weak convergence by means of the Fourier transform. Why would we want to do this? I am seriously at a loss for words. But dear Professor Polito comes to help! Look back at the equation for the Fourier transform of a measure $\mu$:
+\[f(r)=\int_{\R}e^{irx}\mu(\dx),\qquad r\in\R\]
+But this is an integral, which is... an expected value! consider $x$ as being the \rv{} $X$ and write
+\[f(r)=\ev e^{irX}.\]
+This is called the \emph{characteristic function of $X$} or the \emph{fourier transfrom of its measure}.
+\begin{corollary}
+	The sequence ${(X_n)}_{n}\convd X$ if
+	\[\lim_n\ev e^{irX_{n}}=\ev e^{irX}\qquad r\in\R.\] 
+\end{corollary}
+But up to now we didn't say anything about the limiting random variables... to do so we need to introduce one of the main results in asymptotic analysis: the law of large numbers.
+\subsection{The law of large numbers}
+``Large numbers'' always mean ``what happens in the limit''. Let's start with the basic theorem.
+\begin{theorem}
+	Consider a sequence of real valued, pairwise independent \rv s $X_1,X_2,\ldots$ with finite common expectation and variance
+	\[\ev X_n=a,\;\var X_n=b.\]
+	Then:
+	\begin{enumerate}[\circnum]
+		\item $\overline{x}_{n}=\dfrac{\sum_{i=1}^{n}X_i}{n}\xrightarrow[]{L^{2}}a$;
+		\item $\overline{x}_{n}\convpr a$;
+		\item $\overline{x}_{n}\convas a$.
+	\end{enumerate}
+\end{theorem}
+Huh. If you're anything like me this doesn't sound at all like the weak and strong laws of large numbers I've studied in the Economics degree. But again, what do I know. I'm sure we will find some surprising connections. Also we only need to prove the first and third point, because the second is implied by the third. Why does the theorem list it as the \textit{third} point, though? What are you trying to do, \textit{keeping me on the edge}?
+\begin{fancyproof}
+	\begin{enumerate}
+		\item[\circled{1}] Define
+		\[S_n=n\overline{X}_{n}\]
+		and 
+		\[\ev S_n=na,\;\var S_n=nb\]
+		because of hypothesis of independence. Then
+		\[\ev \overline{X}_{n}=a,\;\var \overline{X}_{n}=\frac{b}{n}.\]
+		So if I look at
+		\[
+		\ev |\overline{X}_{n}-a|^{2}=\var \overline{X}_{n}\xrightarrow[n\to\infty]{}0
+		\]
+		because the variance is a constant divided by $n$.
+		Hence 
+		\[\overline{X}_{n}\xrightarrow[]{L^{2}}a\]
+		\item[\circled{2}] This comes from Markov's inequality (which we already proved)...
+		\item[\circled{3}] Assume $X_n\geq0$. This doesn't cause loss of generality because we can apply what we are going to prove to the positive and negative part of $X_n$ (which are both positive!).\\
+		Define $N={(n_k)}_{k\in\Nstar}$ such that $n_k=k^2$. By Chebyshev's inequality we get
+		\[\pr(|\overline{X}_{n}-a|>\varepsilon)\leq\frac{b}{\varepsilon^2k^2}\]
+		since we are working on the subsequence $N$ where the variance of the \rv s $ \overline{X}_{n}$ is not $\frac{b}{n}$, but it is $\frac{b}{\text{value of subsequence}}$ which is $k^2$. Now sum and multiply by $\varepsilon^2$ to get
+		\[\varepsilon^{2}\sum_{n\in N}\pr(|\overline{X}_{n}-a|>\varepsilon)\leq\sum_{k=1}^{\infty}\frac{b}{k^2}<\infty\qquad\varepsilon>0\]
+		since the latter is a geometric series. But this tells us that $\sum_{n\in N}\pr(|\overline{X}_{n}-a|>\varepsilon)$ is a finite number and therefore... we can apply Borel-Cantelli lemma!
+		\begin{revise}
+			Borel Cantelli lemma:
+			\[\sum_n\pr(H_n)<+\infty\implies\sum_n\indi_{H_n}<+\infty\quad\text{a.s.}\]
+			and in particular if
+			\[\sum_n\pr(|X_n-X|>\varepsilon)<+\infty\qquad\every\varepsilon>0.\]
+			then 
+			\[X_n\xrightarrow[]{\text{a.s.}}X.\]
+		\end{revise}
+		So 
+		\[\overline{X}_{n}\to a\]
+		along $N$. Let us call $\Omega_0$ the almost sure set on which the convergence takes place and
+		$\every\omega\in\Omega_0$ we apply the following lemma (we have already proven)
+		\begin{revise}
+			If we have a sequence of positive numbers ${(x_n)}_{n}$ and consider the empirical sum $\overline{x}_{n}=\dfrac{\sum_{i=1}^{n}x_i}{n}$ and let $N=(n_k)\subset{\Nstar}$ with $\lim_k\dfrac{n_{k+1}}{n_{k}}=r>0$ (asymptotic linarity) and ${(\overline{x}_{n})}_{n}$ converges along $N$ to $x$ then
+			\[\frac{x}{r}\leq\liminf \overline{x}_{n}\leq\limsup \overline{x}_{n}\leq rx.\]
+		\end{revise}
+		Note that 
+		\[\frac{(k+1)^{2}}{k^{2}}\xrightarrow[k\to\infty]{}1\]
+		and hence $\every \omega\in\Omega_0$ we have that
+		\[\lim_{n\to\infty}\overline{X}_n(\omega)=a\qquad\every\omega\in\Omega_0\]
+		with probability 1... which means, almost sure convergence!
+	\end{enumerate}
+\end{fancyproof}
+This one was for sequence of \rv s with finite variance and expectations... But what if both are infinite?
+\begin{proposition}
+	Let ${(X_n)}_{n}$ be a sequence of positive independent and identically distributed (i.i.d.) \rv s with
+	\[\ev X_1=+\infty.\]
+	Consider also a further \rv{} $X$ distributed as $X_1$ (which means that they also have the same expectation). Then
+	\[\overline{X}_{n}\convas\infty.\]
+	\end{proposition}
+This shouldn't be surprising, since we are given a sequence of positive \rv s with infinite expectation, that means that there is a lot of the probability mass resides in the tails. This causes the expectation to diverge when doing the integral. To prove this fact we must rely on the previous result.
+\begin{fancyproof}
+	We know that this behaviour is caused 
+	by the tail of the distribution, so we are going to truncate the distribution.\\
+	Fix $b\in\R$ and let $Y_n=X_n\wedge b$. So $X_n$ can have infinite support, while $Y_n$ is definitely bounded with the support finishing at $b$ (\emph{truncated \rv}). Let also
+	\[\overline{Y}_{n}=\frac{\sum_{i=1}^{n}Y_i}{n}\]
+	and note that 
+	\[\ev Y_n=\ev(X_n\wedge b)<+\infty.\]
+	By the previous theorem we know that 
+	\[\overline{Y}_{n}\convas\ev(X\wedge n).\]
+	The second result that we need is an ordering between $X_n$ and $Y_n$. Which is the largest? For each $n$ we have that $X_n\geq Y_n$ and this further implies that $\liminf_n\overline{X}_n\geq\lim_{n}\overline{Y}_{n}=\ev(X\wedge b)$ almost surely. This must be true for any choice of $b$, even if $b\to\infty$ and thus
+	\[\ev(X\wedge b)\xrightarrow[b\to\infty]{}\ev X=+\infty\]
+	using the monotone covergence theorem. That is,
+	\[\liminf_n\overline{X}_{n}=+\infty\as\]
+	Which basically means, since $\overline{X}_{n}$ is a non decreasing sequence, that
+	\[\overline{X}_{n}\convas +\infty\]
+\end{fancyproof}
+There is a general theorem that puts together the last two theorems that we have seen so far:
+\begin{theorem}
+	\emph{Law of large numbers}:\\
+	Let ${(X_n)}_{n}$ be a sequence of pairwise independent random variables with the same distribution as $X$. If $\ev X$ exists (infinite values are admitted!) then
+	\[\overline{X}_n\xrightarrow[n]{\mathrm{a.s.}}\ev X.\]
+\end{theorem}
+This is an almost sure result and that's why we often call this theorem the \emph{strong law of large numbers} (SLLN).
+Here are two useful inequalities:
+\begin{itemize}
+	\item \emph{Chebyshev's inequality}: here we are given a sequence of \rv s $X_n$ and build up the partial sums $S_n$. Here we \underline{must assume} that ${(X_n)}_{n}$ are i.i.d. and such that $\ev X_1=0.$
+	\[\varepsilon^{2}\pr(|S_n|>\varepsilon)\leq\var S_n=\underbracket[0.6pt]{\ev S^{2}_n}_{\mathclap{\text{second moment!}}}\]
+	so the variance gives us an upper bound of the probability $\pr(|S_n|>\varepsilon)$. If we don't have that $\ev X_1=0$ then $\var S_n\leq\ev S^{2}_{n}$ (the second moment is usually larger than the variance... still a good upper bound tho).
+	\item \emph{Kolmogorov's inequality}: let ${(X_d)}_{n}$ be a sequence of independent \rv s such that $\ev X_n=0\;\every n$. Then $\every a\in(0,\infty)$
+	\[a^{2}\pr\left(\max_{k\leq n}|S_k|>a\right)\leq\var S_n\]
+	We are interested in the times from $1$ to $n$: the interesting thing is that the maximum value of the random walk is bounded by something that happens in time $n$.
+\end{itemize}
+We will prove this last inequality.
+\begin{fancyproof}
+	Fix $a>0,\;n\geq 1$ and define
+	\[N{(\omega)}=\inf\left\{k\geq1:|S_k(\omega)|>a\right\}\qquad\every\omega.\]
+	So for that specific $\omega$ we consider the first time for which the random walk exceeds the value $a$. Of course this time index $k$ depends on $\omega$, so $N(\omega)$ is a \rv. 
+	Observe a couple of facts:
+	\begin{enumerate}[1)]
+		\item $N(\omega)=k\iff|S_k(\omega)|>a$  and $S_j(\omega)\leq a\quad\every j<k$. Then $\indi_{N=k}$ is a function of ($X_1,X_2,\ldots,X_n$) because I need the knowledge of $X$ up to $k$ to know whether $N=k$.
+		\item For $k<n$ we define the following \rv s:
+		\[U=S_k\indi_{N=k}\qquad\text{and}\qquad V=S_n-S_k.\]
+		We know that $U$ depends on the first $k$ values of $X_n$, while $V$ depends only on $X_{k+1},X_{k+2},\ldots,X_{n}$. But this means that $U$ and $V$ are functions of independent \rv s, so $U\independent V$. Hence
+		\[\ev UV=\ev U\underbracket[0.6pt]{\ev V}_{\mathclap{=0\text{ because }\ev X_n=0}}.\]
+		Therefore
+		\[\ev S_k\indi_{\{N=k\}}(S_n-S_k)=0.\]
+		\item Consider $S^{2}_{n}$:
+		\[S^{2}_{n}=\left[S_k+(S_n-S_{k})\right]^{2}\geq S_{k}^{2}+2S_{k}(S_n-S_k) \]
+		The inequality is what I get if I neglect the negative term. So i am bounding what happens at time $n$ with what happens at time $k$. Note that $|S_k|^{2}>a^{2}$ when $\{N=k\}$ holds. Then 
+		\[\ev S^{2}_{n}\indi_{N=k}\leq \underbrace{a^{2}\ev\indi_{\{N=k\}}}_{a^{2}\pr(N=k)}+2\underbrace{\ev S_{k}(S_n-S_{k})\indi_{\{N=k\}}}_{=0}\]
+		and summing both sides for $k\leq n$ we get
+		\[a^{2}\pr(N\leq n)\leq\ev S_n^{2}\indi_{\{N\leq n\}}\leq \ev S_{n}^{2}=\underbracket[0.6pt]{\var S_n}_{\mathclap{\text{because of independence}}}.\]
+		Hence
+		\[a^{2}\pr(N\leq n)\leq\var S_n\]
+	\end{enumerate} 
+	But we know that \[\pr(N\leq n)=\pr(\max_{k\leq n}|S_k|>a)\]
+	So our proof is finished.
+\end{fancyproof}
+\begin{proposition}
+	Let ${(X_n)}_{n}$ be independent and with mean 0. If
+	\[\sum_n\var X_n<+\infty\implies\sum_{n}X_n<+\infty\as\]
+\end{proposition}
+\begin{proposition}
+	Let ${(X_n)}_{n}$ be a bounded sequence of i.i.d. \rv s. If
+	\[\sum_n(X_n-a_n)<+\infty\as\]
+	for some sequence ${(a_n)}_{n}\subset\R$ then
+	\[\sum_n\var X_n<+\infty.\]
+\end{proposition}
+\begin{theorem}
+	\emph{Kolmogorov's 3-series theorem}.\\
+	Let ${(X_n)}_{n}$ be independent \rv s. We have
+	\[\sum_{n}X_n<+\infty\as\]
+	\ifonly{} the following 3 series are convergent:
+	\begin{enumerate}
+		\item $\sum_n\pr(X_n\neq Y_n)$ where $Y_n=X_n\indi_{\{|X_n|<b\}}$;
+		\item $\sum_n\ev Y_n$;
+		\item $\sum_n\var Y_n$.
+	\end{enumerate}
+\end{theorem}
+So: remember that expectation is a number, so the LLN tells us that $\overline{X}_{n}$ (a \rv) tends to $\ev X$ (a degenerate \rv): our variability gets lots as $n\to\infty$. This affects many characteristics of the \rv...
+\subsection{Central limit theorem}
+There are different versions of the Central limit theorem and we have probably already studied some of those: the most common in undergraduate courses is the \emph{De Moivre-Lapalce Central limit Theorem}.
+\begin{theorem}
+	Let ${(X_i)}_{i}$ be a sequence of i.i.d. real-valued \rv s with finite mean $\ev X_1=a$ and finite variance $\var X_1=b$. Then
+	\[\mathscr{Z}_{n}=\frac{S_n-na}{\sqrt{nb}}\convd Z\sim N(0,1)\]
+\end{theorem}
+The usual way to prove this theorem is relying on characteristic function. If $a=0,b=1$ then $Z_{n}=\frac{S_n}{\sqrt{n}}$ where $Z_{n}$ is the sum of ``small'' indpendent \rv s $X_{n,1}=\frac{X_1}{\sqrt{n}},X_{n,2}=\frac{X_2}{\sqrt{n}},\ldots,X_{n,n}=\frac{X_n}{\sqrt{n}}$. All of them are ``small'' with respect to their original \rv{} $X_n$ because we are dividing by $\sqrt{n}$: they get smaller and smaller as $n\to\infty$ but overall, for each $n$, $Z_{n}$ has a stable mean $0$ and variance $1$. The general idea behind the CLT is exactly this: we divide all of these variables for the ``right amount'' so that the limit of our sequence of \rv s stays stable and does not become a degenerate limit.
+\begin{definition}
+	A \emph{triangular array} (Professor Polito calls it ``a nice object``) is an infinite matrix with a special structure:
+	\[\left[X_{nj}\right]=\begin{bmatrix}
+		X_{11}&X_{12}&X_{13}&\ldots\\
+		X_{21}&X_{22}&X_{23}&\ldots\\
+		X_{31}&X_{32}&X_{33}&\ldots\\
+		\vdots&\vdots&\vdots&\ddots\\
+	\end{bmatrix}\]
+	where the entries are real-valued \rv s (so it is actually an infinite random metric). Furthermore, for each $n$ there exists an integer $k_{n}$ such that $X_{nj},j>k_{n}$. The sequence of indices ${(k_{n})}_{n}$ is increasing towards $\infty$.
+\end{definition}
+So the \rv s are equal to 0 to the right hand side of the index $k_n$ for each row. The first row has $k_1$, the second row is composed by $k_2>k_1$ (so there are more non-zero \rv s than in row 1) and so on. So it's not really a triangular matrix (there's no rule on \textit{how much} $k_{n}$ is larger than $k_{n-1}$) but it is ``basically'' triangular. \\
+Now define
+\[Z_{n}=\sum_{j}X_{nj} \qquad(j=1,2,\ldots,k_{n}).\]
+Remember that even if we are summing infinite random variables only a finite number of them are non-zero. Now consider the assumption that the \rv s on each row are independent among them (there \textit{may} be dependence with \rv s in other rows.). With this structure in mind we can formalize the following formulation of the CLT:
+\begin{theorem}
+	\emph{Lyapunov Central limit Theorem}:\\
+	Suppose $\ev X_{nj}=0\;\every n,j$ and $\var Z_{n}=1\;\every n$ and $\lim_{n}\sum_n\ev|X_{nj}|^{3}=0$. Then
+	\[Z_{n}\convd Z\asstnr.\]
+\end{theorem}
+Here we have replaced the conditions on the \rv s with the condition $\lim_{n}\sum_n\ev|X_{nj}|^{3}=0$ which allows us to use the structure of the triangular array. To prove this theorem we need the following lemma:
+\begin{lemma}
+	\emph{Lindeberg's lemma}:
+	Let $(Y_1,Y_2,\ldots,Y_k)$ be independent \rv s with mean zero and let $S=\sum_{j=1}^{k}Y_{j}$. Let us further assume that $\var S=1$. Let $f$ be a function which can be differentiated 3 times and let 
+	$f',f'',f'''$ be bounded and continuous and such that
+	\[|f'''|\leq x,\qquad c\in\R_+.\]
+	Then for $Z\asstnr$
+	\[|\ev f\circ S-\ev f\circ Z|\leq c\sum_{j=1}^{k}\ev|Y_{j}|^{3}\]
+\end{lemma}
+This means that if the hypotheses are met then the distance between $S$ and a normal \rv{} is bounded so we can approximate $S$ by means of a normal \rv{}. We will prove this lemma.
+\begin{fancyproof}
+	Let $Z_1,\ldots,Z_k$ be independent normal random variables with mean $\ev Z_{j}=\ev Y_{j}=0$ for $j=1,\ldots,k$ and variance $\var Z_{j}=\var Y_{j}$ for $j=1,\ldots,k$. Then construct
+	\[T=\sum_{j=1}^{k}Z_j\sim N(0,\sum_{j=1}^{k}\var Z_{j}=\sum_{j=1}^{k}\var Y_{j}=1).\]
+	So we know that $T$ is distributed as $Z$ (they are both $N(0,1)$) so $T\stackrel{d}{=}Z$ and since we are using the expectation of $Z$ we can replace $\ev f\circ Z$ with $\ev f\circ T$. So the Linderberg's lemma becomes
+	\[|\ev f\circ S-\ev f\circ T|\leq c\sum_{j=1}^{k}\ev|Y_{j}|^{3}\]
+	which we want to prove, to exploit the structure of T. Define now the \rv s $V_1,V_2,\ldots,V_k$ as follows:
+	\[\begin{array}{c c l c}
+		V_1&\text{s.t.}&S=V_1+Y_1\\
+		V_2&\text{s.t.}&V_1+Z_1=V_2+Y_2\\
+		&&\vdots\\
+		V_j&\text{s.t.}&V_j+Z_j=V_{j+1}+Y_{j+1},&1\leq j<k\\
+		&&\vdots\\
+		V_k&\text{s.t.}&V_{k}+Z_{k}=T.\\
+	\end{array}\]
+	Note that 
+	\begin{align*}
+		V_{1}&=Y_{2}+Y_{3}+\ldots+Y_{k}\\
+		V_{2}&=Z_1+Y_{3}+\ldots+Y_{k}\\
+		V_{3}&=Z_1+Z_{2}+Y_{4}+\ldots+Y_{k}\\
+	\end{align*}
+	so the $Y$ get replaced by the $Z$ one at the time in the $V$. We can now focus on the following expression:
+	\begin{align*}
+		f\circ S-f\circ T&=f(V_1+Y_1)-f(V_{k}-Z_{k})\\
+		&=f(V_{1}+Y_{1})+f(V_{2}+Y_{2})-\underbracket[0.6pt]{f(V_{2}+Y_{2})}_{f(V_1+Z_1)}+f(V_{3}+Y_{3})-\underbracket[0.6pt]{f(V_{2}+Y_{2})}_{f(V_2+Z_2)}+\\
+		&+\ldots+f(V_{k}+Z_{k})\\
+		&=\sum_{j=1}^{k}f(V_{j}+Y_{j})-\sum_{j=1}^{k}f(V_j+Z_j).
+	\end{align*}
+	Now take the expectation and the absolute value:
+	\begin{align*}
+		|\ev f\circ s-\ev f\circ t|&=\left|\sum_{j=1}^{k}\ev f(V_{j}+Y_{j})-\sum_{j=1}^{k}\ev f(V_j+Z_j)\right|\\
+		&\leq\sum_{j=1}^{k}\left|\ev f(V_{j}+Y_{j})-\ev f(V_j+Z_j)\right|
+	\end{align*}
+	and now we only need to prove that 
+	\[\left|\ev f(V_{j}+Y_{j})-\ev f(V_j+Z_j)\right|\leq c\ev|Y_{j}|^{3}.\]
+	Let's write the Taylor formula for this function:
+	\begin{equation*}
+		f(v+x)=f(v)+f'(v)x+\frac{1}{2}f''(v)x^{2}+R_{2}(v,x)
+	\end{equation*}
+	where
+	\begin{align*}
+		R_{2}(v,x)&=\frac{1}{2}\int_{v}^{v+x}(v+x-t)_{2}f''(t)\dt\\
+		&\leq \frac{1}{2}c\int_{v}^{v+x}(v+x-t)_{2}\dt=c\frac{x^{3}}{6}
+	\end{align*}
+	so that
+	\[|	R_{2}(v,x)|\leq\frac{c}{6}|x|^{3}.\]
+	We now have
+	\begin{align*}
+		f(V_j+Y_j)&=f(V_j)+f'(V_j)Y_j+\frac{1}{2}f''(V_{j})Y_{j}^{2}+R_2(V_j,Y_j)\\
+		f(V_j+Z_j)&=f(V_j)+f'(V_j)Z_j+\frac{1}{2}f''(V_{j})Z_{j}^{2}+R_2(V_j,Z_j)\\
+	\end{align*}
+	and subtract side by side:
+	\begin{equation*}
+		f(V_j+Y_j)-f(V_j+Z_j)=(Y_j-Z_j)f'(V_j)+\frac{1}{2}f''(V_j)(Y^{2}_{j}-Z^{2}_{j})+R_2(V_{j},Y_{j})-R_2(V_{j},Z_{j}).
+	\end{equation*}
+	Now take the expectation 
+	\begin{align*}
+		\ev f(V_j+Y_j)-\ev f(V_j+Z_j)=&\frac{1}{2}\ev f''(V_j)(\underbrace{\ev Y^{2}_{j}-\ev Z^{2}_{j}}_{\mathclap{=0\text{ since they have same variance}}})+\ev\left[R_2(V_{j},Y_{j})-R_2(V_{j},Z_{j})\right]\\
+		&=\ev\left[R_2(V_{j},Y_{j})-R_2(V_{j},Z_{j})\right].
+	\end{align*}
+	Now take the absolute value
+	\begin{align*}
+		\left|\ev\left[R_2(V_{j},Y_{j})-R_2(V_{j},Z_{j})\right]\right|&\leq\ev|\left[R_2(V_{j},Y_{j})\right]|+\ev\left[|R_2(V_{j},Z_{j})|\right]\\
+		&\leq\frac{c}{6}\left(\ev|Y|^{3}+\ev|Z|^{3}\right)
+	\end{align*}
+	so that 
+	\begin{equation*}
+		|	\ev f(V_j+Y_j)-\ev f(V_j+Z_j)|\leq\frac{c}{6}\left(\ev|Y|^{3}+\ev|Z|^{3}\right).
+	\end{equation*}
+	Recall that $Z_j\sim N(0,b^{2})$ where $b^{2}=\ev Y^{2}_{j}$. We know that
+	\[\ev|Z_j|^{3}=b^{3}\sqrt{\frac{8}{\pi}}\leq 2b^{3}\]
+	and we also have 
+	\[b=\left(\ev Y^{2}_{j}\right)^{\frac{1}{2}}\leq\left(\ev |Y_{j}|^{3}\right)^{\frac{1}{3}}\]
+	Because $L^{2}$ norm is less or equal than $L^{3}$ norm (revise inclusions in $L^{p}$-spaces for different values of $p$). But this last inequality is equivalent to
+	\[b^{3}\leq\ev|Y_{j}|^{3}\]
+	which leads to
+	\[\ev\left|Z_j\right|^{3}\leq2 b^{3}\leq2\ev\left|Y_j\right|^{3}.\]
+	Finally we get
+	\begin{align*}
+		\left|\ev f(V_j+Y_j)-\ev f(V_j+Z_j)\right|&\leq\frac{c}{6}\left(\ev\left|Y_j\right|^{3}\right)\\
+		&=\frac{c}{6}3\ev\left|Y_{3}\right|^{3}\\
+		&=\frac{c}{2}\ev\left|Y_{3}\right|^{3}\leq c\ev\left|Y_{3}\right|^{3}.\\
+	\end{align*}
+\end{fancyproof} 
+This was horrible, horrible. Truly an horrible experience and honestly useless proof. And we still have to prove Lyapunov's theorem. 
+\begin{fancyproof}
+	\emph{Lyapunov's CLT}. Recall
+	\begin{equation*}
+		Z_{n}=\sum_{j}X_{nj}\qquad Z\asstnr.
+	\end{equation*}
+	We are interested in evaluating the characteristic function.
+	\begin{align*}
+		e^{irZ_n}&=\cos rZ_n+i\sin rZ_n\\
+		e^{irZ}&=\cos rZ+i\sin rZ.\\
+	\end{align*}
+	Consider now
+	\begin{align*}
+		\left|\ev e^{irZ_n}-\ev e^{irZ}\right|&=\left|\left(\ev\cos rZ_n-\ev\cos rZ\right)+i\left(\ev\sin rZ_n-\ev\sin rZ\right)\right|\\
+		&\leq\left|\ev\cos rZ_n-\ev\cos rZ\right|+\underbracket[0.4pt]{|i|}_{1}\left|\ev\sin rZ_n-\ev\sin rZ\right|.
+	\end{align*}
+	By applying the above lemma  we obtain
+	\begin{equation*}
+			\left|\ev e^{irZ_n}-\ev e^{irZ}\right|\leq\sum_j|r|^{3}\ev|X_{nj}|^{3}+\sum_{j}|r|^{3}\ev|X_{nj}|^{3}
+	\end{equation*}
+	and this is possible since both sine and cosine are differentiable three times and they are bounded by 1 (so our $c=1$). Now, according to the hypotheses of Lyapunov's theorem, we need to take the limit considering the hypothesis that $\lim_{n\to\infty}\sum_j\ev|X_{nj}|^{3}=c$ and we obtain the claim. This theorem applies to all triangular arrays which include the one in the CLT.
+\end{fancyproof}
+WHY.
+\section{Conditional expectations}
+Are you comfortable with the concept of expectation? Well brace yourself buddy because we are going to fuck it up and reveal that normal expectations are just a particular case of conditional expectations.\\
+Consider our dear old probability space $(\Omega,\HS,\pr)$, a $\overline{\R}$-valued \rv{} $X$, a sub-\sa{} $\F\in\HS$ where $\F$ is the space of $\F$-measurable\rv s taking values in $\overline{\R}$. Remember that $\F$ can be considered the body of information revealed by our \rv{}. Consider now the event $H$. Fix $\omega\in\Omega$ and pretend that our only knowledge of $\omega$ is that of the $\omega\in H$. Evaluate our best estimate for $X(\omega)$, which may very well be the average of $X$ over $H$:
+\begin{equation*}
+	\frac{1}{\pr(H)}\int_H X(\omega)\pr(\dw)=\frac{1}{\pr(H)}\ev X\indi_H=\ev_H X.
+\end{equation*}
+If $\pr(H)=0$ then we allow any value for $\ev_H X$.
+\begin{notation}
+	We usually denote that quantity as $\ev(X|H)$ but \cinlar denotes it as $\ev_H X$.
+\end{notation}
+\begin{remark}
+	This best estimate is ``best'' in the same sense as the expectation of $X$ is the best estimate of $X$ when we do not know anything about $\omega$. The unconditional case is retrieved if $H=\Omega$.
+\end{remark}
+\begin{remark}
+	The quantity $\ev_H X$ is called \emph{conditional expectation of $X$ given the event $H$}.
+\end{remark}
+Up to now, nothing new. Let's go a step further. Now suppose that $\F$ is generated by a measurable partition ${(H_n)}_{n}$ of $\Omega$. Fix $\omega\in\Omega$ and consider the problem of building an estimate of the \rv{} $X(\omega)$ with only the body of information given by the partition/sub-\sa{} $\F$: we could construct a ``best estimate'' of $X(\omega)$ for every event $H_n$:
+\begin{equation}
+	\overline{X}(\omega)=\sum_{n}^{}\ev_{H_{n}}X\indi_{H_n}(\omega)\tag{♪}\label{bratsummer}.
+\end{equation} 
+So for every specific $\omega$ only one term of the sum will be different from 0: if $\omega_0$ belongs in $H_{0}$ then only $\ev_{H_{0}}X$ in the sum will be non-zero and $\overline{X}(\omega_0)=\ev_{H_{0}}X$. So in this sense we can summarize all the information available. So $\overline{X}(\omega)$ is a \rv{} that we will call \emph{conditional expectation of $X$ given $\F$} and we will write
+\[\overline{X}=\ev_{\F}X\quad\text{or}\quad\ev\left[X|\F\right].\]
+ So expectation of a \rv{} is a \textit{number}, while the conditional expectation with respect to a sub-\sa{} is a \textit{\rv{}}. 
+ \begin{example}
+ 	Imagine we have $\Omega=(0,1),\HS=\B_{(0,1)},\pr=\leb$. Consider the partition of $\Omega$ given by $\F=\sigma\left(\left\{H_{1},H_{2},H_{3}\right\}\right)$. The wiggly line is the realization of our process $X(\omega)$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{screenshot008}
+	\caption[Brat summer never ends]{♪ I think the apple is rotten right to the cooore}
+	\label{fig:screenshot008}
+\end{figure}
+So according to our formula (\ref{bratsummer}) in our first partition $H_1$ we have a certain expected value (which is an average\footnotemark: expectation of a \rv{} is a number...) which is different from the value in the second partition an in the third.
+ \end{example}
+ \footnotetext{It's funny how this shit makes you really forget that the expected value is just the fucking average.}
+ \subsection{Conditional expectation conditional on arbitrary \sa{}s}
+Consider the following facts:
+\begin{enumerate}
+	\item $\overline{X}\in\F$: it is measurable with respect to $\F$ and this is clear from the definition \ref{bratsummer} of the \rv{} $\overline{X}$;
+	\item we know that for each $V\in\F_{+}$ we have that
+	\[\ev VX=\ev\xbar\]
+	which is called \emph{projection property}.
+	\begin{fancyproof}
+		We start by letting $V=\indi_{H_n}$ for some fixed $n$ (and consider $\xbar=\ev_{H_{n}}X$). The statement becomes 
+		\[\ev\indi_{H_{n}}X=\ev\indi_{H_{n}}\xbar.\]
+		The left hand side reads
+		\[\ev\indi_{H_{n}}X=\int_{\Omega}\indi_{H_{n}}(\omega)X(\omega)\pr(\dw)=\int_{H_{n}}X(\omega)\pr(\dw).\]
+		The right hand side reads
+		\begin{align*}
+			\ev\left[\indi_{H_n}\cdot\frac{1}{\pr(H_{n})}\int_{H_{n}}X(\omega)\pr(\dw)\right]&=\frac{1}{\cancel{\pr(H_{n})}}\int_{H_{n}}X(\omega)\pr(\dw)\cancel{\pr(H_{n})}\\
+			&=\int_{H_n}X(\omega)\pr(\dw).
+		\end{align*}
+		Now consider a general \rv{} $V\in\F_{+}$. Of course we have (for construction) 
+		\[V=\sum_n a_{n}\indi_{H_n}\]
+		so $V$ is a simple function. Here,
+		\begin{align*}
+			\ev V\xbar&=\ev\left[\sum_n a_{n}\indi_{H_n}\sum_n\left(\ev_{H_{n}}X\indi_{H_n}\right)\right]\\
+			&=\ev\left[\sum_n a_{n}\ev_{H_{n}}X\indi_{H_n}\right]\\
+			&=\sum_n a_{n}\ev\left[\indi_{H_n}\ev_{H_{n}}X\right]\\
+			&=\sum_n a_{n}\ev\left[\indi_{H_{n}}X\right]\qquad\text{for the previous result}\\
+		\end{align*}
+	\end{fancyproof}
+\end{enumerate}
+\listoffigures
 \end{document} 
+
+
 %THIS IS THE DARK AGE OF LOVE 
