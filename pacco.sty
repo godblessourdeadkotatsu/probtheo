@@ -105,18 +105,15 @@
 	}{}
 	
 	\newenvironment{definition}[1][]{
-		\hfill
 		\stepcounter{defi}
 		\ifstrempty{#1}{%   
-			\hfill
 			\begin{nition}{}{\thedefi\thedummy}%                     
 			}{%        
-				\hfill
 				\begin{nition}{}{\thedefi eheh}%                 
 				}%
 			}{%
 			\end{nition}% 
-		}{\par\addvspace{\baselineskip}}
+		}{\addvspace{\baselineskip}}
 		
 		\newcounter{theo}
 		
@@ -186,10 +183,8 @@
 				\stepcounter{lem}
 				\stepcounter{dummy}
 				\ifstrempty{#1}{%   
-					\hfill
 					\begin{lemm}{}{\thetheo,\thedummy}%                     
 					}{%        
-						\hfill
 						\begin{lemm}{}{\thetheo aa}%                 
 						}%
 					}{%
@@ -409,6 +404,7 @@
 \newcommand{\ds}{\dif s}
 \newcommand{\dw}{\dif\omega}
 \newcommand{\dmu}{\dif\mu}
+\newcommand{\dpr}{\dif\pr}
 \newcommand{\E}{\mathscr{E}}
 \newcommand{\B}{\mathscr{B}}
 \newcommand{\F}{\mathscr{F}}

@@ -811,7 +811,7 @@ So if we check that the expectation of the absolute value is finite this will im
 	\item \emph{Monotone convergence}: if we have, for $X_n\geq-0$,
 	\[(X_{n})_{_{n}}\nearrow X\implies\ev X_n\nearrow \ev X.\]
 	\item \emph{Fatou's Lemma}: for $X_n\geq0$ we have
-	\[(X_{n})_{_{n}}\implies\ev\liminf X_n\leq\liminf\ev X)n.\]
+	\[(X_{n})_{_{n}}\geq0\implies\ev\liminf X_n\leq\liminf\ev X_n.\]
 	\item \emph{Dominated convergence}: if $(X_{n})_{_{n}}$ is a sequence of \rv s such that $\every n |X_n|\leq Y$ and $Y$ has finite expectation (it is integrable) and $\lim_{n\to\infty}X_n$ exists, then 
 	\[\ev\lim_{n}X_n=\lim_{n}\ev X_n.\]
 	\item \emph{Bounded convergence}: if we have a sequence of \rv s $(X_n)_{_{n}}$ such that $|X_n|\leq b<\infty$ and $\lim_{n\to\infty}X_n$ exists, then
@@ -1897,7 +1897,6 @@ This theorem is really important. We start with a sequence of weakly convergent 
 	\caption[Anon studies probability theory]{Anon realizes he was deceived by probability theory\protect\footnotemark.}
 	\label{fig:screenshot007}
 \end{figure}
-\footnotetext{\url{https://boards.4chan.org/sci/thread/16313511}}
 \begin{corollary}
 	\emph{Skorokhod representation}.\\
 	$(X_n)\convd X$ \ifonly{} there exist \rv s $Y_1,Y_2,\ldots,Y$ on some probability space such that 
@@ -1920,6 +1919,7 @@ Remember that this is a function of $r$!
 	\[\lim_n f_n(r)=f(r)\qquad\every r\in\R\]
 	and $f$ is continuous at 0. Moreover, $f$ is the transform of a probability measure $\mu$ on $\R$ and $\mu$ is the weak limit of ${(\mu_n)}_{n}$.
 \end{theorem}
+\footnotetext{Archived at \url{https://boards.4chan.org/sci/thread/16313511}}
 With this notion we study weak convergence by means of the Fourier transform. Why would we want to do this? I am seriously at a loss for words. But dear Professor Polito comes to help! Look back at the equation for the Fourier transform of a measure $\mu$:
 \[f(r)=\int_{\R}e^{irx}\mu(\dx),\qquad r\in\R\]
 But this is an integral, which is... an expected value! consider $x$ as being the \rv{} $X$ and write
@@ -2220,7 +2220,9 @@ This was horrible, horrible. Truly an horrible experience and honestly useless p
 WHY.
 \section{Conditional expectations}
 Are you comfortable with the concept of expectation? Well brace yourself buddy because we are going to fuck it up and reveal that normal expectations are just a particular case of conditional expectations.\\
-Consider our dear old probability space $(\Omega,\HS,\pr)$, a $\overline{\R}$-valued \rv{} $X$, a sub-\sa{} $\F\in\HS$ where $\F$ is the space of $\F$-measurable\rv s taking values in $\overline{\R}$. Remember that $\F$ can be considered the body of information revealed by our \rv{}. Consider now the event $H$. Fix $\omega\in\Omega$ and pretend that our only knowledge of $\omega$ is that of the $\omega\in H$. Evaluate our best estimate for $X(\omega)$, which may very well be the average of $X$ over $H$:
+Consider our dear old probability space $(\Omega,\HS,\pr)$, a $\overline{\R}$-valued \rv{} $X$, a sub-\sa{} $\F\in\HS$ where $\F$ is the space of $\F$-measurable\rv s taking values in $\overline{\R}$. Remember that $\F$ can be considered the body of information revealed by our \rv{}. Consider now the event $H$. Fix $\omega\in\Omega$ and pretend that our only knowledge of $\omega$ is that of the $\omega\in H$. First of all, remember that
+\[\pr(A|B)=\frac{\pr(A\cap B)}{\pr(B)}=\frac{1}{\pr(B)}\int_A\indi_B\dpr\]
+Evaluate our best estimate for $X(\omega)$, which may very well be the average of $X$ over $H$:
 \begin{equation*}
 	\frac{1}{\pr(H)}\int_H X(\omega)\pr(\dw)=\frac{1}{\pr(H)}\ev X\indi_H=\ev_H X.
 \end{equation*}
@@ -2228,6 +2230,7 @@ If $\pr(H)=0$ then we allow any value for $\ev_H X$.
 \begin{notation}
 	We usually denote that quantity as $\ev(X|H)$ but \cinlar denotes it as $\ev_H X$.
 \end{notation}
+Another interesting way to look at this question is the following: conditional probability basically gives us a new probability measure while leaving the rest of the ``ingradients'' of the probability triplet unchanged. And it makes quite sense: we change the way we weigh a certain event. So if we want, for instance, to condition our probability measure to the event $B$ our probability space $(\Omega,\HS,\pr)$ becomes $(\Omega,\HS,\pr(\cdot|B))$. This also means that our expectation $\ev X=\int_\Omega X\dif\pr$ becomes $\ev_B X=\int_\Omega X\dif\pr(\cdot|B)$.
 \begin{remark}
 	This best estimate is ``best'' in the same sense as the expectation of $X$ is the best estimate of $X$ when we do not know anything about $\omega$. The unconditional case is retrieved if $H=\Omega$.
 \end{remark}
@@ -2381,9 +2384,188 @@ To better understand this proof, set $V=\indi_H,H\in\F$. We have
 	&=\int_H\xbar(\omega)\pr(\dw).
 \end{align*}
 \subsection{Properties of conditional expectation}.
-We assume positivity and/or integrability of the \rv s involved.
-\listoffigures
+We assume positivity and/or integrability of the \rv s involved. 
+\begin{enumerate}[\circnum]
+	\item \emph{monotonicity}:
+	\[X\leq Y\implies\ev_\F X\leq\ev_\F Y;\]
+	\item \emph{linearity}:
+	\[\ev_\F\left(aX+bY+x\right)=a\ev_\F X+b\ev_\F Y+c;\]
+	\item \emph{monotone convergence theorem}:
+	\[{(X_{n})}_{n}\text{ s.t. }X_{n}\geq 0\every n,X_n\nearrow X\implies\ev_\F X_n\nearrow\ev_\F X;\]
+	\item \emph{Fatou's lemma}:
+	\[X\geq0\implies \ev_\F\liminf X_n\leq\ev_\F X_n;\]
+	\item \emph{Dominated convergence theorem}:
+	\[{(X_{n})}_{n}\text{ a.s. }X_n\to X,|X_n|\leq Y,Y\text{ integrable}\implies\ev_\F X_n\to\ev_\F X;\]
+	\item \emph{Jensen's inequality}:
+	\[f\text{ convex}\implies \ev_\F f(x)\leq f\left(\ev_\F X\right).\]
+\end{enumerate}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{fatou}
+	\caption{The name Fatou is hard as fuck, if you ask me. Apparently he teamed up with a dude with no nose, look it up.}
+	\label{fig:fatou}
+\end{figure}
+Remember that these results hold only almost surely, not up to equivalence!
+\begin{theorem}
+	Let $\F,\G$ be two sub-\sa{}s of $\HS$. Let $W$ and $X$ be $\HS$-measurable \rv{}s such that $\ev X,\ev WX$ exist. Then
+	\begin{enumerate}[a)]
+		\item $W\in\F\implies\ev_\F WX=W\ev_\F X$. This is called \emph{conditional determinism}: we can basically treat $W$ as a constant!
+		\item $\F \subset\G\implies\ev_\F\ev_\G X=\ev_\G\ev_\F X=\ev_\F X$. So the smaller \sa{} ``wins'' over the larger: this is called \emph{repeated conditioning}.
+	\end{enumerate}
+\end{theorem}
+\begin{fancyproof}
+	\begin{enumerate}[a)]
+		\item Let $X\in\HS_+,W\in\F_+$. Then we already know that $\xbar=\ev_\F\in\F_+$. Consider now
+		\begin{equation*}
+			\ev V(WX)=\ev\underbracket[0.6pt]{(VW)}_{\in\F_+}X\underbracket[0.6pt]{=\ev(VW)\xbar}_{\text{by projection property}}=\ev V(W\xbar)\quad\every V\in\F_+
+		\end{equation*}
+		and hence $W\xbar=W\ev_\F X$ is a version of $\ev_\F(WX)$.
+		\item Let $\F\subset\G,X\in\HS_+$. By definition we know that $E=\ev_\F X\in\F_+$ so $W\in\G_+$. But due to conditional determinism we have that $\ev_\G W=W$. Hence
+		\[\ev_\G\ev_\F X=\ev_\F X.\]
+		Now we have to prove that 
+		\[\ev_\F\ev_\G X=\ev_\F X.\]
+		Call $\ev_\G X=Y$ and $\ev_\F X=\xbar$, i.e.
+		\[\ev_\F Y=\xbar.\]
+		Clearly $\xbar\in\F_+$ (\checkmark measurability) and we still have to prove projection property. By the definition of $\xbar$ (as a version of $\ev_\F X$) we have that 
+		\[\ev V\xbar=\ev VX\qquad\every V\in\F_+.\]
+		Recall that $Y=\ev_\G X\in\G_+$ and nodice that $V$ is also $\G$-measurable since $V\in\F_+\subset\G_+$.
+		For $Y$ we have that $\ev VY=\ev VX$ for every $V\in\G_+$ and especially for those that are also $\F_+$-measurable. Hence
+		\[\ev V\xbar=\ev VY\]
+		that is to say $\xbar$ is also a version of the conditional epectation $\ev_\F Y=\ev_f\left[\ev_\G X\right].$
+	\end{enumerate}
+\end{fancyproof}
+\subsection{Conditioning as projection}
+\begin{notation}
+	Consider the space $L^{2}$. If we are talking about $\HS$-measurable functions that belong to $L^{2}$ we write 
+	\[L^{2}(\HS)\ni X\]
+	And if we have a sub-\sa{} $\F$ of $\HS$ we will know that $L^{2}(\F)\subset L^{2}(\HS)$.
+\end{notation}
+\begin{theorem}
+	$\every X\in L^{2}(\HS)$ there exists a unique (up to equivalence) $\xbar\in L^{2}(\HS)$ such that 
+	\[\ev|X-\xbar|^{2}=\inf_{\mathclap{Y\in L^{2}(\F)}}\ev|X-Y|^{2}.\]
+	Furthermore, $	X-\xbar$ is orthogonal to $L^{2}(\F)$, i.e.
+	\begin{equation*}
+		\ev V(X-\xbar)=0\qquad\every V\in L^{2}(\F)
+	\end{equation*}
+\end{theorem}
+Note that $L^{2}(\HS)$ is a complete Hilbert space in which the inner product of $X$ and $Y$ is given by $\ev XY$.
+$\xbar$ is the \emph{orthogonal projection of the vector $X$} onto the subspace $L^{2}(\F)$ and the decomposition 
+\[X=\xbar+\xtilde\]
+holds.
+\begin{fancyproof}
+	Let's write the $L^{2}$-norm of $X$ calling it $\norm{X}$:
+	\begin{equation*}
+		\norm{X}=\norm{X}_{2}=\sqrt{\ev X^{2}}.
+	\end{equation*}
+	Fix $X\in L^{2}(\HS)$. Define 
+	\begin{equation*}
+		\delta=\inf_{\mathclap{Y\in L^{2}(\F)}}\norm{X-Y}.
+	\end{equation*}
+	Let ${(Y_{n})}_{n}\subset L^{2}(\F)$ such that $\delta_n=\norm{X-Y_{n}}\xrightarrow[x\to\infty]{}0$. Let us prove that ${(Y_{n})}_{n}$ is a Cauchy sequence for the $L^{2}(\F)$-convergence.
+	\begin{equation*}
+		|Y_n-Y_m|^{2}=2|X-Y_{m}|^{2}-4|x-\underbracket[0.6pt]{\frac{1}{2}(Y_{n}+Y_{m})}_{\in L^{2}(\F)}|^{2}.
+	\end{equation*}
+	Take the expectation on both sides:
+	\begin{equation*}
+		\ev	|Y_n-Y_m|^{2}\leq2\delta^{2}_{m}+2\delta_n^{2}-4\delta^{2}.
+	\end{equation*}
+	Now we take the limit for $n$ and $m$ and what we get is
+	\[\lim_{m,n\to\infty}\ev|Y_{n}-Y_{m}|^{2}\leq 0.\]
+	Hence it is true that ${(Y_{n})}_{n}$ is Cauchy and this means that there exists a $\xbar\in L^{2}(\F)$ such that $\norm{Y_{n}-\xbar}\xrightarrow[n\to\infty]{}0$. Note that $\xbar$ is unique up to equivalence (by definition of $L^{2}$-norm). Note also
+	\begin{equation*}
+		\xbar\in L^{2}(\F)\implies \norm{X-\xbar}\geq \delta.
+	\end{equation*}
+	Now, by Minkowski's inequality we can write that
+	\begin{equation*}
+		\norm{X-\xbar}\leq\norm{X-Y_{n}}+\norm{Y_n-\xbar}\xrightarrow[n\to\infty]{}\delta+0=\delta.
+	\end{equation*}
+	We have thus 
+	\begin{equation*}
+		\norm{X-\xbar}=\delta.
+	\end{equation*}
+	For $V\in L^{2}(\F)$ and $a\in\R$, since $\ev|X-\xbar|^{2}=\delta$ then we have that
+	\begin{align*}
+		a^{2}\ev V^{2}-2a\ev V(X-\xbar)+\delta^{2}&=\norm{aV-(X-\xbar)}^{2}\\
+		&=|\negthinspace|X-(\underbrace{aV+\xbar}_{\in L^{2}(\F)})|\negthinspace|^{2}=\delta^{2}
+	\end{align*}
+	And therefore 
+	\begin{equation*}
+		a^{2}\ev V^{2}-2a\ev V(X-\xbar)\leq 0\qquad\every a\in\R
+	\end{equation*} which is impossible unless
+	\[\ev V(X-\xbar)=0.\]
+\end{fancyproof}
+\subsection{Conditional expectations given \rv s}
+Consider $Y$, a \rv{} on a measurable space. We have $\sigma Y$ that denotes the \sa{} generated by $Y$. But $\sigma Y$ is also the set of numerical \rv s of the form $f\circ Y$ for a deterministic function $f$. 
+\begin{definition}
+	The conditional expectation of $X$ given $Y$ is
+\[\ev_{\sigma Y} X\]
+If ${(Y_{t})}_{t\in T}$ is a collection of \rv s taking values in some measurable space. the conditional expectation of $X$ given ${(Y_{t})}_{t\in T}$ is
+\[\ev_\F X,\;\text{ where }\F=\sigma\left({(Y_{t})}_{t\in T}\right).\]
+\end{definition}
+\begin{theorem}
+	Let $X\in\HS_+$. Let $Y$ be a \rv{} taking values in the measurable space $(E,\E)$. Then every version of $\ev_{\sigma Y} X$ has the form $f\circ Y$ for some $f\in\E_+$.\\
+	Conversely, $f\circ Y$ is a version of $\ev_{\sigma Y}X$ \ifonly{} 
+	\[\ev f\circ Y\cdot h\circ Y=\ev X\cdot h\circ Y\qquad\every h\in\E_+.\]
+\end{theorem}
+Actually the last equality is just the projection property, if we think about it hard enough. The notation is once more problematic, though.
+\begin{notation}
+	\cinlar has a specific notation for conditional expectation, which is $\ev_{\sigma Y}X$. He is stupid and autistic because the whole world uses $\ev(X|Y)$. Professor Polito says that ``Oh well but $\ev_{\sigma Y}X$ is more precise b-because it's more rigorous'' well SHUT UP. SHUT UP NO ONE USES IT NO ONE EVEN KNOWS WHAT A FUCKING $\sigma$-ALGEBRA EVEN IS AND YOU KNOW WHY? BECAUSE IT IS USELESS BECAUSE ALL OF THIS SHIT IS USELESS IT IS A WASTE OF TIME AND IT IS NOT EVEN REMOTELY INTERESTING. LIKE I HAVE A FRIEND WHO STUDIES GEOLOGY THEY \textit{LITERALLY STUDY FUCKING ROCKS} THEY STUDY ALL THE MINUTE CHEMICALS ON THE ROCKS YOU FIND ON THE GROUND THEY STUDY HOW MANY FUCKING DINOSAURS SHITTED AND PISSED AND CUMMED ON THAT FUCKING ROCK AFTER IT GOT EJECTED BY A STUPID VOLCANO A MILLION YEARS AGO AND IT IS MORE INTERESTING AND USEFUL THAN THIS LIKE IT IS LITERALLY MORE USEFUL KNOWLEDGE IN ANY REAL DATA SCIENCE JOB WHERE ANYONE LITERALLY SAYS $\ev(X|Y)$ BECAUSE THAT'S WHAT YOU NEED TO KNOW YOU ONLY NEED TO KNOW THAT WE KNOW THAT $Y$ HAPPENED WHEN WE EVALUATE THE PROBABILITY OF $X$ YOU DON'T NEED TO KNOW ANYTHING ELSE I DON'T CARE AND NO ONE CARES.\\
+	
+	\vspace{0.05cm}The two notations are interchangeable but $\ev_{\sigma Y}X$ is preferrable.
+\end{notation}
+\subsection{Conditional probabilities and distributions}
+\begin{definition}
+	For every event $H\in\HS$
+	\[\pr_\F(H)=\ev_\F\indi_H\]
+	is called \emph{conditional probability of $H$ given $\F$} (with $\F$ beinf a sub-\sa{} of $\HS$).
+\end{definition}
+Lol what the fuck? Why are we defining probability through expectation? I don't know but remember that conditional expectation is a full-fledged \rv{}!
+\begin{definition}
+	Consider two events, $G$ and $H$. The conditional probability of $H$ given $G$ is the number $\pr_G(H)\in[0,1]$ satisfying
+	\[\pr(G\cup H)=\pr(G)\pr_{G}(H)\]
+	that is unique if $\pr(G)>0$.
+\end{definition}
+So in this case is not a \rv{} anymore but only a number.\\
+Let us consider the conditional probability $\pr_\F H\every H\in\HS$ (we will remove parentheses from now on because you suck and you should die). Let $Q(H)$ be a version of $\pr_\F H$ (remember... conditional probabilities are now expectations!). Assume $Q(\emptyset)=0$ and $Q(\Omega)=1$.\par
+$Q(H)$ is a \rv{} and it is $\F$-measurable by definition. Let $Q_\omega(H)$ be the value at point $\omega\in\Omega$. 
+\begin{notation}
+	If we called $Q(H)=Z$ then $Q_\omega(H)$ would be $Z(\omega)$.
+\end{notation}
+So what is $Q$ actually? It is a function $Q:(\omega, H)\mapsto Q_\omega(H)$ whith $\omega\in(\Omega,\F)$ (a subset of $(\Omega, \HS)$) and $H\in(\Omega,\HS)$. This is similar to a transition kernel... A transition kernel from $(\Omega,\F)$ into $(\Omega,\HS)$. But it is really? Do we care? Of course not, but we need to check because we need more reasons to end our life by our hand.
+	For something to be a transition kernel it should verify:
+	\begin{enumerate}
+		\item the mapping $\omega\mapsto Q_\omega(H)$ should be $\F$-measurable (in this case it is ok for every $H\in\HS$\checkmark);
+		\item for every disjoint sequence ${(H_n)}_{n}\in\HS$ it should hold $\every\omega\in\Omega$ the following:
+		\begin{equation}
+			Q_\omega\left(\bigcup_n H_n\right)=\sum_n Q_\omega(H_{n})\tag{$\star$}\label{asfucked}.
+		\end{equation}
+	\end{enumerate}
+This last requirement arises a problem: we could apply monotone convergence theorem for conditional expectations, but we know that those property hold only almost surely! I can already hear the reader say ``oh but why should we care isn't it supposed to be like the same of saying ``equal to'' and things like this and so on'' but well, my dear idiotic little shit, when something is almost surely it is actually \textit{almost} surely. It means that you're \textit{almost} guaranteed that something will not fuck you in the ass unless something is small enough to creep in your asshole whithout you even noticing. Thank measure theory enthusiasts for this.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{asnkae2}
+	\caption{Snake has had enough and honestly so do I.}
+	\label{fig:asnkae2}
+\end{figure}
+The fact is that we could have some $\omega$'s with measure zero so technically there are some exception points for which it doesn't hold. These points depends on the choice of the sequence $H_n$. Let $\Omega_0$ be the set for which (\ref{asfucked}) holds:
+\[\Omega_0=\bigcap_h\Omega_h\]
+where $\Omega_h$ is the almost surely  set including all $\omega$ for the sequence $h={(H_n)}_{n}$. But we may have uncountably many problems... Why are there so many problems with conditional expectation? The root of the problem is that conditional expectation is not an exactly well-defined object.
+\begin{definition}
+	Let $Q(H)$ be a version of $\pr_\F(H),\every H\in\HS$. Then $Q:(\omega,H)\mapsto Q_\omega(H)$ is said to be a \emph{regular version} of the conditional probability $\pr_\F$ provided that $Q$ is a transition probability kernel from $(\Omega,\F)$ into $(\Omega, \HS)$.
+\end{definition} 
+\begin{proposition}
+	Let $\pr_\F$ have a regular version $Q$. Then
+	\begin{equation*}
+		QX:\omega\mapsto Q_\omega X=\int_\Omega Q_\omega(\dw')X(\omega')
+	\end{equation*}
+	is a version of $\ev_\F X\every \text{\rv{} }X$ whose expectation exists.
+\end{proposition}
+So we are integrating over $\Omega$ our function $X$ against our regualar version of the conditional probability $Q$.
+\begin{theorem}
+	If $(\Omega,\HS)$ is a standard measurable space (which means that it is isomorphic to $(F,\B_F)$ for some Borel subset $F$ of $\R$). Then $\pr_\F$ has a regular version.
+\end{theorem}
+\listoffigures 
 \end{document} 
 
 
-%THIS IS THE DARK AGE OF LOVE 
+%THIS IS THE() DARK AGE OF LOVE 
