@@ -1,5 +1,5 @@
 % !TeX spellcheck = en_US
-\documentclass[titlepage]{article}
+\documentclass{report}
 \usepackage{pacco}
 	\makeindex
 \begin{document}
@@ -19,9 +19,9 @@
 		
 		\hfill Kotatsu
 	\end{preface}
-	\clearpage
 	\pagenumbering{arabic}
 	\tableofcontents
+	\chapter{The basics of probability theory}
 \section{Basics of probability}
 We start with the probability triplet: $(\Omega,\mathscr{H},\mathbbm{P})$ 
 Here $\Omega$ is the set of sample space, $\mathscr{H}$ is the $\sigma$-algebra built upon $\Omega$ and $\pr$ is the probability measure. Since $\pr$ is a measure, it will take values in $\R$. \\
@@ -2564,6 +2564,206 @@ So we are integrating over $\Omega$ our function $X$ against our regualar versio
 \begin{theorem}
 	If $(\Omega,\HS)$ is a standard measurable space (which means that it is isomorphic to $(F,\B_F)$ for some Borel subset $F$ of $\R$). Then $\pr_\F$ has a regular version.
 \end{theorem}
+So as long as we work in standard measurable spaces we do not need to worry. Now that we have assessed this fact we can define the concept of conditional distribution.
+\begin{definition}
+	Consider a \rv{} $Y$ taking values on $(E,\E)$ and a sub-\sa{} $\F$ of $\HS$. The \emph{conditional distribution of $Y$ given $\F$} is any transition probability kernel
+	\begin{equation*}
+		L:(\omega,B)\mapsto L_{\omega}(B)
+	\end{equation*}
+	From $(\Omega,\F)$ into $(E,\E)$ such that
+	\begin{equation*}
+		\pr_\F(Y\in B)=L(B),\qquad B\in\E.
+	\end{equation*}
+ \end{definition}
+ Here we already have our probability distribution of $Y$ with our probability meaure that $Y$ belongs to $B$ for every $B\in\E$. So the conditional transition is a transition probability kernel and moreover, if $\pr_\F$ has a regular version $Q$ then 
+ \begin{equation*}
+ 	L_\omega (B)=Q_\omega (\{Y\in B\}),\qquad\omega\in\Omega,B\in\E
+ \end{equation*}
+ Defines a version $L$ of the conditional distribution of $Y$ given $\F.$
+ \begin{notation}
+ 	This would be 
+ 	\[\pr(Y\in B|\F).\]
+ \end{notation}
+ \begin{theorem}
+ 	If $(E,\E)$ is a standard measurable space then there exists a version of the conditional distribution of $Y$ given $\F$.
+ \end{theorem}
+ We will use this notion to perform a reverse operation that we did several lectures ago when we built measures on product spaces. Back then we talked about kernels in which the dependence structure is actually included in the kernel measure in itself.
+ \subsection{Disintegration of measures}
+ There may be a The Cure joke but my spirit is already too beaten down to think about one. We introduced measures on product spaces using $\Sigma$-finite transition kernels from $(D,\D)\to(E,\E)$:
+ \begin{equation}
+ 	\pi f=\int_D\mu(\dx)\int_E K(x,\dy)\underbracket[0.6pt]{f(x,y)}_{\mathclap{\in\left(\D\otimes\E\right)_{+}}}\tag{$\circ$}\label{disintegrate}.
+\end{equation}
+ This integral defines a measure $\pi$ on $(D\times E,\D\otimes\E)$. This measure $\pi$ is $\sigma$-finite and unique if $\mu$ is $\sigma$-finite and $K$ is $\sigma$-bounded.\\
+ Let $(D,\D)$ and $(E,\E)$ be measurable spaces and let $\mu$ be a probability measure on $(D,\D)$. Let $K$ be a probability transition kernel from $(D,\D)$ into $(E,\E)$. Consider the measure $\pi$ on the product space:
+ \begin{equation*}
+ 	\pi f=\int_{D\times E}f(x,y)\pi(\dx,\dy).
+ \end{equation*}
+ Note also that $\pi$ is the unique measure satisfying 
+ \begin{equation*}
+ 	\pi(A\times B)=\int_A\mu(\dx)K(x,B),\qquad\text{ with }\begin{array}{l}
+ 		A\in\D\\
+ 		B\in\E\\
+ 		x\in D\\
+ 		y\in E.
+ 	\end{array}
+ \end{equation*}
+ We can also write the same thing in differential notation as
+ \begin{equation*}
+ 	\underbracket{\pi(\dx\dy)}_{\text{joint distr.}}=\underbracket{\mu(\dx)}_{\text{distr. of }X}\underbracket{K(x,\dy)}_{\text{\parbox{10em}{conditional probability that $Y\in\dy$ given that $X=x$}}}.
+ \end{equation*}
+ \begin{theorem}
+Let $\pi$ be a probability measure on $(D\times E,\D\otimes\E)$. Let $(E,\E)$ be a standard space. Then there exists a probability measure $\mu$ on $(D,\D)$ and a transition probability kernel $K$ from $(D,\D)$ into $(E,\E)$ such that (\ref{disintegrate}) holds.
+\end{theorem}
+\begin{fancyproof}
+	Let $W=D\times E,\mathscr{W}=\D\otimes\E,\pr=\pi$ so that we have our probability space $(W,\mathscr{W},\pi)$. Now on this space we can define the \rv s $X$ and $Y$. Consider the notation $w\in W$: $w$ has two components so that $w=(x,y)$. Define
+	\begin{align*}
+		X &\text{ s.t. }X(w)=x\text{ (it gives us the first coordinate)}\\
+		Y &\text{ s.t. }Y(w)=y\text{ (it gives us the second coordinate)}.
+	\end{align*}
+	Further, let $\mu$ be the distribution of $X$, that is $\mu(A)=\pi(A\times E),\;A\in\D$.
+	Also note that $Y$ takes values in $(E,\E)$ which is standard. Since $(E,\E)$ is standard it exists a regular version that we can call $L$ of the conditional distribution of $Y$ given the sub-\sa{} $\F=\sigma X$. So this \rv{} is measurable with respect to $\F$ that in this case is $\sigma X$. But we know that if a \rv{} is measurable with respect to the \sa{} generated by another \rv{} then we know that the first \rv{} is just a deterministic function of the second \rv{} (in this case $X$). Hence $L$ is a function of $X$ and
+	\begin{equation*}
+		L_w(B)=K(X(w,B)\qquad\text{(it doesn't depend on $Y$ at all!)}
+	\end{equation*}
+	where $K$ is a transition kernel from $(D,\D)$ into $(E,\E)$. By the projection property for $L$ we have:
+	\begin{align*}
+		\pi(A\times B)&=\ev\indi_A\circ X\cdot\indi_B\circ Y=\ev\indi_A\circ X\cdot K(X,B)\\
+		&=\int_D \indi_A\mu(\dx)K(x,B).
+		\end{align*}
+		So for indicators (\ref{disintegrate}) holds.
+\end{fancyproof}
+Once we proved this for indicators we can go on for simple functions and positive functions in the usual way.
+\begin{theorem}
+	If $H$ has the representation (\ref{disintegrate}) then the kernel $L$
+	\begin{equation*}
+		L_w(B)=K(X(w),B)\qquad w\in\N,B\in\E
+	\end{equation*}
+	is a \emph{version of the conditional distribution} of $Y$ given $\F$.
+\end{theorem}
+\subsection{Conditional independence}
+We are now going to relate what we have studied so far with the idea of conditional probability. \\
+\begin{definition}
+	Consider some sub-\sa s of $\HS$:
+\[\F,\F_1,\F_2,\ldots,\F_n\]
+Then the sub-\sa{}s $F_1,\F_2,\ldots,\F_n$ are said to be \emph{conditionally independent given $\F$} if
+\begin{equation*}
+	\ev_\F V_1\cdot V_2\cdot\ldots\cdot V_n=\ev_\F V_1\cdot\ev_\F V_2\cdot\ldots\cdot\ev_\F V_n
+\end{equation*}
+for every positive \rv s $V_1,V_2,\ldots,V_n$ measurbale with respect to $\F_1,\F_2,\ldots,\F_n$ resepctively.
+\end{definition}
+Note that the usual notion of independence corresponds to the specific choice of trivial \sa:
+\begin{equation*}
+	\F=\left\{\emptyset,\Omega\right\}.
+\end{equation*}
+It is over. It is finally over and I am a considerably worse persone now. Martingales, anyway, are very linked to the notion of conditional probability... And so a lot of other stochastic processes. Whatever.
+\chapter{A first study in stochastic processes: Martingales}
+Okay, I'll admit that this part is really hard for me to follow. I am already broken down by Professor Polito's lectures and right now... I only want to be happy again.
+\section{Revising stochastic processes and filtrations}
+\begin{notation}
+	\begin{enumerate}
+		\item we will work in a fixed probability space $(\Omega,\HS,\pr)$;
+		\item we will denote an index set $\T$ (which is usually interpreted as time). It could be $\T=\N$ or $\T=\R$, for example;
+		\item $\{X_t:t\in \T\}$ is a \rv{} taking values in the product space
+		\[(F,\F)=(E^{\T},\E^\T).\]
+		We can think of this as an evolving stochastic process.
+	\end{enumerate}
+\end{notation}
+Let $\T$ be a subset of $\R$. For each $t\in\T$ let $\F_t$ be a sub-\sa{} of $\HS$. The family $\F=\left\{\F_t:t\in\T\right\}$ is called a \emph{filtration} provided that
+\[\F_s\in\F_t\qquad\every s<t.\]
+\begin{definition}
+	A \emph{stochastic process} $X={(X_t)}_{t\in\T}$ generates a filtration that is named \emph{natural filtration}.
+\end{definition}
+As the time passes, I discover more and more information about $\HS$. Each process defines a filtration by generating a ``flow of information''.
+\begin{example}
+	Imagine a car competition composed by two different races. Consider the events
+	\[\begin{array}{l}
+		\omega=\left\{\text{car $A$ wins}\right\}\\
+		\ell=\left\{\text{car $A$ loses}\right\}.
+	\end{array}\]
+	Consider 2 races: our $\Omega$ will be
+	\[\Omega=\left\{\omega\omega,\ell\omega,\omega\ell,\ell\ell\right\}.\]
+	Before the starting of the race, at time 0, we have no information about what is going to happen so our filtration will be
+	\[\F_0=\left\{\underbracket{\left\{0\right\}}_{\emptyset},\underbracket{\left\{\omega\omega,\ell\omega,\omega\ell,\ell\ell\right\}}_{\Omega}\right\}\]
+	which is the trivial \sa{}. Remember that in this case the empty set $\emptyset$ represents impossible events (e.g. all cars win all races). So the \rv{} $X_0$ measurable with respect to $\F_0$ maps all the outcomes of the race to the same value. The idea is that we cannot ask ourselves ``what is the probability of the car winning the first and the second race?'' because we aren't able to measure these events in $\HS$. Now consider the situation after the first race: I am now able to ``discern'' the events regarding the first race:
+	\[\F_1=\left\{\left\{0\right\},\left\{\omega\ell,\omega\omega\right\},\left\{\ell\ell,\ell\omega\right\},\left\{\omega\omega,\omega\ell,\ell\omega,\ell\ell\right\}\right\}.\]
+	Now I am able to know what happened after the first race and this gives me a richer sub-\sa, with $\F_0\subset{\F_1}$. I am now able to have a \rv{} $X_1$ that is measurable with respect to $\F_1$. For instance, imagine defining the following \rv:
+	\[X_1=\begin{cases}
+		1 &\text{if the car wins the first race}\\
+		0 &\text{otherwise}.
+	\end{cases}\]
+	But, for instance, the \rv{} ``the car wins the second race'' is still not measurable with respect to $\F_1$. Consider now the filtration after the second race:
+	\[\F_1=\left\{\left\{0\right\},\{\omega\omega\},\{\ell\ell\},\{\omega\ell\},\{\ell\omega\},\left\{\omega\ell,\omega\omega\right\},\left\{\ell\ell,\ell\omega\right\},\left\{\omega\omega,\omega\ell,\ell\omega,\ell\ell\right\}\right\}.\]
+	Of course $\F_2\supset\F_1\supset\F_0$. We could define a \rv{} $X_3$ of the following type:
+	\[X_3=\begin{cases}
+		0 \\
+		1\\
+		2\\
+	\end{cases}\]
+	which counts the numbers of victories of our car. $X_3$ is $\F_2$-measurable but not $\F_1$-measurable.
+	Now $\F$ is a filtration:
+	\[\F=\left\{\F_0,\F_1,\F_2\right\}.\]
+\end{example}
+\begin{example}
+	What if the same experiment is observed by different people? In other ways, what if we have different learning from the same experiment? Imagine that we have two filtrations $\F$ and $\G$. We say that $\F$ is finer than $\G$ if
+	\[\F_t\supset\G_t\qquad\every t\in\T.\]
+\end{example}
+\begin{definition}
+	Given $\F={(\F_t)}_{t\in\T}$, a stochastic process ${\{X_t\}}_{t\in\T}$ is \emph{adapted} to $\F$ if $X_{t}$ is $\F_t$-neasurable for each $t\in\T$ and $\E$-measurable.
+\end{definition}
+We already mentioned that every process generates its \textit{natural filtration} $\sigma(X_{t},t\in\T)$, for which the process is clearly adapted. But we may want to consider another filtration $\F=(F_t)$ such that $\{X_t\}$ is adapted to $\F$ because all the information on $X$ that I care about are contained in this filtration. What does this mean and what  is the relationship between the two? Which one of the two is finer considering that our process is adapted to both? The answer is 
+\[\F\supset\sigma(X_t)\qquad\text{($\F$ is finer than the natural filtration)}\]
+because $\sigma(X_t)$ is always the smallest possible \sa{} that a process can generate (the natural filtration is the \textit{minimum} filtration). \\
+Another way we could see the question of adaptation is:
+\begin{center}
+	``Can $X$ be determined using only information available in $\F$?''
+\end{center}
+If yes, then $X$ is adapted to $\F$.
+\begin{example}
+	This is called ``the secretary problem'': in this case we must start from the filtration and then understand the problem.
+	Here i have $N$ candidates for a position; a candidate disregarded after the interview is lost. The interviewer wants to hire exactly 1 candidate and each candidate has different abilities and the interviewer knows only the relative ability of those already interviewed so far. Our goal is to maximizing the probability of hiring the best one. We have three questions:
+	\begin{enumerate}
+		\item what is $\Omega$?
+		\item what is the filtration $\F$ for this experiment?
+		\item what process should we use?
+	\end{enumerate}
+	In this case $\Omega=N!$ permutations of the ranking of the candidates (the order in which they show up) and the filtration is the information earned from interview up to time $t$ (that is the ranking of the candidates up to time $t$). But what is the process that I should use? Consider the sequence
+	\[V_1,V_2,\ldots\qquad{\{V_i\}}_{i\geq 1}\]
+	with $V_i=1$ if and only if the best candidate is the $i$-th candidate and $V_i=0$ otherwise. Could this process ${\{V_i\}}_{i\geq 1}$ be used? No, because $V$ is not adapted to $\F$... because to understand if $i$-th candidate is te best we need to compare it to the other candidates, including the ones that didn't show up yet! But then how can we get an adapted process? Let us consider the expectation
+	\[U_n=\ev\left[V_n|\F_n\right]\]
+	What do we know about the measurability of $U_n$? We know that it is for sure $\F_n$-measurable. This trick gives us a simple way to build an adapted process. So now we will have:
+	$U_n=
+		0$ if the candidate is not the best up to $n$ and $U_n=1$ otherwise. More specifically, we will have
+		\begin{align*}
+			U_n&=1\cdot\substack{\text{proability that the best candidate}\\\text{is among the first $n$}}+0\cdot\substack{\text{proability that the best candidate}\\\text{is not among the first $n$}}\\
+			&=1\cdot\frac{n}{N}+0\cdot\frac{N-n}{N}.\\
+			&=\frac{n}{N}
+		\end{align*}
+	This is a quantity that I can measure and it is therefore adapted.\par
+\end{example}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{screenshot009}
+	\caption{You conditioned in the wrong hood, buddy.}
+	\label{fig:screenshot009}
+\end{figure}
+Consider now the same problem under a different point of view: we want to establish the ``best time'' when to stop discarding candidates. This is a random time and it is called a \emph{stopping time}. This is nothing else than a time that we choose basing ourselves on elements or events that may or may not happen: this is why they're a \rv. The stopping times are a random variable that can cause problems, since stopping times can be infinite: imagine that our stopping time is "whenever a volcano erupts" but the stupid fucking volcano decides to go into quiescence forever. This is why beside our index set $\T$ we need to introduce $\Tbar=\T\cup\{\infty\}$.
+\begin{definition}
+	\[T:\Omega\mapsto\Tbar
+	\]
+	is called \emph{stopping time} of $\F$ if
+	\[\{T\leq t\}\in\F_t\qquad\every t\in\T.\]
+\end{definition}
+Remember that stopping times have to be $\F$-measurable: for example "when will the fucking volcano erupt for the last time" is \textit{not} a stopping time because it requires information that we don't have in $t$! \\
+Stopping time have an alternative definition:
+\begin{definition}
+	$T$ is a stopping time if the process
+	\[Z_t=\indi_{\{T\leq t\}}\qquad t\in\T\]
+	is adapted to $F$.
+\end{definition}
+From this definition it follows that when $\T=\N$ then this is equivalent to having
+\[\underbracket[0.6pt]{\hat{Z}_{n}}_{\mathclap{Z_n-Z_{n-1}}}=\indi_{\{T=1\}}\qquad\every n\in\N\]
+that needs being adapted to $\F_n$.\\
+Not all random times are stopping time: think about an experiment in which we produce a signal when a physical event happens
 \listoffigures 
 \end{document} 
 
