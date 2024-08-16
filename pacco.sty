@@ -299,10 +299,8 @@
 							\newenvironment{example}[1][]{
 								\stepcounter{exampl}
 								\ifstrempty{#1}{%   
-									\hfill
 									\begin{exa}{}{\theexer\theexampl}%                     
-									}{%        
-										\hfill
+									}{%       
 										\begin{exa}{}{\theexampl}%                 
 										}%
 									}{%
@@ -320,6 +318,14 @@
 	interior style={left color=CadetBlue3!30,right color=white!29},
 	frame style={left color=DodgerBlue4,right color=DodgerBlue1},
 	title={Revise with Kotatsu!}}
+	\newtcolorbox{insult}{
+		enhanced jigsaw,
+		colback=red!5!white,sharp corners, colframe=red,
+		breakable,
+		drop shadow={red!80!black},
+		fonttitle=\bfseries,
+		interior style={left color=red!70,right color=white!29},
+		title={You fucking prick}}
 		
 	\newtcolorbox{notation}{
 		enhanced jigsaw,
@@ -337,6 +343,7 @@
 		fonttitle=\bfseries,
 		title={Note the notation!}}	
 	
+			
 	
 	\newtcolorbox{proofbox}{
 		enhanced,
@@ -353,10 +360,8 @@
 		
 		\newenvironment{fancyproof}[1][]{
 			\ifstrempty{#1}{%   
-				\hfill
 				\begin{proofbox} \begin{proof}[\unskip\nopunct]                   
 				}{%        
-					\hfill
 					\begin{proofbox} \begin{proof}[\unskip\nopunct]%                 
 					}%
 				}{%

@@ -393,7 +393,7 @@ Consider, additionally, the result of the Charatheodory's extension Theorem. By 
 \end{tikzpicture}
 \begin{flushright}
 	\begin{tikzpicture}
-		\calloutquote[width=6cm,position={(1,-1)},fill=white,rounded corners]{Huh. This makes sense. So this is the notion of length when everything, including the real line, is a set. Kinda seems like the solution to a problem we ourselves created...}
+		\calloutquote[width=6cm,position={(1,-1)},fill=white,rounded corners]{Huh. This makes sense. So this is the notion of volume when everything, including the real line, is a set. Kinda seems like the solution to a problem we ourselves created...}
 	\end{tikzpicture}\hspace*{1.5cm}
 \end{flushright}
 \hspace{2cm}
@@ -2540,7 +2540,7 @@ So what is $Q$ actually? It is a function $Q:(\omega, H)\mapsto Q_\omega(H)$ whi
 			Q_\omega\left(\bigcup_n H_n\right)=\sum_n Q_\omega(H_{n})\tag{$\star$}\label{asfucked}.
 		\end{equation}
 	\end{enumerate}
-This last requirement arises a problem: we could apply monotone convergence theorem for conditional expectations, but we know that those property hold only almost surely! I can already hear the reader say ``oh but why should we care isn't it supposed to be like the same of saying ``equal to'' and things like this and so on'' but well, my dear idiotic little shit, when something is almost surely it is actually \textit{almost} surely. It means that you're \textit{almost} guaranteed that something will not fuck you in the ass unless something is small enough to creep in your asshole whithout you even noticing. Thank measure theory enthusiasts for this.
+This last requirement arises a problem: we could apply monotone convergence theorem for conditional expectations, but we know that those property hold only almost surely! I can already hear the reader say ``oh but why should we care isn't it supposed to be like the same of saying ``equal to'' and things like this and so on'' but well, my dear idiotic little shit, when something is almost surely it is actually \textit{almost} surely. It means that you're \textit{almost} guaranteed that nothing will fuck you in the ass unless something is small enough to creep in your asshole without you even noticing. Thank measure theory enthusiasts for this.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\linewidth]{asnkae2}
@@ -2746,6 +2746,7 @@ If yes, then $X$ is adapted to $\F$.
 	\caption{You conditioned in the wrong hood, buddy.}
 	\label{fig:screenshot009}
 \end{figure}
+\subsection{Stopping times}
 Consider now the same problem under a different point of view: we want to establish the ``best time'' when to stop discarding candidates. This is a random time and it is called a \emph{stopping time}. This is nothing else than a time that we choose basing ourselves on elements or events that may or may not happen: this is why they're a \rv. The stopping times are a random variable that can cause problems, since stopping times can be infinite: imagine that our stopping time is "whenever a volcano erupts" but the stupid fucking volcano decides to go into quiescence forever. This is why beside our index set $\T$ we need to introduce $\Tbar=\T\cup\{\infty\}$.
 \begin{definition}
 	\[T:\Omega\mapsto\Tbar
@@ -2763,9 +2764,408 @@ Stopping time have an alternative definition:
 From this definition it follows that when $\T=\N$ then this is equivalent to having
 \[\underbracket[0.6pt]{\hat{Z}_{n}}_{\mathclap{Z_n-Z_{n-1}}}=\indi_{\{T=1\}}\qquad\every n\in\N\]
 that needs being adapted to $\F_n$.\\
-Not all random times are stopping time: think about an experiment in which we produce a signal when a physical event happens
+Not all random times are stopping time: think about an experiment in which we produce a signal when a physical event happens. Let us call $Z$ the process indicator and $T$ our stopping time:
+\[Z_t{\omega}=\begin{cases}
+	0&t<T(\omega)\\
+	1&t\geq T(\omega).
+\end{cases}\]
+Then if the information flow allows us to recognize the occurrence of the event then $T$ is a stopping time.
+\begin{example}
+	Some stopping times:
+	\begin{enumerate}[\circnum]
+		\item The first time that $X(\omega)\in H\in\Omega$;
+		\[T(\omega)=\begin{cases}
+			\inf \left\{n\in\N:X_n(\omega)\in H\right\}&\\
+			+\infty&\text{if $X_n(\omega)\notin H\;\every n$}
+		\end{cases}\]
+		So
+		\[\left\{T\leq n\right\}=\bigcup_{k=0}^{n}\left\{X_k\in H\right\}.\]
+		\item Consider i.i.d. \rv{}s 
+		$X_1,X_2,\ldots$. Consider the probabilities
+		\[\pr(X_i=1)=\pr(X_i=-1)=\frac{1}{2}\]
+		and the random walk
+		\[S_n=\sum_{1}^{n}X_i.\]
+		Let's define 
+		\[T_1=\begin{cases}
+			\min\left\{n<50:S_n=3\right\}\\
+			50 &\text{otherwise}.
+		\end{cases}\]
+		This is a stopping time because I can write $\left\{T_1\leq n\right\}$ as $$\underbracket[0.6pt]{\bigcup_{k=1}^{n}\underbracket[0.6pt]{\left\{S_k=3\right\}}_{\text{$\F_k$-measurable}}}_{\mathclap{\text{$\F_n$-measurbale}}}\qquad n<50.$$
+		Moreover for $n=50$ we have $T_{1}\in\F_{50}$.
+		\item Starting from the previously deifned random walk, consider the quantity 
+		\[M_n=\min(S_1,\ldots,S_n)\]
+		And the random time
+		\[T_2=\min\left\{n:S_n\geq M_m+2\right\}\]
+		is a stoppimg time. On the contrary, 
+		\[T_3=\begin{cases}
+			\max\left\{n<50:S_n=7\right\}&\text{if not empty}\\
+			50 &\text{otherwise}
+		\end{cases}\]
+		is not a stopping time. Why? Because I have to wait until $n=50$ to answer the question. 
+	\end{enumerate}
+\end{example}
+
+Consider the random times on $\R_+$
+\[0<T_1<T_2<\ldots\]
+With $\lim_{n\to\infty}T_n=+\infty$. Define the process $\left\{N_t\right\}$ as 
+\[N_t:=\sum\indi_{[0,t]}(T_n).\]
+This is called \emph{counting process}. It is a basic count of the number of events happened up to time $n$.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{screenshot010}
+	\caption{Yeah I'm counting on ending my life very soon.}
+	\label{fig:screenshot010}
+\end{figure}
+$N_{t}$ is increasing, right continuous and incresases by unitary jumps. Moreover, $N_0=0$, $N_t<\infty$ for $t\in\R_+$. Of course $\lim_{t\to\infty}N_t=\infty$. Counting processes generate their natural filtration $\F$.
+
+Some problems require to stop the observation at a stopping time (because we don't care anymore\footnote{Assuming we ever did.})... So we don't actually need the whole knowledge of the complete filtration $\F={\left(\F_t\right)}_{t\geq 0}$. The problem is that as we said before the stopping time is a random time. So what we need is the \textit{information known up to time $T$} $\F_T$, basically the $\sigma$-field that is the filtration at time $T$. 
+\begin{remark}
+	We said that $\F_t$ does not include $t=\infty$... but $T$ may diverge to $\infty$! We need to enlarge $\F$ to include $t=\infty$.
+\end{remark}
+Think, for instance the stopping time ``first time of overflowing of a dam''. It is something that may very well never happen and is therefore called ``Vajont stopping time\footnote{Okay I'm sorry I'm sorry I am a terrible person yes sir yes yes I concur it was an extremely inappropriate joke yes yes sir yes you have my word yes no no never again no you don't have to worry no no.}''.
+\begin{definition}
+	Let $\Tbar=\T\cup\left\{+\infty\right\}$. We define
+	\[\F_\infty=\lim_{t\to\infty}\F_t=\underbracket{\bigvee_{t\in\T}\F_+}_{\sigma\left(\bigcup\F_t\right)}.\]
+\end{definition}
+\begin{definition}
+	$\F_{\Tbar}$ is a filtration on $\Tbar$ and $T$ is a stopping time on it if and only if it is a stopping time on $\F_\T$.
+\end{definition}
+\begin{remark}
+	Every stochastic process on ${(\F_{t})}_{t\in\T}$ can be extended to $\Tbar$ by appending any \rv{} $X_\infty$ to it (with $X_\infty\in\F_{\infty}$).
+\end{remark}
+So adding this \rv{} doesn't really add any information but only ensures that nerds don't whine about completeness. It is \textit{technically} information that we will never user, since $\F_\infty$ does not contain any further information with respect to $\F$. We denote with $\F$ also the extended filtration, with the ease of mind given by the fact that a divergent stopping time won't make us commit harakiri.
+\begin{definition}
+	Let $\F$ be a filtration on $\Tbar$ and let $T$ be a stopping time on $\F$. We call \emph{past until $T$} the \sa{} $\F_t\subset\F_\infty\subset\HS$ such that:
+	\[\F_T=\left\{H\in\HS:H\cap\{T<t\}\in\F_t,\every t\in\Tbar\right\}.\]
+\end{definition}
+This means that $\F_T$, which represents the evolution within $T$, contains all the events $H$ such that they are before the stopping time in all the filtrations. This is selecting the events $H$ that happen within the time $T$.
+\begin{remark}
+	If we fix a $T\equiv t$ then $\F_T\equiv\F_t$ (it's the normal filtration at time $t$).
+\end{remark}
+If $T$ is a stopping time of $\F$ then $\{T\leq r\}$ belongs to $\F_T,\;\every r\geq 0$:
+\[\{T\leq r\}\cap\{T\leq t\}=\{T\leq\min(T,r)\}\in\F_t\]
+So $T$ is $\F_T$-measurable. 
+\begin{remark}
+	$\F_t$ can be read as the collection of all $\F_t$-measurable \rv{}s $V$: the value of $V(\omega)$ can be told by the time $T(\omega)$: we can read the value of $V(\omega)$ before the ringing of an alarm.
+\end{remark}
+\begin{theorem}
+	A random variable $V$ belongs to $\F_T$ if and only if
+	\begin{equation}
+		V\indi_{T\leq t}\in\F_t,\qquad\every t\in\Tbar.\tag{$i$}\label{stopstopstop}
+	\end{equation}
+	If $\Tbar\equiv\overline{\N}$ the condition becomes
+	\begin{equation*}
+		V\indi_{T=n}\in\F_n\qquad\every n\in\overline{\N}.
+	\end{equation*}
+\end{theorem}
+\begin{fancyproof}
+	Note that 
+	\[X_t=V\indi_{T\leq t}\]
+	is a stochastic process. For $\every r\in\R_+$ and $t\in\T$
+	\[\{V>r\}\cap\{T\leq t\}=\{X_t>r\}.\]
+	But now we know that (\ref{stopstopstop}) is just a consequence of the definition of $\F_t$:
+	\[\{V>r\}\in\F_T\quad\every r\underset{\text{def. of $\F_T$}}{\iff}\{X_t>r\}\in\F_t\qquad\every r,\every t\in\Tbar\]
+	The special case in which $\Tbar\equiv\overline{\N}$ means that
+	\[V\indi_{\{T=n\}}=\begin{cases}
+		X_n-X_{n-1}&\text{if }n\in\N\\
+		X_\infty-\sum_{n\in\N}(X_n-X_{n-1})&\text{if }n=\infty
+	\end{cases}\]
+	so that 
+	\begin{equation*}
+		V\in\F_T\iff V\indi_{T=n}\in\F_n
+	\end{equation*}
+\end{fancyproof}
+But what if there is a problem that involves more than 1 stopping time? We cannot use two different ``pasts'' because that would cause problems with the measurability of \rv s. 
+\begin{example}
+Imagine a factory. The production is blocked when
+\begin{enumerate}[a)]
+	\item the temperature of the room is above a certain threshold; 
+	\item the machinery has not been cleaned for more than 12 hours.
+\end{enumerate}\par
+Alternatively, imagine that the sales of shares happens:
+\begin{enumerate}[a)]
+	\item when the price is above a fixed value;
+	\item when the increase of the price is smaller than a fixed value.
+\end{enumerate}
+\end{example}
+Both of this cases require the use of 2 different stopping times $S$ and $T$. We may think to evaluate two typical functions of $S$ and $T$ of interest:
+\begin{equation*}
+	\underbrace{\min\{S,T\}}_{S\wedge T}\qquad	\underbrace{\max\{S,T\}}_{S\vee T}
+\end{equation*}
+\begin{example}
+	\emph{Truncated stopping time}: let $T$ be a stopping time (for example, the time at which we sell certain shares) and that we want a finite horizon for this decision. In this case the quantity of interest is
+	\begin{equation*}
+		S=T\wedge n=\min\{T,n\}
+	\end{equation*}
+	where $n$ could be some sort of time horizon.\\
+	Imagine that two cyclists participate to a race. Their children will have their snack when both the parents will arrive to the finish line. How long will the children wait for their snack?
+	We can think about the following stopping times:
+\[ 	\begin{array}{l l}
+		T: & \text{time employed by the first cyclist}\\
+	S: & \text{time employed by the second cyclist}\\
+	U: &\max\{S,T\}.
+		
+	\end{array} \]
+	The waiting time for the children will be $U$.
+\end{example}
+This is cool and all, but are we sure that $S\wedge T$ and $S\vee T$ are stopping times?
+\begin{remark}
+	Yes.
+\end{remark}
+Why?
+\begin{remark}
+	Fuck you.
+\end{remark}
+Aw hell nah. Now even the color boxes are against me. 
+\begin{insult}
+	You will NEVER pass this exam.
+\end{insult}
+Well this is not a surprise.
+\begin{insult}
+	Not if you keep jerking around.
+\end{insult}
+\begin{fancyproof}
+	We know that $\{S\leq t\}$ and $\{T\leq t\}$ belong to $\F_t$ for every $t$, since they are stopping times. Consider now $\left\{\min\{(S,T)\leq t\}\right\}$ and $\left\{\max\{(S,T)\leq t\}\right\}$. We have
+	\begin{equation*}
+		\left\{\min\{(S,T)\leq t\}\right\}=\underbrace{\underbrace{\{S\leq t\}}_{\in\F_t}\cup\underbrace{\{T\leq t\}}_{\in\F_t}}_{\in\F_t}
+	\end{equation*}
+	and 
+	\begin{equation*}
+			\left\{\max\{(S,T)\leq t\}\right\}=\underbrace{\underbrace{\{S\leq t\}}_{\in\F_t}\cap\underbrace{\{T\leq t\}}_{\in\F_t}}_{\in\F_t}.
+	\end{equation*}
+\end{fancyproof}
+There is a further theorem:
+\begin{theorem}
+	\begin{enumerate}[\circnum]
+		\item if $S\leq T\implies\F_S\subset\F_T$;
+		\item $\F_{\min\{S,T\}}=\F_S\cap\F_T$;
+		\item if $V\in\F$, the following processes are in $\F_{\min\{S,T\}}$:
+		\begin{equation*}
+			\begin{array}{c c c}
+				\color{SteelBlue4}(a)&\color{SteelBlue4}(b)&\color{SteelBlue4}(c)\\
+				V\indi_{S\leq T},&V\indi_{S=T},&V\indi_{S< T}.
+			\end{array}
+		\end{equation*}
+	\end{enumerate}
+\end{theorem}
+\begin{fancyproof}
+	\begin{enumerate}
+		\item Imagine $\{S\leq T\}$. Now consider the event $\{S\leq n\}$. Since $S$ happens before $T$ then we have that $\{T\leq n\}\subset\{S\leq n\}$. We know that if $A\in\F_S$ then
+		\[A\cap\{T\leq n\}=A\cap\underbracket[0.6pt]{\{S\leq n\}}_{\in\F_n}\cap\underbracket[0.6pt]{\{T\leq n\}}_{\in\F_n}\]
+		which means that $A\cap\{T\leq n\}\in\F_n$ and by definition of $\F_T$
+ this correponds to saying
+ \[\F_S\subset\F_T.\]
+ \item \begin{enumerate}
+ 	\item Let us first prove that $\F_{\min\{S,T\}}\subset\F_{S}\cup\F_T$.
+ 	Note that $\min\{S,T\}$ is dominated by $\F_s$ and $\F_T$, which means that $\F_{\min\{S,T\}}$ is included both in $\F_S$ and $\F_T$. By point 1 we have
+ 	\[\F_{\min\{S,T\}}\subset\F_S\cap\F_T.\]
+ 	\item It remains to prove that $\F_{\min\{S,T\}}\supset\F_{S}\cup\F_T$. Let $H\in\F_S\cap\F_T$. This means that 
+ 	\begin{equation*}
+ 		H\cap\{S\leq T\}\in\F_{\min\{S,T\}}
+ 	\end{equation*}
+ 	by part the of this theorem, since $H\in\F_S$. But we also know that
+ 	\[H\cap\{T\leq S\}\in\F_{\min\{S,T\}}\]
+ 	by part 3 of this theorem since also $H\in\F$. But this means that
+ 	\begin{equation*}
+ 		H=\left\{H\cap\left\{S\leq T\right\}\right\}\cup\left\{H\cap\left\{S\leq T\right\}\right\}
+ 	\end{equation*}
+ 	belongs to $\F_{\min\{S,T\}}$ and so
+ 	\[\F_{\{S\cap T\}}\subset\F_{\min\{S,T\}}.\]
+ \end{enumerate}
+ \item\begin{enumerate}
+ 	\item $V\indi_{\{S\leq T\}}\in\F_{\min\{S,T\}}$. To prove this we use the following theorem:
+ 	\begin{theorem}
+ 		Let $T$ be a stopping time of $\F$. Then
+ 		\[\F_T=\{X_T:X\in\F\}\]
+ 		with $X$ in $\F$.
+ 	\end{theorem}
+ 	This baiscally means that $\F_t$ becomes the values $X_T$ of $X$ in $\F$ at time $T$. Let us consider $X_t=V\indi_{\{S\leq t\}}$ with $t=\min\{S,T\}$. We know that $\min\{S,T\}$ is a stopping time of $\F_{\min\{S,T\}}$ and by the theorem above
+ 	\[X_{\min\{S.T\}}\in\F_{\min\{S,T\}}\]
+ 	or, alternatively,
+ 	\[\indi_{\{S\leq T\}}\in\F_{\min\{S,T\}}.\]
+ 	\item Let $V=2\implies\{S\leq T\}\in\F_{\min\{S,T\}}$ and by symmetry $\{T\leq S\}\in\F_{\min\{S,T\}}$. This means that 
+ 	\begin{equation*}
+ 		\{S=T\}=\{S\leq T\}\cap\{T\leq S\}\in\F_{\min\{S,T\}}.
+ 	\end{equation*}
+ 	Furthermore 
+ 	\[\{S<T\}=\{S\leq T\}\setminus\{S=T\}\]
+ 	Which implies memebership of $\F_{\min\{S,T\}}$.
+ 	\item Consider the fact already proven that $V\indi_{\{S\leq T\}}\in\F_{\min\{S,T\}}$. Multiplying by $\indi_{\{S=T\}}$ or $\indi_{\{S<T\}}$ does not alter the membership in $\F_{\min\{S,T\}}$.
+ \end{enumerate}
+ 	\end{enumerate}
+\end{fancyproof}
+Consider now a machinery what when it becomes too hot (above a certain threshold) an alarm rings and after 3 seconds the machinery stops. Here we deal with 2 times:
+\begin{equation*}
+	\begin{array}{l l}
+		T: &\text{time of the alarm (stopping time)}\\
+		t=3: &\text{deterministic time (stopping time as well)}\\
+	\end{array} 
+\end{equation*}
+and the time of our interest is the time $S$ when the machinery stops:
+$$S=T+t$$
+\begin{remark}
+	At time $T$ we know $S$: We know that when the alarm rings within three seconds the machinery will stop, so $S$ is actually $\F_T$-measurable. We say that \emph{$S$ is foretold by $T$}.
+\end{remark}
+\begin{definition}
+	Let 
+	\begin{equation*}
+		\begin{array}{l l}
+			S &\text{be a stopping time}\\
+			T &\text{be a random time $T>S$ but whose value can be told by time $S$.}
+		\end{array}
+	\end{equation*}
+	We say that $T$ is \emph{foretold by $S$} (and it is a stopping time).
+\end{definition}
+\begin{example}
+	Consider $S$ and $T=2S$. Surprise surprise, $T$ is a foretold time.
+\end{example}
+Did we need an example for this?
+\begin{example}
+	Yes.
+\end{example}
+Yeah this meta-joke has been running long enough.
+\subsection{Discrete and continuous stopping times}
+\begin{definition}
+	Let
+	\begin{equation*}
+		d_n(t)=\begin{cases}
+			\frac{k+1}{2^{n}}&\text{if }\frac{k}{2^{n}}\leq t <\frac{k+1}{2^{n}}\\
+			+\infty &\text{if }t=\infty.
+		\end{cases}
+	\end{equation*}
+	We got a function
+	\[d_n:\Rext_+\mapsto\Rext_+.\]
+\end{definition}
+Consider the case $n=1$ (remember that $k=0,1,2,\ldots$):
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{screenshot011}
+	\caption{These are screenshots taken from the video feed. I couldn't bother. Sorry.}
+	\label{fig:screenshot011}
+\end{figure}
+But after $n=2$ we get the same function with smaller "steps":
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\linewidth]{screenshot012}
+	\caption[The problem of improvisation]{The aesthetic problem of musical execution is reduced by Enrico Fubini to a problem of musical improvisation: I honestly think that this perspective is limiting both in its conceptions of ``execution'' and ``improvisation'' even if I agree with the intent of blurring the line between the two concepts unjustly separated in our Western modern musical. That is, a modern perspective: the reader will surely remember that Bach was famous first and foremost for his improvisational abilities and that the musical form of the fugue was often used to display pyrotechnical capabilities in that regard.}
+	\label{fig:screenshot012}
+\end{figure}
+Observe that $d_1\geq d_2\geq d_3\geq\ldots$. What are the other properties of this function?
+\begin{enumerate}
+	\item it is a step function;
+	\item it is right-continuous;
+	\item $d_n(t)>t$ (the diagonal line);
+	\item $\lim_{n\to\infty}d_n(t)=t$.
+\end{enumerate}
+Now we apply this simple function to our stopping times so that we get the following proposition.
+\begin{proposition}
+	Let $\F$ be a filtration on $\Rext_+$ and let $T$ be a stopping time. Let 
+	\[T_n=d_n\circ T.\]
+	Then ${\{T_n\}}_{n}$ is a sequence of \emph{discrete stopping times} of $\F$ decreasing to $T$.
+\end{proposition}
+\begin{remark}
+Of course $T_n$ is a foretold time by $T$, because if I know $T$ I also know the value of $T_n$.
+\end{remark}
+\begin{proof}
+	Fix $n$:
+	\begin{itemize}
+		\item $T_n$ is a measurable function of $T\implies T_n\in\F_n$;
+		\item $d_n(t)\geq t\quad\every t<\infty$ and $d_n(\infty)=\infty\implies d_n(T)=T_n\geq T$;
+		\item $T_n$ is a foretold time by $T$;
+		\item $T_n$ is a stopping time;
+		\item $T_n$ is discrete.
+	\end{itemize}
+	But $d_n(t)\searrow t$ as $n\to\infty\implies d_n(T)=T_n\searrow T$. We have thus switched from a continuous stopping time to a sequence of discrete stopping times.
+\end{proof}
+An important thing to note is that during our process of discretization we never break the property of the stopping times... and this is possible because we are using foretold times!
+\subsection{Conditioning at stopping times}
+Imagine that we have our information about $X$ that stops at the stopping time $T$: this means knowing $\F_T$. Consider the classic conditioning situation
+\[\ev(X\F_T).\]
+We already said how this is our best estimate of $X$ using our information available (that is $\F_T$).
+\begin{notation}
+	We will write
+	\[\ev_T\equiv\ev_{\F_T}\equiv\ev(\cdot|\F_T).\]
+\end{notation}
+\begin{remark}
+	Can I use $T$ fixed as a deterministic time $t$ and thus get $\ev(X|\F_t)$? Is this a special case or a different think altogether? Well yes, because $t$ \textit{is} a stopping time being $\F_t$-measurable! $\ev(X|\F_t)$ is a special case of $\ev(X|\F_T)$.
+\end{remark}
+This becomes clear when we see the properties of stopped expectation. For $\every X,Y,Z$ being positive \rv s and for $\every S,T$ stopping times of $\F$ the following properties hold:
+\begin{itemize}
+	\item \emph{defining property}:
+	\[\ev_T X=Y\iff V\in\F_T\text{ and }\ev VX=\ev VY;\]
+	\item \emph{unconditioning}:
+	\[\ev\ev_T X=\ev X;\]
+	\item \emph{repeated contitioning}:
+	\[\ev_S\ev_T X=\ev_{\min\{S,T\}}X=\ev_{S\wedge T}X;\]
+	\item \emph{conditional determinism}:
+	\[\ev_T(X+YZ)=X+Y\ev_T(Z)\]
+	if $X,Y\in\F_T$.
+\end{itemize}
+We need to prove the third property.
+\begin{fancyproof}
+	Notice that if $S\leq T\implies\F_S\subset\F_T$. This means that 
+	\[\ev_S\ev_T=\ev_S\left(=\ev_{S\wedge T}\right)\]
+	(the ``poorer'' \sa{} wins!). Moreover notice that if $S$ and $T$ are arbitrary we can apply the same result to $S\wedge T$ since $S\wedge T\leq T$ and 
+	\begin{equation}
+		\ev_{S\wedge T}\ev_{T}=\ev_{S\wedge T}\tag{$\bullet$}\label{stopexpect}
+	\end{equation}
+	Remember that $Y=\ev_T X$. Let's now try to write the statement of our proof in a different way:
+	\[\ev_S Y=\ev_{S\wedge T}X.\]
+	But using our property (\ref{stopexpect}) we get
+	\begin{align*}
+		\ev_S Y&=\ev_{S\wedge T}\ev_T X\\
+		&=\ev_{S\wedge T} Y.
+	\end{align*}
+	Let's prove this, by steps.
+	\begin{enumerate}
+		\item note that $\F_{S\wedge T}\subset\F_S$. This means that $\ev_{S\wedge T}Y$ is in $\F_S$ and therefore $\ev_{S\wedge T}Y $ has the measure property and it is a candidate to be $\ev_S Y$. So we should check whether this candidate satisfies the defining property of stopped expectation.
+			\item Check the defining property
+			\[\ev VY=\ev V\ev_{S\wedge T}Y\]
+			for each positive $V$ in $\F_S$. We start by fixing such $V$, positive and in $\F_S$. We proved that 
+			\[V\indi_{\{S\leq T\}}\in\F_{S\wedge T}\]
+			and the defining property for $\ev_{S\wedge T}$ gives
+			\begin{equation}
+				\ev V\indi_{\{S\leq T\}Y}=\ev V\indi_{\{S\leq T\}}\ev_{S\wedge T}Y\tag{$\bullet\bullet$}\label{hateproof}
+			\end{equation}
+			Now we observe that $Y\in\F_T$ by definition. Also notice that $Y\indi_{\{T<S\}}\in\F_{S\wedge T}$. Apply now this fact to the defining property and obtain
+			\begin{equation*}
+				\ev VY\indi_{\{T<S\}}=\ev V\ev_{S\wedge T}Y\underbracket{\indi_{\{T<s\}}}_{\mathclap{\F_{S\wedge T}\text{-meas.}}}
+			\end{equation*}
+			and by conditional determinism we get
+			\begin{align*}
+				\ev VY\indi_{\{T<S\}}&=\ev V\indi_{\{T<S\}}\\
+				&=\ev V\indi_{\{T<S\}}\ev_{S\wedge T}Y.
+			\end{align*}
+			By putting together this result with (\ref{hateproof}) we get
+			\begin{equation*}
+				\ev V Y=\ev V\ev_{S\wedge T}Y.
+			\end{equation*}
+	\end{enumerate}
+\end{fancyproof}
+\section{Martingales}
+When we study stochastic processes, the typical way of introducing classes of stochastic processes for which we have methods to study is determining the finite dimensional distributions. If we have them, thanks to the Kolmogorov Consistency theorem, we can give a complete description of the process but this is boring and for fucking losers. So we introduce classes of stochastic processes for which we can write the distribution.\par
+Imagine, from a different view point, another approach: instead of starting from the distribution of a stochastic process we start from a property; then as a consequence of that property we infer the behavior towards infinity. This is the philosophy behind the class of \emph{martingales}.
+\begin{example}
+	Consider the process $\{X_{n}\}$ that describes the fortune of a player. This player wins with probability $p$ and loses with probability $1-p=q$. Consider the fortune at time $n$ ${\{S_n\}}_{n\geq 0}$, which is 
+	\[S_n=\sum_{i=0}^{n}X_i.\]
+\end{example}
+	Is the game fair? Imagine also that the $X_i$'s are the value that I get by losing or selling options or stock. We know that the game is fair if $p=q=\frac{1}{2}$. But this could also be written as a property in the following way:
+	\[\ev\left[S_{n+1}|\underbracket[0.64pt]{S_n}_{\F_n}\right]=S_n.\]
+	So I don't have any ``advantages'' or ``bias''.
+	\begin{fancyproof}
+		\begin{align*}
+			\ev\left[S_{n+1}|S_n\right]&=\ev\left[S_n+X_{n+1}|S_n\right]\\
+			&=S_n+\ev\left[X_{n+1}|S_n\right]\\
+			&=S_n+\underbracket[0,6pt]{\ev\left[X_{n+1}\right]}_{\mathclap{\text{if }p=q=\frac{1}{2}}}\\
+			&=S_n
+		\end{align*}
+	\end{fancyproof}
+We will not define martingales through the event/filtration that allows the process $Y$ to remain constant:
+\[\ev[Y_{n+1}|\F_n]=Y_n.\]
+Then we should ask some questions about this \sa. We know that $\{\F_n\}$ can be increasing, constant or decreasing but $Y$ must remain constant in mean. Look at it through the tower property.
+\[\ev Y_n=\ev\left[\ev\left[Y_{n+1}|\F_n\right]\right]=\ev Y_{n+1}.\]
 \listoffigures 
 \end{document} 
 
 
-%THIS IS THE() DARK AGE OF LOVE 
+%THIS IS THE() DARK AGE OF LOVE  
