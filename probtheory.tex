@@ -7,7 +7,7 @@
 	\author{Kotatsu}
 	\date{\small TOALDO COL \textbf{CAZZO} CHE DIVENTI ORDINARIO}
 	\maketitle
-	\pagenumbering{roman}
+	\pagenumbering{Roman}
 	\begin{preface}
 		This document stems from the fact that I just seem unable to pass the Probability Theory exam for the life of me. I regret with every ounce of my being the fact that I enrolled to the Stochastics and Data Science master degree a year ago. Since dear Professor Toaldo never really thrilled me with his insightful lectures about this delightful topic, I resorted to watch the old lectures by Professor Polito, who at least seems to know the subject and to be determined to explain it.\\
 		Unlike many among my esteemed colleagues I have NOT a background in mathematics so there will be a lot of repetitions and possibly mistakes. Do what you want with this information. YES I KNOW that there are the whiteboard registrations of his lectures but if I DECIDED TO DO THIS it was because I couldn't comprehend shit with only those notes.\\
@@ -19,9 +19,9 @@
 		
 		\hfill Kotatsu
 	\end{preface}
-	\pagenumbering{arabic}
 	\tableofcontents
 	\chapter{The basics of probability theory}
+			\pagenumbering{arabic}
 \section{Basics of probability}
 We start with the probability triplet: $(\Omega,\mathscr{H},\mathbbm{P})$ 
 Here $\Omega$ is the set of sample space, $\mathscr{H}$ is the $\sigma$-algebra built upon $\Omega$ and $\pr$ is the probability measure. Since $\pr$ is a measure, it will take values in $\R$. \\
@@ -2656,8 +2656,14 @@ Note that the usual notion of independence corresponds to the specific choice of
 	\F=\left\{\emptyset,\Omega\right\}.
 \end{equation*}
 It is over. It is finally over and I am a considerably worse persone now. Martingales, anyway, are very linked to the notion of conditional probability... And so a lot of other stochastic processes. Whatever.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{screenshot014}
+	\caption[The one and only truth]{}
+	\label{fig:screenshot014}
+\end{figure}
 \chapter{A first study in stochastic processes: Martingales}
-Okay, I'll admit that this part is really hard for me to follow. I am already broken down by Professor Polito's lectures and right now... I only want to be happy again.
+Okay, I'll admit that this part is really hard for me to follow. I am already broken down by Professor Polito's lectures and right now... I only want to be happy again. Please note that the astonishing drop in the quality of the notes is not my fault. This shit should be easier to explain but they manage to mess this up anyway. 
 \section{Revising stochastic processes and filtrations}
 \begin{notation}
 	\begin{enumerate}
@@ -3156,7 +3162,7 @@ Imagine, from a different view point, another approach: instead of starting from
 		\begin{align*}
 			\ev\left[S_{n+1}|S_n\right]&=\ev\left[S_n+X_{n+1}|S_n\right]\\
 			&=S_n+\ev\left[X_{n+1}|S_n\right]\\
-			&=S_n+\underbracket[0,6pt]{\ev\left[X_{n+1}\right]}_{\mathclap{\text{if }p=q=\frac{1}{2}}}\\
+			&=S_n+\underbracket[0,6pt]{\ev\left[X_{n+1}\right]}_{\mathclap{=0\text{ if }p=q=\frac{1}{2}}}\\
 			&=S_n
 		\end{align*}
 	\end{fancyproof}
@@ -3164,7 +3170,217 @@ We will not define martingales through the event/filtration that allows the proc
 \[\ev[Y_{n+1}|\F_n]=Y_n.\]
 Then we should ask some questions about this \sa. We know that $\{\F_n\}$ can be increasing, constant or decreasing but $Y$ must remain constant in mean. Look at it through the tower property.
 \[\ev Y_n=\ev\left[\ev\left[Y_{n+1}|\F_n\right]\right]=\ev Y_{n+1}.\]
-\listoffigures 
+\begin{definition}
+	A real-valued process
+	\[X={(X_t)}_{t\in\T}\]
+	is called a \emph{$\F$-martingale} if:
+	\begin{enumerate}
+		\item it is adapted to $\F$;
+		\item it is integrable for each $t\in\T$;
+		\item $\ev(X_t-X_s|\F_s)=0\quad\every s<t$.
+	\end{enumerate}
+	If $\ev(X_t-X_s|\F_s)\geq0\quad\every s<t$ then the process is called \emph{$\F$-submartingale} and if $\ev(X_t-X_s|\F_s)\leq0\quad\every s<t$ it is called \emph{$\F$-supermaringlae}.
+\end{definition}
+These three properties are what we need to check to establish whether a process has martingale properties. The first two are really just regularity conditions, while the third is the ``real'' defining property of a martingale. There is is another definition for the third property:
+\begin{definition}
+	\begin{enumerate}
+		\item[3'.] $\ev(X_t|\F_s)=X_s$.
+	\end{enumerate}
+\end{definition}
+In the first definition we were looking at the increment, now we are looking at the mean of a further point $t$ in time for the process $X$ and discovering that, conditioning it to information available in time $s$, it doesn't change from the process in time $s$.\\
+If $\ev X^{+}_{t}<\infty$ then the sequence $\{X_t\}$ (that can be a sub-martingale) converges to a limit. 
+\begin{remark}
+	A martingale is also a sub-martingale and a super-martingale.
+\end{remark}
+We will use sub-martingales in our demonstrations but it really does not change anything because if $\{X_t\}$ is a $\F$-sub-martingale then $\{-X_t\}$ is a $\F$-super-martingale.
+\begin{remark}
+	The number of terms in $\{X_t\}$ can be bounded or unbounded: even a process with 4 terms can be a martingale.
+\end{remark}
+There are consequence to the way we defined martingales. Consider the times $s<t<u$ and the $\F$-martingale $\{X_t\}$. Then
+\[\ev_s(X_u-X_{t})\]
+means knowing the evolution of the process at time $s$ and looking for the increment of the process between $t$ and $u$. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{screenshot013}
+	\caption{It should not}
+	\label{fig:screenshot013}
+\end{figure}
+We can write
+\begin{align*}
+	\ev_s(X_u-X_{t})&=\ev_s\Big(\underbracket[0.56pt]{\ev_t(X_u-X_t)}_{\mathclap{=0\text{ bc it is a martingale}}}\Big)\\
+	&=\ev_s 0=0.
+\end{align*}
+This means that given the information up to time $s$ the estimation of any future increment will be null! In the special case $\T=\N$ then this property becomes
+\[\ev_n(X_{n+1}-X_n)=0.\]
+\begin{proposition}
+	If $\{X_i\}$ is an $\F_n$-martingale, it holds
+	\[\begin{array}{l l}
+		\ev X_i=\ev X_{i+1}&\text{if it is a martingale}\\
+		\ev X_{i+1}>\ev X_i&\text{if it is a sub-martingale.}
+	\end{array}\]
+\end{proposition}
+\begin{fancyproof}
+	Consider the expectation
+	\[\ev(X_{i+1}|\F_i)\geq X_i\]
+	being a sub-martingale. Take the expectation
+	\[\underbrace{\ev\left[\ev(X_{i+1}|\F_i)\right]}_{\ev X_{i+1}}\geq\ev X_i.\]
+	We can now define the process
+	$\{Y_{i}\}_{i\in\N}$ as 
+	\[Y_{i+1}=X_{i+1}-X_{i}.\]
+	We know that $\{X_i\}$ is a $\F$-martingale. Note that
+	\[\sum_{j=1}^{i} Y_j=X_1-X_0+X_2-X_1+\ldots+X_i-X_{i-1}\]
+	so that we can write
+	\[X_i=c+\sum_{j=1}^{i}Y_j.\]
+	We know that 
+	\[\ev\left[X_{i+1}|\F\right]=X_i\]
+	But we also know that 
+	\begin{equation*}
+	\ev[Y_{i+1}|\F]=0.
+	\end{equation*}
+\end{fancyproof}
+The quantity $\{\ev{Y_{i+1}|\F_i}\}$ is called \emph{martingale difference}.
+\begin{example}
+	Imagine we have a sequence $\{Y_i\}$ of independent \rv s with $\ev Y_i=0$.
+	Consider $\F_1$, the \sa{} generated by $\{Y_j,0\leq j\leq i\}$. Call $S_i=c+\sum^{i}Y_{j}$. 
+	$\{S_i\}$ is an $\F$-martingale.
+\end{example}
+\subsection{Properties of martingales}
+\begin{enumerate}
+	\item Consider $X$ and $Y$ being $\F$-sub-martingales and $a,b\in\R^{+}$. Then 
+	\[aX+bY\]
+	is a $\F$-sub-martingale.
+	\item Consider $X,Y$ being two $\F$-sub-martingales. Then
+	\[\max\{X,Y\}\]
+	is a $\F$-sub-martingale.
+	\begin{fancyproof}
+		Consider $\ev[\max\{X_{n},Y_{n}|\F_{n-1}\}]$. Remember that we have to prove: \begin{itemize}
+			\item measurability property;
+			\item integrability property;
+			\item martingale property.
+		\end{itemize}
+		Often times measurability and integrability are implied in the form of the function.  Since we are using the maximum between $X$ and $Y$ we know that
+		\[\begin{array}{l}
+			\ev[\max\{X_{n},Y_{n}|\F_{n-1}\}]\geq\ev[X_{n}|\F_{n-1}\}]\\
+			\ev[\max\{X_{n},Y_{n}|\F_{n-1}\}]\geq\ev[Y_{n}|\F_{n-1}\}].
+		\end{array}\]
+		But since $X$ and $Y$ are martingales we know that $\ev[X_{n}|\F_{n-1}]\geq X_{n-1}$ and $\ev[Y_{n}|\F_{n-1}]\geq Y_{n-1}$; hence we get that
+		\[\ev[\max\{X_{n},Y_{n}|\F_{n-1}\}]\geq\max\{X_{n-1},Y_{n-1}\}\]
+		so the martingale property is satisfied.
+	\end{fancyproof}
+	\item Consider two $\F$-super-martingales $X_{n},Y_{n}$. Then
+	\[\min\{X_{n},Y_{n}\}\]
+	is a $\F$-super-martingale.
+	\begin{fancyproof}
+		Consider $\max\{-X_{n},-Y_{n}\}$. We know that $-X_n$ is a sub-martingale and so is $-Y_{n}$. So as proved above $\max\{-X_{n},Y_{n}\}$ is a sub-martingale. But $\max\{-X_{n},-Y_{n}\}=-\min\{X_{n},Y_{n}\}$ so
+		\[-\min\{X_{n},Y_{n}\}\text{ is a sub-martingale}\iff\min\{X_{n},Y_{n}\}\text{ is a super-martingale}.\]
+	\end{fancyproof}
+	\item Consider a function $f$ that is \underline{convex} on $\R$. If $X$ is a $\F$-martingale and $f\circ X$ is integrable then $f\circ X$ is a $\F$-sub-martingale.
+	\begin{fancyproof}
+		We have $s<t$ and we want to study $\ev\left[f(X_{t})|\F_{s}\right]$. By Jensens's inequality we have
+		\begin{align*}
+			\ev\left[f(X_{t})|\F_{s}\right]&\geq f\Big[\underbrace{\ev(X_{t}|\F_s)}_{X_s}\Big]\\
+			&=f(X_s).
+		\end{align*}
+	\end{fancyproof}
+	\begin{remark}
+		Some examples of positive functions of $X$ are $X^{+},X^{-},|X|$. If $X$ is martingale, these are sub-martingales.  $|X|^{p}$ is a sub-martingale if $X$ is a martingale and $\ev|X|^{p}<\infty$.
+	\end{remark}
+	\item if $f$ is convex and increasing and $X$ is a $\F$-sub-martingale with $f(X_{t})$ integrable $\every t$ then $f(X_{t})$ is again a $\F$-sub-martingale.
+\end{enumerate}
+\subsection{Create your own martingale}
+\begin{enumerate}
+	\item Consider an increasing family of \sa s $\{\F_j\}$ and a \rv{} $X$ on $(\Omega,\F,\pr)$ which is integrable and adapted to $\F$.
+	Define 
+	\[X_i=\ev[X|\F_i].\]
+	Then the process ${\{X_i\}}_{i\in\N}$ is called \emph{Doob martingale} and plays an important role in may processes. As $i$ increases, so does the information about our random variable while retaining the underlying process $X$.\\
+	We have now to prove that $\{X_i\}$ is a $\F$-martingale. 
+	\begin{fancyproof}
+		We need to check that \begin{align*}
+			\ev[X_{i+1}|\F_{i}]&=\ev\left[\ev\left[X|\F_{i+1}\right]|\F_{i}\right]\\
+			&=\ev\left[X|\F_{i}\right]
+		\end{align*}
+		and this is because of the properties of conditional expectation since $\F_{i+1}\supset\F_{i}$. But $\ev\left[X|\F_{i}\right]=X_i$ by definition.
+	\end{fancyproof}
+	The same result holds when $\T$ is continuous.
+	\item Consider sums of independent \rv $\{X_i\}$ with $\ev[X_i]=0$. We have 
+	\[S_0=0\qquad S_n=S_0+X_1+X_2+\ldots+X_{n}\qquad n\geq1.\]
+	We define $\F={(\F_{n})}_{n\in\N}$ as the filtration generated by $S={(S_{n})}_{n\in\N}$. Consider the following facts:
+	\begin{enumerate}
+		\item $\F_{n}$ is adapted to $S$;
+		\item Each $S_{n}$ is integrable and $\ev S_{n}=0$;
+		\item $\ev_{n}(S_{n+1}-S_n)=\ev_n(X_{n+1})=\ev X_{n+1}=0$ (because of independence).
+	\end{enumerate}
+	So $S_{n}$ is a martingale.
+	What happens, tough, if $\ev X_i=1$ for each $i$? We would get a sub-martingale (because we would have an increasing process).
+	\item Consider the product of \rv s. Consider $R_1,R_2,\ldots$ being independent \rv s with
+	\[\ev R_i=1\qquad\var R_i<\infty\]
+	that don't necessarily need to be identically distributed. Let $M_{0}=1$ and $M_n=M_{0}\cdot R_{1}\cdot R_{2}\cdot\ldots\cdot R_{n}$ and let $\F$ be the filtration generated by $M={\{M_n\}}_{n\in\N}$. Observe that
+	\begin{enumerate}
+		\item $M$ is adapted to $\F$ by definition;
+		\item $\every M_{n}$ is integrable: consider $\norm{M_{n}}\leq\norm{M_{n-1}}\norm{R_{n}}$ since $M_{n}=M_{n-1}R_{n}$. But since $R_{n}$ has finite variance then $\norm{M_{n-1}}\norm{R_{n}}<\infty$. So since it is bounded it is integrable;
+		\item consider the expectation
+		\begin{align*}
+			\ev[M_{n+1}|\F_{n}]&=\ev[M_{n}R_{n+1}|\F_{n}]\\
+			&=M_{n}\ev[R_{n+1}|\F_{n}] \qquad\text{(beacuse $M_n$ is $\F_n$-meas.)}\\
+			&=M_{n}\ev[R_{n+1}]\\
+			&=M_{n}.
+		\end{align*}
+	\end{enumerate}
+	\begin{example}
+		This is considered a good model for finance: $M_{n}$ is the price of a share at time $n$ and $R_{n+1}$ is the return at time $(n+1)$ per euro invested at time $n$. $\F_n$ is the information that is available to the whole market.
+	\end{example}
+	\item  Consider functions of sums. Consider $\{X_{n}\}$, a sequence of i.i.d. \rv s with
+	\[\ev X_i=0\qquad\var X_i=\sigma^{2}<\infty\quad\every i.\]
+	Consider
+	\[S_{n}=\sum^{n}X_i\]
+	and define
+	\[M_{n}=S_{n}^{2}-n\sigma^{2}.\]
+	$M_n$ is a $\F$-martingale. This is useful to study for example the occurrence of the time in which something happens for the first time. 
+	Consider:
+	\begin{enumerate}
+		\item $M_{n}$ is integrable ($\var X_i=\sigma^{2}$);
+		\item $M_{n}$ is adapted by definition;
+		\item consider the expectation 
+		\begin{align*}
+			\ev[M_{n+1}|\F_{n}]&=\ev\Big[\underbracket[0.6pt]{(S_{n}+X_{n+1})^{2}}_{S^{2}_{n+1}}-(n+1)\sigma^{2}|\F_{n}\Big]\\
+			&=\ev\Big[S_{n}^{2}+N_{n+1}^{2}+2S_{n}X_{n+1}-(n+1)\sigma^{2}|\F_{n}\Big]\\
+			&=S_{n}^{2}+2S_{n}\underbracket[0.6pt]{\ev(X_{n+1}|\F_{n})}_{=0}+\underbracket[0.6pt]{\ev[X_{n+1}^{2}|\F_{n}]}_{\mathclap{\ev[X^{2}_{n+1}]=\sigma^{2}}}-(n+1)\sigma^{2}\\
+			&=S_{n}^{2}+\cancel{\sigma^{2}}-n\sigma^{2}-\cancel{\sigma^{2}}=M_{n}.
+		\end{align*}
+	\end{enumerate}
+	\begin{example}
+		Consider ${(X_{n})}_{n\geq 1}$ being i.i.d. \rv s with common probability density function $g(x)$. Let $f(x)$ be another probability density function with the property
+		\[f(x)=0\qquad\text{for }\frac{x}{g(x)}=0.\]
+		Define
+		\begin{equation*}
+			\begin{array}{l l}
+				L_n&=\underbracket{\prod_{i=1}^{n}\frac{f(X_i)}{g(X_{i})}}_{\mathclap{\text{likelihood ratio}}}\\
+				L_0&=1.
+			\end{array}
+		\end{equation*}
+		Likelihood ration is a $\F$-martingale where $\F$ is the filtration generated by $\{X_{n}\}$. Contemplate:
+		\begin{enumerate}
+			\item it is integrable by definition;
+			\item it is adapted by definition;
+			\item consider the expectation:
+			\begin{align*}
+				\ev\Big[L_{n+1}|\F_{n}\Big]&=\ev\left[L_{n}\frac{f(X_{n+1})}{g(X_{n+1})|\F_{n}}\right]\\
+				&=L_{n}\ev\left[\frac{f(X_{n+1})}{g(X_{n+1})}|\F_{n}\right]\qquad\text{(beacuse $L_n$ is $\F_n$-meas.)}\\
+				&=L_{n}\ev\left[\frac{f(X_{n+1})}{g(X_{n+1})}\right]\\
+				&=L_{n}\underbrace{\int_{\R}\frac{f(X)}{\cancel{g(X)}}\cancel{g(x)}}_{=1}\dx=L_{n}.
+			\end{align*}
+		\end{enumerate}
+	\end{example}
+\end{enumerate}
+This really is exhausting. Like it literally drains the life from me
+\subsection{Doob's decomposition}
+We may want to understand whether there is any relationship between a stochastic process and a martingale. In this part our set $\T$ will be $\N$.\\
+Up to now we said that a process is adapted to $\F$ if $X_{n}$ is $\F_n$-measurable. 
+\begin{definition}
+	The process $F={(F_{n})}_{n\geq1}$ is \emph{$\F$-predictable} if $F_{0}\in\F_{0}$ and $\F_{n+1}\in\F_{n}$, for $\every n\in\N$.
+\end{definition}
+This means that the available information up to $n$ is ``enough'' if 
+\listoffigures  
 \end{document} 
 
 
