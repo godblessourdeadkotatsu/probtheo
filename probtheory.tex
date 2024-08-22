@@ -2656,12 +2656,7 @@ Note that the usual notion of independence corresponds to the specific choice of
 	\F=\left\{\emptyset,\Omega\right\}.
 \end{equation*}
 It is over. It is finally over and I am a considerably worse persone now. Martingales, anyway, are very linked to the notion of conditional probability... And so a lot of other stochastic processes. Whatever.
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.7\linewidth]{screenshot014}
-	\caption[The one and only truth]{}
-	\label{fig:screenshot014}
-\end{figure}
+
 \chapter{A first study in stochastic processes: Martingales}
 Okay, I'll admit that this part is really hard for me to follow. I am already broken down by Professor Polito's lectures and right now... I only want to be happy again. Please note that the astonishing drop in the quality of the notes is not my fault. This shit should be easier to explain but they manage to mess this up anyway. 
 \section{Revising stochastic processes and filtrations}
@@ -3379,9 +3374,761 @@ Up to now we said that a process is adapted to $\F$ if $X_{n}$ is $\F_n$-measura
 \begin{definition}
 	The process $F={(F_{n})}_{n\geq1}$ is \emph{$\F$-predictable} if $F_{0}\in\F_{0}$ and $\F_{n+1}\in\F_{n}$, for $\every n\in\N$.
 \end{definition}
-This means that the available information up to $n$ is ``enough'' if 
+This means that the available information up to $n$ is ``enough'' to have a bet in the period $n+1$. Some predictable processes are:
+\begin{itemize}
+	\item any deterministic processes;
+	\item consider two stopping times $S,T$ of $\F$ and let $S\leq T$. Consider the \rv{} $V$ in $\F_{n}$. Then
+	\[\begin{array}{c c c c}
+	\color{DodgerBlue3}(1)&\color{DodgerBlue3}(2)&\color{DodgerBlue3}(3)&\color{DodgerBlue3}(4)\\
+		V\indi_{(S,T]}&V\indi_{(S,\infty]}&\indi_{(S,T]}&\indi_{(0,T]}
+	\end{array}\]
+	are predictable processes.
+	\begin{fancyproof}
+		\begin{enumerate}
+			\item[\color{DodgerBlue3}(2)] Consider $F=V\indi_{(S,\infty]}$, so that $F_{n}=\indi_{(S,\infty]}(n)$. Consider \begin{align*}
+				F_{n+1}&=V\indi_{(S,\infty]}(n+1)\\
+				&=V\indi_{\{S<n+1\}}\\
+				&=V\indi_{\{S\leq n\}}\in\F_{n}
+			\end{align*}
+			so the process is $\F$-measurable and predictable.
+			\item[\color{DodgerBlue4}(1)] Since we know by hypothesis that $S\leq T$ then $V\in\F_{S}\subset\F_{T}$. This means that $V\in\F_{T}$. Hence, of a consequence,
+			\begin{equation*}
+				V\indi_{(T,\infty]}-V\indi_{(S,\infty]}=V\indi_{(S,T]}
+			\end{equation*}
+			is predictable.
+			\item[\color{DodgerBlue3}(3)] Take $V=1$.
+			\item[\color{DodgerBlue3}(4)] Take $T=\infty$, $V=1$. $\indi_{(S,\infty]}$ is predictable. But then 
+			\[\indi_{[0,S]}=\indi-\indi_{(S,\infty]}\]
+			so it is predictable.
+		\end{enumerate}
+	\end{fancyproof}
+\end{itemize}
+\begin{theorem}
+	\emph{Doob's decomposition}.\\
+	$X$ is a stochastic process which is adapted to $\F$ and integrable. Then
+	\begin{enumerate}
+		\item it can be decomposed as 
+		\[X_{n}=X_{0}+M_{n}+A_{n},\qquad n\in\N\]
+		where:
+		\begin{itemize}
+			\item $M_{n}$ is a $\F$-martingale with $M_0=0$;
+			\item $A_{n}$ is a predictable process with $A_0=0$.
+		\end{itemize}
+		\item The decomposition is unique up to equivalence.
+		\item If $X_{n}$ is a sub-martingale then ${\{A_{n}\}}_{n\geq0}$ increasing, while if $X_{n}$ is a super-martingale then ${\{A_{n}\}}_{n\geq0}$ is decreasing.
+	\end{enumerate}
+\end{theorem}
+\begin{fancyproof}
+	Put $A_0=M_0=0$. Define $M$ and $A$ through their increments:
+	\[ \begin{array}{l l}
+		A_{n+1}-A_{n}&=\underbracket[0.3pt]{\ev\Big[X_{n+1}-X_{n}|\F_{n}\Big]}_{\F_{n}-\text{meas.}}\\
+		M_{n+1}-M_{n}&=(X_{n+1}-X_{n})-(A_{n+1}-A_{n}).
+	\end{array} \]
+	If we look at these quantities we see that $A$ is predictable and $M$ is martingale. Imagine now there is another decomposition: let
+	\[X=X_0+M'+A'\]
+	be another decomposition. We must have
+	\[\cancel{X_0}+M'+A'=\cancel{X_0}+M+A\iff A-A'=M-M'=B.\]
+	Now $B$ is a process and it is predictable and martingale (because it is the difference between two martingales). Since $B$ is predictable \textit{and} a martingale we have
+\begin{align*}
+			B_{n+1}-B_{n}&\underset{\mathclap{\text{\tiny predictable}}}{=}\ev[B_{n+1}-B_{n}|\F_{n}]\\
+		&\underset{\mathclap{\text{\tiny martingale}}}{=}0\\
+		&\implies B_{n+1}=B_{n}=B_0\;\as,A=A'\;\as,M=M'\as\\
+\end{align*}
+If $X$ is a sub-martingale then we have
+\[\ev[X_{n+1}-X_{n|\F_{n}}]\geq0\]
+and this means that we have $A_{n+1}\geq A_{n}$ is increasing.
+\end{fancyproof}
+Consider the increments on $X$:
+\[X_{n+1}-X_{n}=\underbrace{A_{n+1}-A_{n}}_{\mathclap{\text{prediction term}}}+\underbrace{M_{n+1}-M_{n}}_{\mathclap{\text{innovation}}}.\]
+Engineers, much better people than us, often use this terms.
+\subsection{Important stochastic processes and related martingales}
+A quick note before starting:
+\subsubsection*{Markov chains}
+Consider a stochastic process ${\{X_{n}\}}_{n\geq 1}$. All trials are on the same probability space $(E_n,\E_{n})=(E,\E)$. Define a \emph{Markov kernel} on $(E,\E)$
+\[(E,\E)\mapsto(E,\E)\]
+such that
+\[K_{n}(x_{0},x_{1},\ldots,x_{n};A)=\pr(x_{n},A)\qquad\every n\in\N,\;\every(x_{0},x_{1},\ldots,x_{n})\in E,A\in\E.\]
+So the probability that governs the evolution is dependent \textit{only} on the last state and nothing else. If $x_{n+1}=j,x_{n}=i$ then $\pr(i,j)=p_{ij}$. The process $X={\{X_{n}\}}_{n\geq0}$ is said to be a \emph{Markov chain} over $(\Omega,\HS,\pr)$ with state space $(E,\E)$, initial distribution $\mu$ and transition kernel $P$.\\
+\[P={(p_{ij})}_{i,j}\]
+Now consider a Markov chain with transition probability matrix $P$ such that
+\[P\cdot\underbrace{f}_{{\text{eigenvector}}}=\underbrace{\lambda}_{{\text{eigenvalue}}}\cdot f.\]
+This means that we have the following system of equations:
+\[\begin{cases}
+	\sum_{j} p_{ij}f(j)=\lambda f(i)&i=1\\
+	\vdots&i=2\\
+	\vdots&\vdots.
+\end{cases}\]
+We can clearly write these expressions in form of expectation:
+\[\ev[f(X_{n+1})|X_{n}=i]=\lambda f(i).\]
+We can also write it without fixing $i$:
+\begin{equation}
+	\ev[f(X_{n+1})|X_{n}]=\lambda f(X_{n}).\tag{$\bullet$}\label{markovbitch}
+\end{equation}
+Look at the last equation: it is not too different from the martingale property. Consider the ratio $\frac{f(X_{n})}{\lambda^{n}}$ and the filtration generated by $X$ $\sigma(X_{0},X_{1},\ldots,X_{n})$. Thanks to the relation given by the equation (\ref{markovbitch}) it is a martingale with respect to $\sigma(X_{0},X_{1},\ldots,X_{n})$.
+\begin{fancyproof}
+	Consider the expectation 
+\begin{align*}
+		\ev\left[\frac{f(X_{n+1})}{\lambda^{n+1}}\Big|X_0,\ldots,X_n\right]&=\frac{1}{\lambda^{n}}\frac{1}{\lambda}\underbrace{\ev\left[f(X_{n+1}|X_{n})\right]}_{\lambda f(X_{n})}\\
+		&=\frac{1}{\lambda^{n}}\frac{1}{\cancel{\lambda}}\cancel{\lambda}f(X_{n})\\
+		&=\frac{1}{\lambda^{n}}f(X_{n})\\
+		&=Y_{n}
+\end{align*}
+where the first equality is thanks to Markov property. This is a general property for Markov chains.
+\end{fancyproof}
+\begin{example}
+	\emph{Branching processes}. We study the life of a generation of individual. 
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.5\linewidth]{screenshot015}
+		\caption{I don't even know anymore.}
+		\label{fig:screenshot015}
+	\end{figure}
+	The offsprings have a distribution $\{p_{k}\}$. The mean number of offsprings per individual is $m=\sum kp_{k}$. Consider the i.i.id \rv s $\{Z^{(n)}(i),n\geq 0\}$ describing the number of children of the $i$-th individual of generation $n$. Define 
+\begin{equation*}
+	Z_{n+1}=\begin{cases}
+		Z^{(n)}(1)+Z^{n}(2)+\ldots+Z^{(n)}(Z_{n})&\text{if }Z_{n}\neq 0\\
+		0&\text{if }Z_{n}=0
+	\end{cases}
+\end{equation*}
+We immediately realize that this is a Markov process because every generation's number of children can be entirely derived from the previous generation's law or reproduction. I don't need to know whose child the individual is. So $Z_{n}$ (number of individual of the $n$-th generation) gives rise to a Markov chain. 
+\begin{equation*}
+	\sum_{j=0}^{\infty}p_{ij}j=m\cdot i
+	\end{equation*}
+	Is the equation that tells us the complete number of individuals. Now consider $Pf=mf$ with $f(j)=j$. So we have $Pj=mi$ where $m$ plays the role of $\lambda$. The process $\{\frac{Z_{n}}{m^{n}},\sigma(Z^{(0)},\ldots,Z^{(n)})\}$ is a martingale. 
+\end{example}
+\subsubsection*{Poisson martingale}
+Consider $\R_{+}$ as our index set. $\F$ is our filtration and we consider the counting process $N={(N_{t})}_{t\geq 0}$ (it counts the number of events up to time $t$). It has unit jumps and any path starts from 0 ($N_0(\omega)=0$), is increasing and right continuous.
+\begin{definition}
+	The counting process $N$ is said to be a \emph{Poisson process} with rate $\lambda$ with respect to $\F$ if it is adapted to $\F$ and
+	\[\ev[f(N_{t+s}-N_s)|\F_s]=\sum_{k=0}^{\infty}e^{-\lambda t}\frac{(\lambda t)^{k}}{k!}f(k)\qquad\every s,t\in\R_+,\every\text{positive }f\mapsto\N.\]
+\end{definition}
+\begin{theorem}
+	Let $N$ be a counting process. It is a Poisson process with rate $\lambda$ with respect to $\F$ \ifonly{}:
+	\begin{equation*}
+		M_{t}=N_{t}-\lambda t
+	\end{equation*}
+	is a $\F$-martingale.
+\end{theorem}
+We only prove that $M_t$ is a martingale if $N_{t}$ is Poisson.
+\begin{fancyproof}
+	We know that 
+	\begin{align*}
+		\ev[M_{t}|\F_{s}]&=\ev[M_{t}-M_{s}+M_{s}|\F_{s}]\\
+		&=\ev[M_{t}-M_{s}|\F_{s}]+M_{s}\\
+		&=\ev[M_{t}-M_{s}]+M_{s}\\
+		&=\ev[N_{t}-N_{s}+\lambda t+\lambda s]+M_{s}\\
+		&=\underbrace{\ev[N_{t}-N_{s}]}_{\cancel{\lambda (t-s)}}-\cancel{\lambda (t-s)}+M_{s}\\
+		&=M_{s}
+	\end{align*}
+\end{fancyproof}
+We may use the Doob's decomposition theorem to get $N_{t}=M_{t}+\lambda t$ where $\lambda t$ is our predictable process. So the same result can be achieved from two different viewpoints.
+\subsection{Integration in discrete time}
+Let us consider two real-valued processes $M={(M_{n})}_{n}$ and $F={(F_{n})}_{n}$ and let us define
+\[X_{n}=F_0M_{0}+(M_1-M_0)F_1+\ldots+(M_{n}-M_{n-1})F_n.\]
+We say that $\{X_{n}\}$ is the integral of $F$ with respect to $M$ and we write
+\[X_{n}=\int F \dif M\]
+where $\dif M$ is a random signed measure. Remember the Lebesgue-Stieltjes integral? Me neither, but as long as $M$ has bounded variation this is a Lebesgue-Stieltjes integral.
+	\begin{flushright}
+		\begin{tikzpicture}
+			\calloutquote[width=4cm,position={(1,-1)},fill=Turquoise4!30,rounded corners]{Yeah no wait hold your fucking horses.}
+		\end{tikzpicture}\hspace*{2.5cm}
+	\end{flushright}
+	\hspace{2cm}
+	\begin{tikzpicture}
+		\calloutquote[width=3cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\color{white}What's up now?}
+	\end{tikzpicture}
+		\begin{flushright}
+		\begin{tikzpicture}
+			\calloutquote[width=5cm,position={(1,-1)},fill=Turquoise4!30,rounded corners]{First of all how is that shit an integral?? And what the fuck is a Lebesgue-Stieltjes integral?}
+		\end{tikzpicture}\hspace*{2.5cm}
+	\end{flushright}
+	\hspace{2cm}
+	\begin{tikzpicture}
+		\calloutquote[width=5cm,position={(-1,-1)},fill=DodgerBlue4,rounded corners]{\color{white}I should have NEVER let you enroll in this master.}
+	\end{tikzpicture}
+	\begin{flushright}
+		\begin{tikzpicture}
+		\calloutquote[width=5cm,position={(1,-1)},fill=Turquoise4!30,rounded corners]{Professor Lods, I will exact my revenge on Università di Torino very soon.}
+	\end{tikzpicture}\hspace*{2.5cm}
+	\end{flushright}
+	Okay okay. So a little explanation is due since I actually never saw a Stieltjes integral. Too busy doing things, y'know. Things like, for example, sex. Heh. Yeah. Sex. 
+\begin{revise}
+	Oookay so very shortly: a Riemann-Stieltjes integral is a generalization of our dear old Riemann integral. It is notated as
+	\begin{equation*}
+		\int_{a}^{b}f(x)dg(x).
+	\end{equation*}
+	Actually this is not too different from the concept of the Lebesgue integral. Basically is about partitioning the interval $(a,b)$ and then summing for every partition (that is, for each $i$) each value of $f(x_i)$ multiplied for $[g(x_i)-g(x_{i-1})]$. Just take the limit for the partition to be infinitely small and voilà, le integràl c'est servie (I don't know French). El integral està servido (I know a little bit of Spanish). Omnibus integral paratum est ut facile intellegatur (I actually know Latin really well. Useless skills are my strength).\par
+	Anyway what's important is: \textit{we take the function $f(x)$ and use it to calculate how much the variation of $g(x)$ impacts on the total sum}. And if $g(x)=x$, well... We have our cute little Riemann integral!
+\end{revise}
+Yeah after this smug declaration of sterile knowledge we are maybe ready to better understand how the discrete time integral is, well, an integral. Our function $g(x)$ is $M$ so we consider the variation of $M$; since we are working in discrete time we will never reach a partition so fine it can be called continuous. So it's like... a \textit{diet} Riemann-Stieltjes integral.
+\begin{theorem}
+	Consider $F$ bounded and predictable. Then if $M$ is a martingale then $X$ is a martingale; If $M$ is a sub(super)-martingale then $X$ is a sub(super)-martingale.
+\end{theorem}
+This means that... \emph{we can't beat the system!}
+	\begin{flushright}
+	\begin{tikzpicture}
+		\calloutquote[width=4cm,position={(1,-1)},fill=Turquoise4!30,rounded corners]{I can beat something else though.}
+	\end{tikzpicture}\hspace*{2.5cm}
+\end{flushright}
+\begin{example}
+	Consider $M_{n}$ as the price of a share at time $n$ and $F_{n}$ as the number of shares owned during $(n-1,n]$. Our profit will be 
+	\[(M_{n}-M_{n=1})F_{n}\]
+	and our total profit $X_{n}$ gained during $(0,n]$ will be:
+	\[X_{n}=X_{0}+\underbrace{\sum_{k=1}^{n}(M_{k}-M_{k-1})F_{k}}_{\mathclap{\text{discrete time integral}}}\]
+	$F_{n}$ is based on the knowledge in $n-1$ so it is predictable. The process $M_{n}$ should be a martingale (otherwise if it is a sub/super-martingale everyone/no one will buy). So the total profit will also be a martingale! We can only choose our buying politics $F_{k}$, but there is no way to select a politics that will change a martingale in a super-martingale or sub-martingale.
+\end{example}
+Clearly this works in mean! 
+\begin{fancyproof}
+\begin{enumerate}
+	\item	We have $M$ being a martingale and $F_0,F_1,\ldots,F_n\in\F_{n}$ as well as $M_0,M_1,\ldots,M_{n}\in\F_n$. Therefore $X_{n}\in\F_{n}$ and $X$ is adapted to $\F$.
+	\item We need to check whether the discrete time integral is a martingale. We know by hypothesis that $F$ is bounded, so $F<b$ for some $b$. This implies
+	\begin{equation*}
+		|X_{n}|<b(|M_{0}|+|M_1+M_0|+\ldots+|M_n-M_{n-1}|)
+ 	\end{equation*}
+	Since $M$ is a martingale and it is integrable, we get that $X_n$ is bounded and integrable.
+	\item Consider
+	\begin{equation*}
+		\ev[X_{n+1}-X_{n}|\F]=\ev[F_{n+1}(M_{n+1}-M_{n})|\F_n]
+	\end{equation*}
+	since all the terms cancel out and only the last ones survive. But $F_{n+1}\in\F_{n}$ so we can take it out of the expectation:
+	\[F_{n}\underbrace{\ev[M_{n+1}-M_{n}|\F_{n}]}_{=0}=0.\]
+\end{enumerate}
+\end{fancyproof}
+We know that using a policy that it is predictable it is impossible to beat the system. Finance bros try to overcome this possibility using stopping times. If my policy is not only based on a predictable process but I add the randomness of the time in which I decide to sell or buy can I break the curse of martingales and make shareholders want to suck my dick? Well, it depends.
+\subsection{Stopped martingales and Doob's stopping theorem}
+\begin{definition}
+	Define $M={(M_{n})}_{n\in\N}$ as a process and let $T$ be a random time with values on $\overline{\N}$. The process
+	\[X_{n}(\omega)=M_{n\wedge T}(\omega)=\begin{cases}
+		M_{n}(\omega)&n<T(\omega)\\
+		M_{T}(\omega)&n>T(\omega)
+	\end{cases}\]
+	(where $n\wedge T$ is a truncated random time) is called \emph{$M$ stopped at $T$}.
+\end{definition}
+As a consequence $X$ is exactly the discrete time integral if $F=\indi_{[0,T]}$:
+\begin{equation*}
+	X_{n}=\underbracket[0.6pt]{M_0F_0}_{0}+(M_{1}+M_{0})\indi_{[0,T]}(1)+\ldots+(M_{n}-M_{n-1})\indi_{[0,T]}(n).
+\end{equation*}
+The indicators only select the current time interval. If this is the case we can observe that $F_{[0,T]}$ is bounded, positive and predictable. Hence if $M$ is a martingale the theorem applies with this special choice of $M$ and we can write the result as a different theorem:
+\begin{theorem}
+	Let $T$ be a stopping time and let $X$ be the process $M$ stopped at $T$. If $M$ is a martingale then so is $X$ (the same holds for sub-martingales and super-martingales).
+\end{theorem}
+So we cannot determine a policy based on stopping times that can change the nature of our martingale. In the remote case in which you are interested in this you can read Williams - Introduction to martingales. \\
+A further theorem about this is \emph{Doob's stopping theorem}. For a martingale we know
+\[\ev[X_{t}-X_{s}|\F_{s}]=0.\]
+The question is: is this true also if $s$ and $t$ are substituted by stopping times $S,T,S\leq T$?
+\begin{theorem}
+	Let $M$ be adapted to $\F$. Then the following are equivalent:
+	\begin{enumerate}[\circnum]
+		\item $M$ is a submartingale;
+		\item for every bounded stopping time $S\leq T$ the \rv s $M_{S}$ and $M_{T}$ are integrable and 
+		\[\ev[M_{T}-M_{S}|\F_{S}]\geq0;\]
+		\item for each pair of bounded stopping times the \rv s $M_{S}$ and $M_{T}$ are integrable and 
+		\[\ev[M_{T}-M_{S}]\geq 0.\] 
+	\end{enumerate}
+\end{theorem}
+\begin{remark}
+	If $M$ is a martingale the theorem can be read in a different way:
+	\begin{equation*}
+		\ev M_{T}=\ev M_{S}=\ev M_{0}.
+	\end{equation*}
+	Previously, $\ev M_{n}=\ev M_{n-1}=\ev M_{0}$.
+\end{remark}
+\begin{fancyproof}
+	To prove the theorem we need to show that from condition 1 follows 2 from which follows 3 from which follows 1.
+	\begin{enumerate}
+		\item[$1\to 2$] by hypothesis $M$ is a sub-martingale and our thesis is that if $S(\omega)<T(\omega)<n$ (because we asked for bounded times) then:
+		\begin{enumerate}
+			\item $M_{S}$ and $M_{T}$ are integrable;
+			\item $\ev[M_{T}-M_{S}|\F_{S}]\geq0$.
+		\end{enumerate}
+		We know that $S$ and $T$ are bounded by $n$. Let $V$ be a positive bounded \rv{} and define $F=V\indi_{(S,T]}$ and use it in the discrete time integral:
+		\[X_{n}=\underbrace{M_0F_0}_{X_0}+(M_1-M_0)\underbrace{F_1}_{\mathclap{V\indi_{\{1\in(S,T]\}}}}+\ldots+(M_{n}-M_{n-1})F_{n}\]
+		So we have 
+		\[X_{n}-X_{0}=V(M_{T}-M_{S})\]
+		So $X_{n}$ is a sub-martingale. Take $V=1$ and $S=0$: now we have
+		\begin{equation*}
+			\begin{array}{c c c l}
+				X_{n}&-&X_{0}&=M_{T}\\
+				\downarrow&&\downarrow&\\
+				\text{int.}&&\text{int.}&\implies M_{T}\text{ is integrable}.
+			\end{array}
+		\end{equation*}
+		Now take $V=1$ and $T=n$ so that we get
+		\begin{equation*}
+			\begin{array}{c c c c l}
+				X_{n}&-&X_{0}&=M_{n}&-M_{S}\\
+				\downarrow&&\downarrow&\downarrow&\\
+				\text{int.}&&\text{int.}&\text{int.}&\implies M_{S}\text{ is integrable}.
+			\end{array}
+		\end{equation*}
+		We recall that $V\in\F_S$ and we use the defining property for $\ev(\cdot|\F_S)$. So we can write
+		\begin{align*}
+			\ev V\ev(M_{T}-M_{S}|\F_{S})&\underset{\mathclap{\text{def. prop.}}}{=}\ev V(M_{T}-M_{S})\\
+			&\underset{\mathllap{\text{discr. time int.}}}{=}\ev[X_{n}-X_{0}]\\
+			&\underset{\mathllap{\text{proved above}}}{\geq}0
+		\end{align*}
+		and this is true $\every V>0,V<b,V\in\F_{s}$. Hence
+		\begin{equation*}
+			\ev(M_{T}-M_{S}|\F_{S})\geq 0
+		\end{equation*}
+		So $1\to2$.
+		\item[$2\to3$] We can use the tower rule. Take the expectation of point 2:
+		\[\ev[\ev(M_{T}-M_{S}|\F_{S})]=\ev[M_{T}-M_{S}]\geq0.\]
+		\item[$3\to1$] Let $3$ hold, so that $\ev[M_{T}-M_{S}]\geq0$. Choose $T=n$ and $S=0$. Then
+	$M_{n}$ is integrable. Move to adaptness: this holds by hypothesis. Move to the martingale inequality:
+	\begin{equation*}
+		\ev[M_{n}-M_{m}|\F_{m}]\geq0.
+	\end{equation*}
+	Note that this is equivalent to prove 
+	\begin{equation*}
+		\ev\indi_H\ev[M_{n}-M_{m}|\F_{m}]\geq0\qquad H\in\F_{m},0\leq m\leq n.
+	\end{equation*}
+	Fix $H,m,n$ and define
+	\begin{equation*}
+		S(\omega)=m\qquad T(\omega)=n\indi_H(\omega)+m\indi_{\{\Omega\setminus H\}}(\omega)
+	\end{equation*}
+	The indicators are non-zero in complementary instances. Notice that:
+	\begin{enumerate}
+		\item $S$ is a fixed time so it is a stopping time;
+		\item $S\leq T\leq n$ by definition of $S$ and $T$ because the indicators are non-zero in complementary instances;
+		\item $T\geq S$ is a foretold time by $S=m$;
+		\item $H\in\F_{S}$ by definition.
+	\end{enumerate}
+	So we can write $M_{T}-M_{S}=\indi_H(M_{n}-M_{m})$ where $M_{T}-M_{S}\geq0$ by hypothesis. This means that we have 
+	\begin{equation*}
+		\underbrace{\ev[\indi_{H}\ev(M_{n}-M_{m}|\F_{m})]}_{\ev[M_{n}-M_{m}|\F_{m}]\geq0}\geq0
+	\end{equation*}
+	\end{enumerate}
+\end{fancyproof}
+\subsection{Oscillations}
+We will talk about oscillations in a strip $(a.b)$ during a time interval. Consider an adapted process $M$ and two real numbers $a<b\in\R$. We want to set a level $a$ and a level $b$. First, by convention, fix $T_0=-1$. Then define:
+\[\begin{array}{l}
+	S_{k}:=\inf\{n>T_{k-1}:M_{n}\leq a\}\\
+	T_{l}:=\inf\{n>S_{k}:M_{n}\geq b\}.
+\end{array}\]
+So it is the first time in which the process crosses the threshold $a$ or $b$ after having crossed the other threshold.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.62\linewidth]{screenshot016}
+	\caption{Up and downs. Just like my consumption of cocaine and my mood respectively on an average tuesday evening.}
+	\label{fig:screenshot016}
+\end{figure}
+We call $S_{k}$\emph{ downcorssing time} while we call $T_{k}$ \emph{upcrossing time}. \\
+Now consider the sequence $(T_0,S_1,T_1,S_2,T_2,\ldots)$. It is an increasing sequence of stopping times. If we want to focus on the number of oscillations we may count how many times we go from an upcrossing to a downcrossing time (or vice-versa). Say we want to count the upcrossing. We can define a quantity
+\begin{equation*}
+	U_{n}(a,b)=\sum_{k=1}^{\infty}\indi_{(0,n]}(T_{k})
+\end{equation*}
+which of course is a counting process.
+\begin{example}
+	We are still with our financebros. Suppose that $(M_{n})$ is the price of an asset at time $n$. We want to buy when the price is below $a$ at time $S_i$ and sell when it is above $b$ at time $T_i$. In $(0,n]$ we have $U_{n}(a,b)$ cycles of buying and selling so our strategy could consists in holding a number $F_{n}$ of shares during period $(m-1,m]$. This means introducing
+	\[F_{m}=\sum_{k=1}^{\infty}\indi_{(S_{k},T_{k}]}\]
+	with $F_{0}=0$. We can thus trace the evolution of our capital with the discrete-time integral:
+	\[X=\int F\dif M\]
+	And the profit during $(0,n]$will be $X-X_{0}$.\\
+	The profit is at least
+	\begin{equation*}
+		(b-a)U_{n}(a,b).
+	\end{equation*}
+\end{example}
+\begin{proposition}
+	If $M$ is a sub-martingale with respect to its natural filtration then 
+	\begin{equation*}
+		(b-a)\ev U_{n}(a,b)\leq\ev\left[(M_{n}-a)^{+}-(M_{0}-a)^{+}\right].
+	\end{equation*}
+\end{proposition}
+We wanted to find a bound for our profit, but our profit is a stochastic quantity: so it's only natural to think about the expectation to give a bound to the number of expected up/downcrossing.\\
+Observe that the number of upcrossings does not depend on the value of $T_0$ that we fix.
+\begin{fancyproof}
+	Choose $a=0$. Consider hence the process $(M-a)^{+}$ that is sub-martingale (if $M$ is a sub-martingale). Take $M\geq 0$ and let 
+	\begin{equation*}
+		F_{n}-\sum_{k=1}^{\infty}\indi_{(S_{k},T_{k}]}(n)
+	\end{equation*}
+	and consider 
+	\begin{equation*}
+		X=\int F\dif M
+	\end{equation*}
+	like in our example. We know that $F$ is predictable since by definition $F_{k+1}\in\F_{k}$. Consider the expectation of the increment
+	\begin{equation*}
+		\ev[X_{k+1}-X_{k}|\F_{k}]=\ev\left[F_{k+1}(M_{k+1}-M_{k})|\F_{k}\right].
+	\end{equation*}
+	But since $F_{k+1}$ is predictable we can take it out the expectation:
+	\begin{equation*}
+		F_{k+1}\ev\left[M_{k+1}-M_{k}|\F_{k}\right].
+	\end{equation*}
+	But since $F_{k+1}$ is an indicator we know it is $\leq1$:
+	\begin{equation*}
+			\ev[X_{k+1}-X_{k}|\F_{k}]\leq\ev\left[M_{k+1}-M_{k}|\F_{k}\right].
+	\end{equation*}
+	Now take the expectation of both sides:
+	\begin{equation*}
+		\ev[X_{k+1}-X_{k}]\leq\ev\left[M_{k+1}-M_{k}\right].
+	\end{equation*}
+	If we sum these inequalities over $k$ we get:
+	\begin{equation*}
+		\ev\left[X_{n}-X_{0}\right]\leq\ev\left[M_{n}-M_{0}\right].
+	\end{equation*}
+	So we now get that
+	\begin{equation*}
+		bU_{n}(a,n)\leq\ev\left[X_{n}-X_{0}\right]\leq\ev\left[M_{n}-M_{0}\right]
+	\end{equation*}
+	but given that $a=0$ we get that
+	\begin{equation*}
+		bU_{n}(0,b)\leq\ev[M_{n}-M_{0}].
+	\end{equation*}
+	Clearly we have to take the positive part.
+\end{fancyproof}
+This characterizes our martingale and its boundedness. The number of oscillations of a sub-martingale is bounded! The next question is: can we say anything about the behaviour of maximum/minimum of a martingale or sub-martingale? 
+\begin{remark}
+	Consider a sequence $\{X_{n}\}$ of independent \rv s with $\ev X_{n}=0,S_n=\sum X_{i}$. We proved that
+	\begin{equation*}
+		a^{2}\pr(\max_{k\leq n}|S_{k}|>a)\leq\var S_{n}
+	\end{equation*}
+	and we called this \emph{Kolmogorov's inequality}.
+\end{remark}
+What we are doing here is considering a random walk whose jumps have 0 mean. We wonder wether it is above the level $a$ as seen in figure \ref{fig:screenshot017}.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{screenshot017}
+	\caption{The maximum of the random walk.}
+	\label{fig:screenshot017}
+\end{figure}
+About this, we know that $\{S_{n}\}$ is a $\F$-martingale but in proving the Kolmogorov's inequaility we never talked about the martingale property! We could improve this inequality using the \emph{Doob's martingale inequality}. The problem is that we can prove very general inequalities that hold true for any \rv s but specifying more characteristic we can obtain stricter bounds. In this framework let's define 
+\begin{equation*}
+	\begin{array}{l}
+		M^{\star}_{n}=\max_{k\leq n}M_{k}\\
+		m^{\star}_{n}=\min_{k\leq n}M_{k}\\
+	\end{array}
+\end{equation*}
+as current maximum and current minimum of $M$.
+\begin{theorem}
+	Take $M$ as a sub-martingale. For $b>0$ it holds:
+	\begin{enumerate}
+		\item $b\pr(M^{\star}_{n}\geq b)\leq\ev\left[M_{n}\indi_{\{M_{n}^{\star}\geq b\}}\right]\leq\ev\left[M_{n}^{+}\right]$;
+		\item $b\pr(m^{\star}_{n}\leq-b)\leq-\ev M_{0}+\ev\left[M_{n}\indi_{\{m_{n}^{\star}\geq b\}}\right]\leq\ev M_{n}^{+}-\ev M_{0}$.
+	\end{enumerate}
+\end{theorem}
+So we can further bound the result looking into the property of $M_{n}$.
+\begin{example}
+	Prof. Sacerdote fucked up so we noe need to define the brownian motion (or Weiner process).
+	\begin{definition}
+		A real-valued stochastic process $B={(B_{t})}_{t\geq0}$ is called \emph{brownian motion} if:
+		\begin{enumerate}
+			\item the index set is $\R^{+}$;
+			\item $B_{0}(\omega)=0$ for almost all $\omega$;
+			\item $B_{t_{n}}-B_{t_{n-1}},\ldots,B_{t_{1}}-B_{t_{0}}$ are independent for $\every 0=t_{0}<t_1<\ldots<t_n<\infty$;
+			\item $B_{t}-B_{s}\sim B_{t+b}-B_{s+b}$ for every $0\leq s<t<\infty\quad\every n>- s$;
+			\item $B_{t}-B_{s}\sim N(0,t-s)$;
+			\item $t\mapsto B_{t}(\omega)$ are continuous for every $\omega$.
+		\end{enumerate}
+	\end{definition}
+	The brownian motion is in itself a martingale, but there is a class of martingales strictly related to it:
+	\begin{equation*}
+		M_{t}=\exp\left\{\lambda B_{t}-\frac{1}{2}\lambda^{2}t\right\},\qquad t\in\R^{+}.
+	\end{equation*}
+	Now we can get to the actual example: if $B$ is a brownian motion, we have 
+	\begin{equation*}
+		\pr(\sup_{0\leq t\leq\theta}B_{t}\geq b)\leq\exp\left\{-\frac{b^{2}}{s\theta}\right\}.
+	\end{equation*}
+	The sample paths of brownian motions are extremely irregular. We are asking with which probability the max of our process will be over $b$ at time $\theta$.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{screenshot018}
+		\caption{Check out Autechre. A staple in electronic experimental music.}
+		\label{fig:screenshot018}
+	\end{figure}
+	I am basically asking if the maximum attained is above or below $b$.
+	How can we use the Doob's inequality?
+	\begin{fancyproof}
+		Consider
+		\begin{equation*}
+			\pr(\sup B_{t}\geq b)=\pr(\sup e^{\lambda B_{t}}\geq e^{\lambda b})
+		\end{equation*}
+		and using Doob's inequality
+		\begin{align*}
+				\pr(\sup B_{t}\geq b)&=\pr(\sup e^{\lambda B_{t}}\geq e^{\lambda b})\\
+				&\leq \frac{\overbrace{\ev\left[e^{\lambda B_{\theta}-\frac{\lambda^{2}}{2}\theta}\right]}^{\text{martingale}}}{e^{\lambda b}e^{-\frac{\lambda^{2}}{2}\theta}}\\
+				&=e^{-\lambda b+\frac{\lambda^{2}}{2}\theta}\qquad\every\lambda>0
+			\end{align*}
+	\end{fancyproof}
+\end{example}
+Now we have to prove Doob's inequality.
+\begin{fancyproof}
+	We introduce 2 stopping times: 
+	\begin{equation*}
+		\begin{array}{l l}
+			T&=\inf\{n\geq0:M_{n}\geq b\}\\
+			S&=\inf\{n\geq0:M_{n}\leq-b\}.
+		\end{array}
+	\end{equation*}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\linewidth]{screenshot019}
+		\caption{Also Aphex Twin. Really, Autechre and Aphex Twin are probably the best example of the boom of experimentation in popular electronic music between 1995 and 2005.}
+		\label{fig:screenshot019}
+	\end{figure}
+	Consider the current maximum and minimum above the level $b$:
+	\begin{equation*}
+		\{M^{\star}_{n}\geq b\}=\{T\leq n\}\qquad	\{m^{\star}_{n}<-b\}=\{S\leq n\}.
+	\end{equation*}
+	Fix $b$ and $n$. When $\{T\leq n\}$ we have
+	\begin{align*}
+		M_{T\wedge n}=M_{T}\geq b.
+	\end{align*}
+	Multiply by $\indi_{\{T\leq n\}}$:
+	\begin{equation*}
+		b\indi_{\{T\leq n\}}\leq M_{T\wedge m}\indi_{\{T\leq n\}}.
+	\end{equation*}
+	Using Doob's stopping theorem we know that 
+	\begin{equation*}
+		\ev\left[M_{T}-M_{S}|\F_{S}\right]\geq0
+	\end{equation*}
+	and using $S=T\wedge n$ and $T=n$ we obtain
+	\begin{equation*}
+		\ev\left[M_{n}|\F_{T\wedge n}\right]>M_{T\wedge n}.
+	\end{equation*}
+	So summing it all up:
+	\begin{align*}
+		b\indi_{\{T\leq n\}}&\leq M_{T\wedge m}\indi_{\{T\leq n\}}\\
+		&\leq\indi_{\{T\leq n\}}\ev\left[M_{n}|\F_{T\wedge n}\right]\\
+		&\ev\left[M_{n}\indi_{\{T\leq n\}}|\F_{T\wedge n}\right].
+	\end{align*}
+	Now take the expectation:
+	\begin{align*}
+		b\pr(T\leq n)&=b\pr(M^{\star}_{n}\geq b)\\
+		&\leq\underbrace{\ev\left[M_{n}\indi_{\{T\leq n\}}\right]}_{\mathclap{\ev\left[M_{n}\indi_{\{M_{n}^{\star}\geq b\}}\right]}}\\
+		&\leq\ev(M^{+}_{n}).
+	\end{align*}
+	For the minimum we work on $\{S\leq n\}$ and we get 
+	\begin{align*}
+		M_{S\wedge n}&=M_{S}\indi_{\{S\leq n\}}+M_{S}\indi_{\{S>n\}}\\
+		&\leq-b\indi_{\{S\leq n\}}+M_{n}\indi_{S\geq n}.
+	\end{align*}
+	Now take the expectation:
+	\begin{equation*}
+		\ev M_{S\wedge n}\leq-b\pr(m^{\star}_{n}\leq-b)+\ev\left[M_{n}\indi_{\{S>n\}}\right].
+	\end{equation*}
+	So that we get
+	\begin{equation*}
+		\pr(m^{\star}_{n}\leq-b)\leq-\ev M_{S\wedge n}+\ev[M_{n}\indi_{\{S>n\}}].
+	\end{equation*}
+	Now use Doob's stopping theorem with $T=0$ and $S=S\wedge n$ so that $\ev M_{0}\leq\ev M_{\{S\wedge n\}}$. This gets us our result:
+	\begin{align*}
+		b\pr(m^{\star}_{n}-b)&\leq-\ev M_{0}+\ev\left[M_{n}\indi_{\{m_{n}^{\star}\}}\right]\\
+		&\leq\ev M^{+}_{n}-\ev M_{0}.
+	\end{align*}
+\end{fancyproof}
+\begin{remark}
+	If $M$ is a martingale then $|M|^{p}$ is a sub-martingale for $p\geq1$. If $M_{n}\in\lp\every n$ we can apply Doob's inequality.
+\end{remark}
+\begin{corollary}
+	If $M$ is martingale in $\lp$ for some $p\geq 1$ then for $b>0$ we have that
+	\begin{equation*}
+		b^{p}\pr(\max_{k\leq n}|M_{k}|>b)\leq\ev|M_{n}|^{p}.
+	\end{equation*}
+\end{corollary}
+There are also other bounds:
+\begin{itemize}
+	\item $b\pr(\max_{k\leq n}|M_{k}>b)\leq 2\ev M_{n}^{+}-3M_{0}$;
+	\item \emph{Doob's norm inequality}: if $M$ is a martingale in $\lp,p\geq 1$ and $q$ is the exponent conjugate to $p$ ($\frac{1}{p}+\frac{1}{q}=1$) then
+	\begin{equation*}
+		\ev\max_{  k\leq n}|M_{k}|^{p}\leq q^{p}\ev|M_{n}|^{p}.
+	\end{equation*}
+	\item  Consider $L^{2}$-bounded martingales characterized by final coordinate $X$ with $\var X=\sigma^{2}$ (that is I am fixing the variance of the last value I consider). We want to assess the variability of this process.
+	\begin{theorem}
+		\emph{Dubin \& Schwartz 1998}: it holds
+		\begin{enumerate}
+			\item $\ev\left[\max_{0\leq T\leq t}M_{T}\right]\leq\sigma$;
+			\item $\ev\left[\max_{0\leq T\leq t}|M_{T}|\right]\leq\sigma\sqrt{2}$.
+		\end{enumerate}
+		Moreover, there exist suitable martingales for which this bound is attained and is scrict.
+	\end{theorem}
+\end{itemize}
+\subsection{Limit of sequences of \rv s}
+Consider a sequence of \rv s $\{X_{n}\}$ with independence between the \rv. Then we know that if $\lim X_{n}$ exists then the limit is a constant. Why?
+\begin{remark}
+	If the $\lim_{n}X_{n}$ exists than it belongs to the tail \sa{} $\tau$. Since the \rv s are independent then we can apply the 0-1 Kolmogorov law, so the probability that the \rv{} is infinity is either 0 or 1 but if this is the case then it must be a constant.
+\end{remark}
+If $\{X_{n}\}$ is a submartingale our question is: if we consider the limit 
+\begin{equation*}
+	\lim_{n\to\infty}X_{n}=X_{\infty}
+\end{equation*}
+What the fuck? What is this object? Consider the case in which $\T=\N$. We know that the expected value $\{\ev X_{n}\}$ is an increasing sequence if the process is a sub-martingale. 
+We have our first theorem about convergence:
+\begin{theorem}
+	Let $X$ be a sub-martingale. If (and note that is a sufficient condition)
+	\begin{equation*}
+		\sup_{n}\ev X_{n}^{+}\ev\infty
+	\end{equation*}
+	Then
+	\begin{enumerate}
+		\item $\{X_{n}\}$ converges $\as$;
+		\item $\{X_{n}\}$ converges to an integrable \rv.
+	\end{enumerate}
+\end{theorem}
+Before proving think about it. \begin{enumerate}
+\item	The condition of this theorem requires that $X^{+}$ is in $L^{1}$ and is bounded. If $X$ is a sub-martingale then also $X^{+}$ is a sub-martingale... But this means that $\ev X^{+}_{n}$ is an increasing sequence. Our condition gives a bound to the increase of this sequence! But this means that I am trying to avoid the divergence of the expected value (which means: trying to control the rate of our martingale). 
+\item Now think about a negative sub-martingale: this would verify the condition so there is no problem about it.
+\item Now think about a positive super-martingale: it is only a negative sub-martingale with another sign so it converges.
+\item Consider now a positive or bounded martingale or a negative martingale. All of these cases converge. 
+\item $\sup\ev X_{n}^{+}<\infty\iff\sup\ev|X_{n}|\leq\infty$. Let $\{X_{n}\}$ be a sub-martingale such that
+\begin{equation*}
+	\ev X_{n}>\ev X_{0}\qquad\every n.
+\end{equation*}
+But now \begin{equation*}
+	\ev|X_{n}|=\ev X_{n}^{+}-\ev X_{n}^{-}=\ev X_{n}^{+}+\ev_{n}^{+}-\ev X_{n}
+\end{equation*}
+So
+\begin{align*}
+	\ev X_{n}^{+}&\leq\ev|X_{n}|=2\ev X_{n}^{+}-\ev X_{n}\\
+	&\leq 2\underbrace{\ev X_{n}^{+}}_{<\infty}-\ev X_{0}\leq\infty
+\end{align*}
+So $\ev|X_{n}|\leq\infty$.
+\end{enumerate}
+\begin{fancyproof}
+	We prove the theorem by contradiction. Pick an outcome $\omega$ and suppose that $\{X_{n}(\omega)\}$ is a numerical sequence that has not a limit. But if it doesn't have a limit, then 
+	\[\exists\inf\lim\neq\sup\lim\qquad\inf\lim<\sup\lim.\]
+	So there exist at least 2 rationals $a<b$ such that
+	\begin{equation*}
+		\inf\lim<a<b<\sup\lim.
+	\end{equation*}
+	The sequence $\{X_{n}(\omega)\}$ crosses $(a,b)$ $\infty$ many times. Now take the union over rational $a$ and $b$, $a<b$ of the sets
+	\begin{equation*}
+		\{U(a,b)=\infty\}
+	\end{equation*}
+	with $U(a,b)=\lim_{n\to\infty}U_{n}(a,b)$. Our aim is now to show that $U(a,b)\leq\infty$ almost surely to get a contradiction.\\
+	Fix $a,b$. We know that $U_{n}(a,b)$ is increasing with $n$. Now consider
+	\begin{align*}
+		(b-a)\ev U(a,b)&=(b-a)\ev\lim U_{n}(a,b)\\
+		&\underset{\mathclap{\text{monotone conv.}}}{=}(b-a)\lim\ev U_{n}(a,b)\\
+		&\underset{\mathclap{\text{upcross inequalities}}}{\leq}\sup\ev(X_n-a)^{+}\\
+		&\leq \sup\ev X_{n}^{+}+|a|.
+	\end{align*}
+	So this means that $\ev U(a,b)<\infty$. But this is a contradiction, so it exists a limit $X_{n}=X_{\infty}\as$.\\
+	Now consider the second part of the theorem:
+	\begin{align*}
+		\ev|X_{\infty}|&=\ev\lim\inf|X_{n}|\\
+		&\underset{\mathclap{\text{Fatou's lemma}}}{\leq}\lim\inf\ev|X_{n}|\\
+		&\leq 2\sup\ev X_{n}^{+}-\ev X_{0}\leq\infty
+	\end{align*}
+	so the limit is integrable.
+\end{fancyproof}
+Here everything is related to integrability conditions but this is a sufficient condition. What if we want a sufficient and necessary condition? Well, consider $\sup_n\ev X_{n}^{+}\leq\infty$. We want to control the tail uniformly not only on the tail but on the whole process.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\linewidth]{screenshot020}
+	\caption{It's astonishing how much a bad teacher can have you hate a subject.}
+	\label{fig:screenshot020}
+\end{figure}
+We recall that we already introduced a strong condition for uniform integrability. w
+We will need:
+\begin{enumerate}
+	\item a collection $\mathcal{K}$ of real \rv s is said to be uniformly integrable if 
+	\begin{equation*}
+		k(b)=\sup_{X\in\mathcal{K}}\ev|X|\indi_{\{X>b\}}\xrightarrow[b\to\infty]{}0.
+	\end{equation*}
+	\item If $\mathcal{K}$ is dominated by an integrable \rv{} $Z$ then it is uniformly integrable.
+	\item uniform integrability implies $L^{1}$-boundedness but not the converse.
+	\item If $\mathcal{K}$ is $L^{p}$-bounded for some $p>1$ then it is uniformly integrable.
+\end{enumerate}
+\begin{lemma}
+	Let $Z$ be an integrable \rv{}. Then
+	\begin{equation*}
+		\mathcal{K}=\left\{X:X=\ev(Z|\G)\right\}
+	\end{equation*}
+	for some sub-\sa{} $\G$ of $\HS$ is uniformly integrable.
+\end{lemma}
+\begin{proposition}
+	Let $Z$ be an integrable \rv{}. Define 
+	\begin{equation*}
+		X_{t}=\ev(Z|\F_{t})\qquad t\in\T.
+	\end{equation*}
+	This means that $\{X_{t}\}$ is a uniformly integrable $\F$-martingale.
+\end{proposition}
+\begin{theorem}
+	Let $\{X_{n}\}$ be a sequence of real-valued \rv s. The following are equivalent:
+	\begin{enumerate}
+		\item it converges in $L^{1}$;
+		\item it converges in probability and it is uniformly integrable.
+	\end{enumerate}
+\end{theorem}
+We can now prove the theorem about the convergence of sub-martingales.
+\begin{theorem}
+	Let $X$ be a sub-martingale. We have that $X$ converges almost surely and in $L^{1}$ \ifonly{} it is uniformly integrable. Moreover, if it is so, setting 
+	\begin{equation*}
+		X_{\infty}=\lim X_{n}
+	\end{equation*}
+	extends $X$ to a sub-martingale
+	\begin{equation*}
+		\xbar={(X_{n})}_{n\in\overline{\N}}.
+	\end{equation*}
+\end{theorem}
+We only prove the first part of the theorem.
+\begin{fancyproof}
+	\emph{Necessity}. If $X$ converges in $L^{1}$ by the theorem above it is uniformly integrable.\\
+	\emph{Sufficiency}. If $X$ is uniformly integral then it is $L^{1}$-bounded for the property above. So our previous theorem holds and the martingale converges almost surely with $X_{\infty}$ integrable. Furthermore, for the property above, it also converges in $L^{1}$.
+\end{fancyproof}
+Is there a way to get a uniformly integrable sub-martingale?
+\begin{theorem}
+	A process $M={(M_{n})}_{n\in\N}$ is a uniformly integrable martingale \ifonly{} for some integrable \rv{} $Z$
+	\begin{equation}
+		M_{n}=\ev\left[Z|\F_{n}\right]\qquad n\in\N.\tag{$\bullet$}\label{AAAA}
+	\end{equation}
+	If so it converges almost surely and in $L^{1}$ to the integrable \rv
+	\begin{equation*}
+		M_{\infty}=\ev[Z|\F_{\infty}].
+	\end{equation*}
+\end{theorem}
+\begin{corollary}
+	For every integrable \rv{} $Z$ we have
+	\begin{equation*}
+		\ev(Z|\F_{n})\convas\xrightarrow[]{L^{1}}\ev(Z|\F_{\infty}).
+	\end{equation*}
+\end{corollary}
+\begin{theorem}
+	Let $Z$ be an integrable \rv{} and let 
+	\begin{equation*}
+		M_{n}=\ev(Z|\F_{n})_{n\in\overline{\N}}.
+	\end{equation*}
+	For every stopping time $T$ define
+	\begin{equation*}
+		M_{T}=\ev[Z|\F_{T}]
+	\end{equation*}
+	and for arbitrary stopping times $S$ and $T$ we get
+	\begin{equation*}
+		\ev[M_{T}|\F_{S}]=M_{S\wedge T}.
+	\end{equation*}
+\end{theorem}
+This lets us rethink Doob's theorem.
+\begin{theorem}
+	If $S$ and $T$ are arbitrary stopping times such that $S\leq T$ then
+	\begin{equation*}
+		\ev[M_{T}|\F_{S}]=M_{S}
+	\end{equation*}
+	for an uniformly integrable martingale.
+\end{theorem}
+The dominated convergence theorem requires adaptness. 
+\begin{theorem}
+	\emph{Hunt's dominated convergence theorem}.\\
+	Let $\{X_{n}\}$ be dominated by an integrable \rv{} and suppose that exists
+	\begin{equation*}
+		X_{\infty}=\lim X_{n}
+	\end{equation*}
+	So ${(\ev_{n}X_{n})}_{n}$ converges to $\ev X_{\infty}$ almost surely and in $L^{1}$.
+\end{theorem}
+To prove we should use Borel-cantelli somehow.
+\clearpage
+\begin{closethedeal}
+	That's it. I really hated this last part. What really makes me angry is that this shit could even be remotely interesting if it wasn't all a slop of notions and theorems. Professor Sacerdote really takes the joy out of everything.\par
+	I'm sorry for the mistakes, there might be many. But still, this should be better than looking at the notes by Polito or Sacerdote. At least I hope so. 
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=\linewidth]{screenshot014}
+		\caption[The one and only truth]{Is it over for me anon?}
+		\label{fig:screenshot014}
+	\end{figure}
+\end{closethedeal}
 \listoffigures  
 \end{document} 
 
 
-%THIS IS THE() DARK AGE OF LOVE  
+%THIS IS THE() DARK AGE OF LOVE   
