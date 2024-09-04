@@ -1563,14 +1563,14 @@ Let's state again the two Borel-Cantelli lemmas side by side (and with a slightl
 	\emph{Borel-Cantelli lemmas}\\
 	\begin{enumerate}[a)]
 		\item Let ${(B_n)}_{n}$ be a sequence of Bernoulli \rv s.
-	\[\sum_n \ev B_n<+\infty\implies\sum_n\implies\sum_n B_n<+\infty\as\]
+	\[\sum_n \ev B_n<+\infty\implies\sum_n B_n<+\infty\as\]
 	\item If 
 	\[\sum_n\ev B_n=\infty\text{ and }{(B_n)}_{n}\text{ are pairwise independent}\]
 	then
 	\[\sum_n B_n=+\infty\as\]
 	\end{enumerate}
 \end{theorem}
-We will prove $b)$.
+We will prove $b)$, the so-called ``divergence part''.
 \begin{fancyproof}
 	\begin{notation}
 		\[p_n=\ev B_n,\quad a_n=\sum_{i=1}^n\ev B_i=\sum_{i=1}^{n}p_i\]
@@ -3948,7 +3948,8 @@ Consider a sequence of \rv s $\{X_{n}\}$ with independence between the \rv. Then
 \begin{remark}
 	If the $\lim_{n}X_{n}$ exists than it belongs to the tail \sa{} $\tau$. Since the \rv s are independent then we can apply the 0-1 Kolmogorov law, so the probability that the \rv{} is infinity is either 0 or 1 but if this is the case then it must be a constant.
 \end{remark}
-If $\{X_{n}\}$ is a submartingale our question is: if we consider the limit 
+This is about the behavior in the limits of a sequence of \rv s with independence between $\{X_{n}\}$. Then if the limit exists it is a constant, since $\lim_{n}X_{n}$ belongs to the tail \sa{} of the sequence. Independency between \rv s tells us that we can apply Kolmogorov's 0-1 law to say that $\pr(\lim_{n}X_{n}=\infty)$ is either 0 or 1... but if we somehow know that the limit exists then it can't be $\infty$ so its probability of being $\infty$ is 0 and therefore it is a constant almost surely! This is cool because it tells us that the limit is either infinite or finite.
+If $\{X_{n}\}$ is a submartingale consider the limit 
 \begin{equation*}
 	\lim_{n\to\infty}X_{n}=X_{\infty}
 \end{equation*}
@@ -3957,7 +3958,7 @@ We have our first theorem about convergence:
 \begin{theorem}
 	Let $X$ be a sub-martingale. If (and note that is a sufficient condition)
 	\begin{equation*}
-		\sup_{n}\ev X_{n}^{+}\ev\infty
+		\sup_{n}\ev X_{n}^{+}<\infty
 	\end{equation*}
 	Then
 	\begin{enumerate}
@@ -4116,6 +4117,254 @@ The dominated convergence theorem requires adaptness.
 	So ${(\ev_{n}X_{n})}_{n}$ converges to $\ev X_{\infty}$ almost surely and in $L^{1}$.
 \end{theorem}
 To prove we should use Borel-cantelli somehow.
+\chapter{Exercises and questions}
+Exercises: I will add them later, I think. Not sure whether I should add them here or at the 
+\section{Questions for the oral examination}
+Here I will try and answer to the questions that were on the moodle site about the year 2022-2023. I hope that they will be valid for the years to come as well.
+\subsection{Transition kernels: definition, example, and their usage in the extension of measures to
+product spaces}
+First of all, the definition:
+\begin{definition}
+	Let $(E,\E)$ and $(F,\F)$ be measurable spaces. Let $K$ be a mapping from $E\times\F$ into $\overline{\R}_+$. Then $K$ is called \emph{transition kernel} from space $(E,\E)$ into space $(F,\F)$ if:
+	\begin{itemize}
+		\item the mapping $x\mapsto K(x,B)$ is $\E$-measurable $\every B\in\F$;
+		\item the mapping $B\mapsto K(x,B)$ (the second mapping of the kernel, the one regarding the set) is a measure $\every x\in E$.
+	\end{itemize}
+\end{definition}
+Then the example:
+\begin{example}
+	Take $\nu$, a finite measure on $(F,\F)$ and take $k$, a positive function on $(E\times F)$ which is measurable with respect to $\E\otimes\F$, the product \sa{}. Then, we integrate
+	\[\int_B\nu(\dy)k(x,y)\qquad\begin{array}{l}
+		B\in\F\\
+		x\in E
+	\end{array}\]
+	We see how this object depends on $x$ and on the choice of $B$ (a function of $x$ and $B$...). It defines a transition kernel
+	\[K(x,B)=\int_B\nu(\dy)k(x,y)\qquad\begin{array}{l}
+		B\in\F\\
+		x\in E
+	\end{array}\]
+	from $(E,\E)$ into $(F,|F)$.
+\end{example}
+Now the extensions of measures on product spaces;
+\begin{theorem}
+		\emph{Extension of measures on product spaces}.\\
+	Let $\mu$ be a measure on the measurable space $(E,\E)$. Let $K$ be a $\Sigma$-finite\footnote{Erm... what the sigma?} transition kernel from space $(E,\E)$ into $(F,\F)$. Then:
+	\begin{enumerate}[\circnum]
+		\item if we take our function $f(x,y)$, integrate it against our kernel $K(x,\dx)$ over $F$ and then integrate again against measure $\mu$ over $E$, the operation 
+		\[\pi f=\int_E\mu(\dx)\int_FK(x,\dy)f(x,y)\]
+		defines a measure $\pi$ on $(E\times F,\E\otimes\F)$;
+		\item if $\mu$ is $\sigma$-finite and $K$ is $\sigma$-bounded then $\pi$ is $\sigma$-finite and it is the unique measure on $(E\times F,\E\otimes\F)$ satisfying
+		\[\pi(A\times B)=\int_A\mu(\dx)K(x,B)\qquad\every A\in\E,B,\in\F.\]
+	\end{enumerate}
+\end{theorem}
+\subsection{Kolmogorov’s 0-1 law: proof and an example of its usage}
+First, the statemente of the theorem.
+\begin{theorem}
+	\emph{Kolmogorov's 0-1 law}\\
+	This is a theorem about independence. Let $\G_1,\G_2,\ldots$ be independent. Then
+	\[\pr(H)=\begin{cases}
+		0\\
+		1
+	\end{cases}\qquad\every H\in\tau.\]
+\end{theorem}
+and here's the short proof:
+\begin{fancyproof}
+	Start from your independency $(\G_1,\G_2,\ldots)$, then put the last $\G$'s in a partition (which is still an independency) $(\G_1,\G_2,\ldots,\G_n,\tau_n)$. Now consider that the tail \sa{} is a subset of $\tau_n$ and this means that $(\G_1,\G_2,\ldots,\G_n,\tau)$ is still an independency... But we also know that this is true for every $n$ up to $\infty$ and so we can extend the independency to a collection of countably many partitions, since ${(\G_1,\G_2,\ldots,\G_n,\tau)}_{n}$ us a countably infinite sequence of independencies. So
+	\begin{equation*}
+		(\tau,\G_1,\G_2,\ldots)
+	\end{equation*}
+	is an independency. Do another partition (which still gives us an independency) and get the independency
+	\begin{equation*}
+		(\tau,\tau_0)
+	\end{equation*}
+	but then remember that $\tau_0$ is an \textit{union} of the \sa s from 1 to $\infty$ while $\tau$ is an \textit{intersection} of all $\tau_n$ including $\tau_0$, so we have that $\tau\subset\tau_0$.\\
+	Consider now $\pr(H\cap G)$ where $H\in\tau$ and $G\in\tau_0$. Due do independency we have that 
+	\begin{equation*}
+		\pr(H\cap G)=\pr(H)\pr(G)
+	\end{equation*}but since all elements of $\tau$ are also elements of $\tau_0$ we can choose $G\equiv H$ and our equation becomes
+	\begin{equation*}
+		\pr(H\cap G)=\pr(H\cap H)=\pr(H)=\pr(H)^{2}
+	\end{equation*}
+	and the solution to this can only be 0 or 1.
+\end{fancyproof}
+We still need an example of the application... that would be, for example, the behavior in the limits of a sequence of \rv s with independence between $\{X_{n}\}$. Then if the limit exists it is a constant, since $\lim_{n}X_{n}$ belongs to the tail \sa{} of the sequence. Independency between \rv s tells us that we can apply Kolmogorov's 0-1 law to say that $\pr(\lim_{n}X_{n}=\infty)$ is either 0 or 1... but if we somehow know that the limit exists then it can't be $\infty$ so its probability of being $\infty$ is 0 and therefore it is a constant almost surely! This is cool because it tells us that the limit is either infinite or finite. This is useful for sub-martingales. 
+\subsection{Almost sure convergence: definition, properties and characterization theorem}
+Start with the definition:
+\begin{definition}
+	A real-valued sequence of \rv s ${(X_n)}_{n}$ on $(\Omega,\HS,\pr)$ is said to be \emph{almost sure convergent} (a.s. convergent) is the numerical sequence
+	\[{\Big(X_n(\omega)\Big)}_{n}\]
+	converges for almost all $\omega\in\Omega$. \\
+	It is said to converge to $X$ if $X$ is an almost sure real-valued \rv{} and 
+	\[\lim_{n\to\infty}X_n(\omega)=X(\omega)\]
+	for almost all $\omega\in\Omega$.
+\end{definition}
+The characterization is
+\begin{theorem}
+	\emph{Characterization of almost sure convergence}:\\
+	A sequence of real valued \rv s ${(X_n)}_{n}$ converges to $X$ almost surely \ifonly{}, for every $\varepsilon>0$,
+	\begin{equation*}
+		\sum_n\mathcal{i}_\varepsilon\circ|X_n-X|<\infty
+	\end{equation*}
+	almost surely.
+\end{theorem} Where $\mathcal{i}_\varepsilon$  is the indicator function of $(\varepsilon,\infty)$:
+\[\mathcal{i}_\varepsilon(x)=\indi_{(\varepsilon,\infty)}(x)=\begin{cases}
+1, &x>\varepsilon\\
+0, &x\leq \varepsilon.
+\end{cases}\]
+This basically means that in every interval from a certain point $\varepsilon$ to $\infty$ the sum of the differences of $X_n$ and $X$ must not diverge. Here are some properties:
+\begin{itemize}
+	\item \textbf{Comparison with Other Types of Convergence:}
+	\begin{itemize}
+		\item If $\{X_n\}$ converges almost surely to $X$, then $\{X_n\}$ also converges to $X$ in probability.
+		\item Almost sure convergence implies convergence in distribution, but not necessarily vice versa.
+	\end{itemize}
+	
+	\item \textbf{Closure Under Linear Operations:}
+	\begin{itemize}
+		\item \textbf{Addition:} If $X_n \to X$ a.s. and $Y_n \to Y$ a.s., then $X_n + Y_n \to X + Y$ a.s.
+		\item \textbf{Multiplication:} If $X_n \to X$ a.s. and $Y_n \to Y$ a.s., then $X_n Y_n \to XY$ a.s. (provided $X$ and $Y$ are bounded or measurable in a compatible way).
+	\end{itemize}
+	
+	\item \textbf{Countable Additivity:}
+	\begin{itemize}
+		\item \textbf{Countable Unions:} If $\{X_n\}$ converges almost surely to $X$, then for any countable collection of events $\{A_i\}$ with $\Pr(A_i) \to 0$, $\Pr(\limsup_{i \to \infty} A_i) = 0$.
+	\end{itemize}
+	
+	\item \textbf{Uniform Integrability:}
+	\begin{itemize}
+		\item \textbf{Expectation Convergence:} If $\{X_n\}$ converges almost surely to $X$ and $\{X_n\}$ is uniformly integrable, then $X_n \to X$ in $L^1$, meaning $\mathbb{E}[|X_n - X|] \to 0$.
+	\end{itemize}
+	
+	\item \textbf{Continuity from Below and Above:}
+	\begin{itemize}
+		\item \textbf{From Below:} If $X_n \leq X_{n+1}$ a.s. for all $n$ and $X_n \to X$ a.s., then $X_n \leq X$ a.s.
+		\item \textbf{From Above:} If $X_n \geq X_{n+1}$ a.s. for all $n$ and $X_n \to X$ a.s., then $X_n \geq X$ a.s.
+	\end{itemize}
+	
+	\item \textbf{Interchange of Limits:}
+	\begin{itemize}
+		\item \textbf{Expectation Limit:} If $X_n \to X$ a.s. and $\{X_n\}$ is uniformly integrable, then $\mathbb{E}[X_n] \to \mathbb{E}[X]$.
+	\end{itemize}
+	
+	\item \textbf{Fatou's Lemma and Monotone Convergence Theorem:}
+	\begin{itemize}
+		\item \textbf{Fatou’s Lemma:} If $X_n \geq 0$ almost surely and $X_n \to X$ a.s., then $\mathbb{E}[X] \leq \liminf_{n \to \infty} \mathbb{E}[X_n]$.
+		\item \textbf{Monotone Convergence Theorem (for non-negative random variables):} If $X_n \to X$ a.s. and $X_n \geq 0$ a.s., then $\mathbb{E}[X] = \lim_{n \to \infty} \mathbb{E}[X_n]$.
+	\end{itemize}
+\end{itemize}
+\subsection{Borel Cantelli lemmas; proof of the divergence part}
+Enunciate the two lemmas side by side (and with a slightly different formulation).
+\begin{theorem}
+	\emph{Borel-Cantelli lemmas}\\
+	\begin{enumerate}[a)]
+		\item Let ${(B_n)}_{n}$ be a sequence of Bernoulli \rv s.
+		\[\sum_n \ev B_n<+\infty\implies\sum_n B_n<+\infty\as\]
+		\item If 
+		\[\sum_n\ev B_n=\infty\text{ and }{(B_n)}_{n}\text{ are pairwise independent}\]
+		then
+		\[\sum_n B_n=+\infty\as\]
+	\end{enumerate}
+\end{theorem}
+Now let's prove the divergent part.
+	\begin{notation}
+	\[p_n=\ev B_n,\quad a_n=\sum_{i=1}^n\ev B_i=\sum_{i=1}^{n}p_i\]
+	and we get the partial sum and the limits
+	\[S_n=\sum_{i=1}^{n}B_i,\quad S=\lim_n S_n\]
+\end{notation}
+\begin{fancyproof}
+	Ok, this is long. We know that, since the \rv s are pairwise independent,
+	\begin{equation*}
+		\var S_{n}=\sum_{i=1}^{n} \var B_{n}=\sum_{i=1}^{n} p_{n}(1-p_{n})\leq\sum_{i=1}^{n}p_n=a_{n}.
+	\end{equation*}
+	Then fix $b\in(0,\infty)$. Since we know that ${(a_{n})}_{n}$ is increasing towards $\infty$ then the same can be said of 
+	\begin{equation*}
+		{\left(a_{n}-\sqrt{ba_{n}}\right)}_{n}
+	\end{equation*}
+	since we are subtracting to $a_{n}$ a quantity that goes towards $\infty$ more slowly. So the sequence still goes towards infinity and this means that the event ${S<\infty}$ is basically the limit of the increasing sequence of events 
+	\[{\left\{S<a_{n}-\sqrt{ba_{n}}\right\}}_{n}.\]
+	Since $S_{n\leq S}$ we have that
+	\begin{equation*}
+		\left\{S<a_{n}-\sqrt{ba_{n}}\right\}\subset\left\{S_{n}<a_{n}-\sqrt{ba_{n}}\right\}
+	\end{equation*}
+	and we also have that
+	\begin{equation*}
+		\left\{S_{n}<a_{n}-\sqrt{ba_{n}}\right\}\subset\left\{|S_{n}-a_{n}|>\sqrt{ba_{n}}\right\}
+	\end{equation*}
+	Since we are dealing with inclusion of events we can look at this from the point of view of probability measures:
+	\begin{equation*}
+		\pr\left(S<a_{n}-\sqrt{ba_{n}}\right)\leq\pr\left(S_{n}<a_{n}-\sqrt{ba_{n}}\right)\leq\pr\left(|S_{n}-a_{n}|>\sqrt{ba_{n}}\right).
+	\end{equation*}
+	We take the $\limsup_n$ for two of these probabilities:
+	\begin{equation*}
+		\limsup_n\left(\pr\left(S<a_{n}-\sqrt{ba_{n}}\right)\right)\leq\limsup_n\left(\pr\left(|S_{n}-a_{n}|>\sqrt{ba_{n}}\right)\right)
+	\end{equation*}
+	but the first term of this inequality becomes
+	\begin{align*}
+			\limsup_n\left(\pr\left(S<a_{n}-\sqrt{ba_{n}}\right)\right)&=\pr\left(\lim_{n}\left(\pr\left(S<a_{n}-\sqrt{ba_{n}}\right)\right)\right)\\
+			&=\pr\left(S<\infty\right)
+	\end{align*}
+	since the quantity ${\left\{S<a_{n}-\sqrt{ba_{n}}\right\}}_{n}$ goes towards infinity. Now we can rewrite the previous inequality and use Chebyshev's inequality:
+	\begin{align*}
+		\pr\left(S<\infty\right)&\leq\limsup_n\left(\pr\left(|S_{n}-a_{n}|>\sqrt{ba_{n}}\right)\right)\\
+		&\leq\limsup_n\left(\frac{\var S_{n}}{ba_{n}}\right)\\
+		&\leq\limsup_n\left(\frac{\cancel{a_{n}}}{b\cancel{a_{n}}}\right)=\frac{1}{b}.
+	\end{align*}
+	Since $b$ is arbitrary we can let it go towards infinty and thus obtain that
+	\begin{equation*}
+		\pr\left(S<\infty\right)\leq0
+	\end{equation*}
+	But this means that the probability of the complementary event must be 1:
+	\begin{equation*}
+		\pr\left(S=\infty\right)=1.
+	\end{equation*}
+\end{fancyproof}
+\subsection{Borel Cantelli lemmas; proof of the convergence part, relations with a.s. convergence and
+examples of its application}
+Start by enunciating the theorem.
+\begin{theorem}
+	\emph{First Borel-Cantelli Lemma}
+	Let ${(H_n)}_{n}$ be a sequence of events. Then
+	\[\sum_n\pr(H_n)<+\infty\implies\sum_n\indi_{H_n}<+\infty\quad\text{a.s.}\]
+\end{theorem}
+\subsection{Convergence in probability: definition, properties and theorem on the metric for
+convergence in probability}
+\subsection{Uniform integrability: definitions and its consequences}
+\subsection{Law of large numbers: proof of the related theorems}
+\subsection{Central limit theorem (Lyapunov theorem) Proof of the theorem and of the corresponding lemma (Lindeberg Lemma)}
+\subsection{Definition of conditional expectation and its main properties}
+\subsection{Existence and uniqueness of conditional expectation (for L1 random variables)}
+\subsection{Existence and uniqueness of conditional expectation (for L2 random variables, using
+orthogonal projection)}
+\subsection{Filtration, adaptedness; example of non adapted process}
+\subsection{Random times and Stopping Times: examples of random times that are not stopping times
+and examples of stopping times}
+\subsection{Stopped filtration: definition and examples}
+\subsection{Discrete stopping times associated to continuous stopping times}
+\subsection{Conditional expectation at stopping time}
+\subsection{Comparing stopping times: some interesting features}
+\subsection{Functions of stopping times that are (or are not) stopping times}
+\subsection{Foretold times and their relationship with stopping times; examples of foretold times.}
+\subsection{Examples of Martingales: Markov Chains}
+\subsection{Definition of martingale, sub-martingale and super-martingale and their properties}
+\subsection{Definition of sub/super martingale and examples}
+\subsection{Maximum, minimum of martingales}
+\subsection{Predictable processes and Doob’s decomposition}
+\subsection{Doob’s stopping theorem}
+\subsection{Upcrossing inequality}
+\subsection{Doob’s decomposition}
+\subsection{Stochastic integral in discrete time}
+\subsection{Stochastic integral and its application}
+\subsection{Impossibility to win against the system: related theorems and examples}
+\subsection{Predictable and adapted processes: definition and examples}
+\subsection{Poisson process and its martingale property}
+\subsection{Stopped processes and their properties}
+\subsection{Important inequalities for sub-martingales}
+\subsection{Doob’s stopping theorem}
+\subsection{Convergence theorems for sub-martingales}
+\subsection{Uniform integrability and its consequences on convergence of martingales}
+\subsection{Features of the sample paths of a submartingale (or martingale)}
+\subsection{Uniform integrability and its role in convergence problems}
+\subsection{Stopped martingales}
 \clearpage
 \begin{closethedeal}
 	That's it. I really hated this last part. What really makes me angry is that this shit could even be remotely interesting if it wasn't all a slop of notions and theorems. Professor Sacerdote really takes the joy out of everything.\par

@@ -1558,16 +1558,16 @@ So we don't need $\varepsilon$ to be constant, but just to be decreasing to 0.
 Let's state again the two Borel-Cantelli lemmas side by side (and with a slightly different formulation).
 \begin{theorem}
 	\emph{Borel-Cantelli lemmas}\\
-	\begin{enumerate}[a)]
-		\item Let ${(B_n)}_{n}$ be a sequence of Bernoulli \rv s.
-	\[\sum_n \ev B_n<+\infty\implies\sum_n\implies\sum_n B_n<+\infty\as\]
+\begin{enumerate}[a)]
+	\item Let ${(B_n)}_{n}$ be a sequence of Bernoulli \rv s.
+	\[\sum_n \ev B_n<+\infty\implies\sum_n B_n<+\infty\as\]
 	\item If 
 	\[\sum_n\ev B_n=\infty\text{ and }{(B_n)}_{n}\text{ are pairwise independent}\]
 	then
 	\[\sum_n B_n=+\infty\as\]
-	\end{enumerate}
+\end{enumerate}
 \end{theorem}
-We will prove $b)$.
+We will prove $b)$, the so-called ``divergence part''.
 \begin{fancyproof}
 	\begin{notation}
 		\[p_n=\ev B_n,\quad a_n=\sum_{i=1}^n\ev B_i=\sum_{i=1}^{n}p_i\]
@@ -1637,7 +1637,7 @@ This definition is strictly related to almost sure convergence. In measure theor
 	Let ${(X_n)}_{n}$ be a sequence of real-valued random variables. Then ${(X_n)}_{n}$ converges to a further real-valued \rv{} \emph{in probability} if 
 	\[\lim_n\pr(|X_n-X|>\varepsilon)=0\qquad\every\varepsilon>0.\]
 \end{definition}
-So this means that the probability of $X_n$ being at most $\varepsilon$ away from $X$ gets smaller and smaller as $n$ gets bigger. It is quite different than the notion of almost sure convergence... and it depends heavily on the probability measure $\pr$!
+So this means that the probability of $X_n$ being at most $\varepsilon$ away from $X$ gets smaller and smaller as $n$ gets bigger. It is quite different than the notion of almost sure convergencbe... and it depends heavily on the probability measure $\pr$!
 What we get now is a sequence of probabilities that we need to evaluate. 
 \begin{example}
 	Consider
@@ -3945,7 +3945,8 @@ Consider a sequence of \rv s $\{X_{n}\}$ with independence between the \rv. Then
 \begin{remark}
 	If the $\lim_{n}X_{n}$ exists than it belongs to the tail \sa{} $\tau$. Since the \rv s are independent then we can apply the 0-1 Kolmogorov law, so the probability that the \rv{} is infinity is either 0 or 1 but if this is the case then it must be a constant.
 \end{remark}
-If $\{X_{n}\}$ is a submartingale our question is: if we consider the limit 
+This is about the behavior in the limits of a sequence of \rv s with independence between $\{X_{n}\}$. Then if the limit exists it is a constant, since $\lim_{n}X_{n}$ belongs to the tail \sa{} of the sequence. Independency between \rv s tells us that we can apply Kolmogorov's 0-1 law to say that $\pr(\lim_{n}X_{n}=\infty)$ is either 0 or 1... but if we somehow know that the limit exists then it can't be $\infty$ so its probability of being $\infty$ is 0 and therefore it is a constant almost surely! This is cool because it tells us that the limit is either infinite or finite.
+If $\{X_{n}\}$ is a submartingale consider the limit 
 \begin{equation*}
 	\lim_{n\to\infty}X_{n}=X_{\infty}
 \end{equation*}
@@ -3954,7 +3955,7 @@ We have our first theorem about convergence:
 \begin{theorem}
 	Let $X$ be a sub-martingale. If (and note that is a sufficient condition)
 	\begin{equation*}
-		\sup_{n}\ev X_{n}^{+}\ev\infty
+		\sup_{n}\ev X_{n}^{+}<\infty
 	\end{equation*}
 	Then
 	\begin{enumerate}
