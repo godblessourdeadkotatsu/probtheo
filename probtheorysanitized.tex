@@ -3064,7 +3064,7 @@ Now we apply this simple function to our stopping times so that we get the follo
 \begin{remark}
 Of course $T_n$ is a foretold time by $T$, because if I know $T$ I also know the value of $T_n$.
 \end{remark}
-\begin{proof}
+\begin{fancyproof}
 	Fix $n$:
 	\begin{itemize}
 		\item $T_n$ is a measurable function of $T\implies T_n\in\F_n$;
@@ -3074,7 +3074,7 @@ Of course $T_n$ is a foretold time by $T$, because if I know $T$ I also know the
 		\item $T_n$ is discrete.
 	\end{itemize}
 	But $d_n(t)\searrow t$ as $n\to\infty\implies d_n(T)=T_n\searrow T$. We have thus switched from a continuous stopping time to a sequence of discrete stopping times.
-\end{proof}
+\end{fancyproof}
 An important thing to note is that during our process of discretization we never break the property of the stopping times... and this is possible because we are using foretold times!
 \subsection{Conditioning at stopping times}
 Imagine that we have our information about $X$ that stops at the stopping time $T$: this means knowing $\F_T$. Consider the classic conditioning situation
@@ -3093,7 +3093,7 @@ This becomes clear when we see the properties of stopped expectation. For $\ever
 	\[\ev_T X=Y\iff V\in\F_T\text{ and }\ev VX=\ev VY;\]
 	\item \emph{unconditioning}:
 	\[\ev\ev_T X=\ev X;\]
-	\item \emph{repeated contitioning}:
+	\item \emph{repeated conditioning}:
 	\[\ev_S\ev_T X=\ev_{\min\{S,T\}}X=\ev_{S\wedge T}X;\]
 	\item \emph{conditional determinism}:
 	\[\ev_T(X+YZ)=X+Y\ev_T(Z)\]
